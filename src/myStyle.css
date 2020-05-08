@@ -1,0 +1,59 @@
+/* ---- Variables ----*/
+/* colors */
+/* font */
+/* global font-size (default; 14px) */
+/* global font-family (default: "Helvetica Neue",Helvetica,Arial,sans-serif") */
+/* ---- Style ----*/
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #2a2a2a;
+  background-color: #fff;
+}
+
+/* ---- special class ----*/
+.note {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #afafaf;
+  border-radius: 4px;
+  background-color: #eeeeee;
+  padding: 10px;
+  margin: 10px;
+}
+
+.note:before {
+  content: "Note:";
+  margin: 15px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.NOTE {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b30027;
+  border-radius: 4px;
+  background-color: #eeeeee;
+  padding: 10px;
+  margin: 10px;
+  color: #ff5151;
+}
+
+.NOTE:before {
+  content: "Important Note:";
+  margin: 15px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+/* footer ------ */
+.footer {
+  color: #afafaf;
+}
+
+.footer a {
+  color: #399b00;
+}
+

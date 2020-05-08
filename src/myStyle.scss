@@ -1,0 +1,78 @@
+/* ---- Variables ----*/
+/* colors */
+$col1: #187fc3;
+$col2: #f9be00;
+$col3: #ecd977;
+$col4: #4c4b4c;
+$col5: #aaa59f;
+
+$dark1: #181818;
+$dark2: #2a2a2a;
+$grey1: #686868;
+$grey2: #afafaf;
+$light1: #eeeeee;
+$light2: #d8d8d8;
+
+$red: #b30027;
+$green: #399b00;
+$blue: #004eb3;
+
+/* font */
+$fSize: 16px; /* global font-size (default; 14px) */
+$fFam: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  "Lucida Sans Unicode", Geneva, Verdana, sans-serif; /* global font-family (default: "Helvetica Neue",Helvetica,Arial,sans-serif") */
+
+/* ---- Style ----*/
+body {
+  font-family: $fFam;
+  font-size: $fSize;
+  line-height: 1.42857143;
+  color: $dark2;
+  background-color: #fff;
+}
+
+
+/* ---- special class ----*/
+.note {
+  border-style: solid;
+  border-width: 1px;
+  border-color: $grey2;
+  border-radius: 4px;
+
+  background-color: $light1;
+  padding: 10px;
+  margin: 10px;
+}
+.note:before {
+  content: "Note:";
+  margin: 15px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.NOTE {
+  border-style: solid;
+  border-width: 1px;
+  border-color: $red;
+  border-radius: 4px;
+
+  background-color: $light1;
+  padding: 10px;
+  margin: 10px;
+  color: #ff5151;
+}
+.NOTE:before {
+  content: "Important Note:";
+  margin: 15px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+/* footer ------ */
+.footer {
+  color: $grey2;
+
+  a {
+    color: $green;
+  }
+}

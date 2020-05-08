@@ -1,0 +1,83 @@
+---
+title: "R Tips & Tricks"
+author: "Julien Diot"
+date: "`r format(Sys.time(), '%Y/%m/%d')`"
+colorlinks: true
+output:
+  html_document:
+    self_contained: true
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    number_sections: TRUE
+    code_folding: hide
+    df_print: paged
+    css: "src/myStyle.css"
+    includes:
+      after_body: src/footer.html
+---
+
+```{r setup, include=FALSE}
+knitStartTime <- Sys.time()
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
+                      include = TRUE,
+                      warning = TRUE,
+                      message = TRUE,
+                      cache = FALSE, # save chunks output
+                      results = "hold", # display chunk output in one block
+                      
+                      # df_print paged options
+                      rows.print = 10,
+                      max.print = Inf,
+                      
+                      
+                      # format
+                      tidy = FALSE, # format code with 'tidy_source()'
+                      tidy.opts = list(width.cutoff = 80),
+                      strip.white = TRUE, #remove the white lines in the beginning or end of a source chunk
+                      
+                      fig.align = "center",
+                      fig.width = 9,
+                      fig.height = 5)
+
+knitr::opts_knit$set(progress = TRUE,
+                     verbose = FALSE,
+                     width = 80)
+
+# compile css
+sass::sass(input = sass::sass_file("src/myStyle.scss"),
+           output = "src/myStyle.css")
+```
+
+```{css echo=FALSE, eval = TRUE}
+/* add some CSS styling here */
+```
+
+
+**Packages / R-options:**
+```{r pkgs_options, results='hide'}
+suppressPackageStartupMessages({
+
+})
+
+#  R options
+options(max.print = 20)
+```
+
+
+# Appendix
+
+```{r sessionInfo, echo=FALSE}
+options(max.print = 10000)
+cat("Document generated in:\n")
+print(Sys.time() - knitStartTime)
+if (Sys.info()["sysname"] == "Linux") {
+  cat("\nCPU: ")
+  cat(unique(system("awk -F': ' '/model name/{print $2}' /proc/cpuinfo", intern = T)))
+  cat("\nMemory total size: ")
+  cat(as.numeric(system("awk '/MemTotal/ {print $2}' /proc/meminfo", intern = T))*10^(-6), "GB")
+  }
+cat("\n\n\nSession information:\n")
+print(sessionInfo(), locale = FALSE)
+```
