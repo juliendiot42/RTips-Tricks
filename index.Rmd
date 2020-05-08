@@ -5,7 +5,7 @@ date: "`r format(Sys.time(), '%Y/%m/%d')`"
 colorlinks: true
 output:
   html_document:
-    self_contained: true
+    self_contained: false
     toc: true
     toc_depth: 4
     toc_float: true
@@ -54,6 +54,10 @@ sass::sass(input = sass::sass_file("src/myStyle.scss"),
 /* add some CSS styling here */
 ```
 
+**Disclaimer**
+
+The R Tips and Tricks presented here **are just what I use**, I don't guarantee that this is the best way to do it. Moreover, new features are developed every days some stuffs presented here might be outdated in the future. If you have any comments or suggestions feel free to contact me: juliendiot@ut-biomet.org or post an issue on [GitHub](https://github.com/juliendiot42/RTips-Tricks/issues).
+
 
 **Packages / R-options:**
 ```{r pkgs_options, results='hide'}
@@ -63,12 +67,201 @@ suppressPackageStartupMessages({
 
 #  R options
 options(max.print = 20)
+
+# variables
+R <- fontawesome::fa("r-project", height = "20px", fill = "steelblue")
 ```
 
 
-# Appendix
 
-```{r sessionInfo, echo=FALSE}
+
+# Ideas
+
+<!-- - Rstudio **settings**: -->
+<!--   - Code: Editing, display, completion, diagnostic -->
+<!--   - Appearance: black theme, font (fira code) -->
+<!--   - **Pane layout** -->
+<!--   - spelling -->
+  
+- Rstudio **features**:
+  - click to see variables
+  - keyboard shortcut
+  - R-project (project options)
+    - `renv` package
+  - addins
+  - Code Outline (navigate in code)
+  
+
+- useful R functions: 
+  - debugging with `browser()`
+  - get code form object with `dput()`
+  - use `saveRDS` instead of save (for one variable)
+  
+  
+- rmarkdown:
+  - rmd templates
+  - Appendix `sessionInfo()`
+
+- snippets
+- Cheat sheets
+- .Rprofile
+
+- technical monitoring
+  - CRAN alerts
+  - R bloggers
+
+- Performances
+  - code profiling
+  - microbenchmark
+
+- Rstudio 1.3
+  - https://rstudio.com/products/rstudio/download/preview/
+
+- Resources
+  - R bloggers
+  - Hadley's books
+  - https://holtzy.github.io/Pimp-my-rmd/
+
+# Setup R-Studio
+
+My favorite `r R` IDE is [R-Studio Desktop](https://rstudio.com/products/rstudio/download/#download). It is free and open-source and provides a lot of powerful features.
+
+This section presents interesting R-Studio settings and my current setup.
+
+To setup R-Studio go to: `Tools -> Global Options...`.
+
+A documentation for these settings is available [here](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio). It might not be up to date but most of the settings are presented.
+
+<div class="note">
+Some useful R-Studio settings are not activated by default, I think it's worth taking some time to check these settings.
+</div>
+
+
+## Pane layout and appearance
+
+`Tools -> Global Options... -> Pane layout`
+
+In order to have **more space for the editor**, we can **move the console on the top right corner** and move the "Environment pane" to the bottom right.
+
+Indeed, the panes on the bottom left do not need to be displayed constantly.
+
+![The editor takes the the whole windows](src/img/RS-layout.png)
+
+
+As you can see, I prefer **dark theme** because it's more pleasant for my eyes. My favorite one is "Idle Fingers". However, several other themes are available, some a light other are black.
+
+I also use the font [**"Fira code"**](https://github.com/tonsky/FiraCode), this font provide programming ligatures:
+
+<div class = "row">
+<div class = "col-md-6">
+
+![Courier 10 pitch](src/img/fontCourrier.png)
+</div>
+  
+<div class = "col-md-6">
+
+![Fira Code](src/img/fontFira.png)
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+## Code settings {.tabset .tabset-fade .tabset-pills}
+
+`Tools -> Global Options... -> Code`
+
+I present here my personal settings. The highlighted lines are those I find interesting.
+
+### Editing
+
+<center>
+![](src/img/RS-edit.png)
+</center>
+
+- **Insert matching parens/quotes**: When typing a paren, quote, or brace automatically insert a matching one and position the cursor between them.
+- **Auto-indent code after paste**: Automatically execute a Reindent on blocks of R code pasted into the editor.
+- **Vertically align arguments in auto-indent**: Preserve the current indentation level for function arguments split across multiple lines.
+- **Enable code snippets**: see the corresponding [section](#snippets).
+
+
+### Display
+
+<center>
+![](src/img/RS-display.png)
+</center>
+
+- **Highlight selected word**: Add a background highlight effect to all instances of the currently selected word within the document. (Useful to find some variables in the code)
+- **Show line numbers**: Show or hide line numbers within the left margin. (Useful for debugging)
+- **Show margin**: Display a margin guide on the right-hand side of the source editor at the specified column. (The "good practices" require to have line smaller than 80 characters)
+- **Show whitespace characters**: Display glyphs indicating where whitespace characters (tab, newline, etc.) are located in source documents. (Useful to detect "double spaces" and tabulation)
+- **Highlight R function calls**: Highlight R functions. (Better distinction between functions and other R objects)
+
+### Saving
+
+<center>
+![](src/img/RS-save.png)
+</center>
+
+- **Ensure that source files end with a new line**: It's a good practice to end coding file with a new line.
+- **Strip trailing horizontal whitespaces when saving**: Remove whitespaces from blank line:
+
+![Effect of `Ctrl` + `S`](src/img/RS-remWhiteSpace.gif)
+
+- **Auto-save**: New feature of **R-Studio 1.3**
+
+### Completion
+
+<center>
+![](src/img/RS-completion.png)
+</center>
+
+Completion help to write functions name and their parameters just by taping the first letters and the `tab` key:
+
+![Press `tab` for automatic completion](src/img/RS-completion.gif)
+
+### Diagnostics
+
+<center>
+![](src/img/RS-diagnostic.png)
+</center>
+
+- **Show diagnostics for R**: Check to display alert messages in the margin of the editor when R code appears incorrect.
+
+![Different diagnostic results](src/img/RS-diagnostic.gif)
+
+
+
+
+
+
+## Spellchecking
+
+![R-Studio 1.3 provide real time spellchecking](src/img/RS-spellCheck.png)
+
+
+
+
+
+
+
+
+
+
+
+
+# Snippets {#snippets}
+
+<h1>Appendix</h1>
+
+Source code of this document is available on [GitHub](https://github.com/juliendiot42/RTips-Tricks).
+
+```{r sessionInfo}
 options(max.print = 10000)
 cat("Document generated in:\n")
 print(Sys.time() - knitStartTime)
@@ -77,7 +270,7 @@ if (Sys.info()["sysname"] == "Linux") {
   cat(unique(system("awk -F': ' '/model name/{print $2}' /proc/cpuinfo", intern = T)))
   cat("\nMemory total size: ")
   cat(as.numeric(system("awk '/MemTotal/ {print $2}' /proc/meminfo", intern = T))*10^(-6), "GB")
-  }
+}
 cat("\n\n\nSession information:\n")
 print(sessionInfo(), locale = FALSE)
 ```

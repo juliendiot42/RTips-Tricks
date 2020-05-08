@@ -12,6 +12,19 @@ body {
   background-color: #fff;
 }
 
+img {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  margin-top: 80px;
+}
+
+#TOC {
+  margin-top: 80px !important;
+}
+
 /* ---- special class ----*/
 .note {
   border-style: solid;
@@ -19,13 +32,13 @@ body {
   border-color: #afafaf;
   border-radius: 4px;
   background-color: #eeeeee;
-  padding: 10px;
-  margin: 10px;
+  padding: 1em;
+  margin: 1em;
 }
 
 .note:before {
   content: "Note:";
-  margin: 15px;
+  margin: 1em;
   font-style: italic;
   text-decoration: underline;
 }
@@ -36,16 +49,57 @@ body {
   border-color: #b30027;
   border-radius: 4px;
   background-color: #eeeeee;
-  padding: 10px;
-  margin: 10px;
+  padding: 1em;
+  margin: 1em;
   color: #ff5151;
 }
 
 .NOTE:before {
   content: "Important Note:";
-  margin: 15px;
+  margin: 1em;
   font-style: italic;
   text-decoration: underline;
+}
+
+.nav-pills {
+  border-style: solid;
+  border-width: 2px 0px 0px 0px;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  border-color: #d8d8d8;
+}
+
+.tab-content {
+  border-color: #d8d8d8;
+  border-style: solid;
+  border-width: 0px 0px 2px 0px;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  padding-bottom: 2em;
+}
+
+/* figure ------ */
+.figure {
+  text-align: center;
+}
+
+.figure p {
+  color: #686868;
+  font-style: italic;
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+/* show hide button ------ */
+.btn {
+  border-width: 0 0px 0px 0px;
+  font-weight: normal;
+}
+
+.btn-default {
+  color: #187fc3;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 
 /* footer ------ */
