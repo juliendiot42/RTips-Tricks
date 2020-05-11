@@ -1,7 +1,7 @@
 ---
 title: "R Tips & Tricks"
 author: "Julien Diot"
-date: "`r format(Sys.time(), '%Y/%m/%d')`"
+date: "Laste update: `r format(Sys.time(), '%Y/%m/%d')`"
 colorlinks: true
 output:
   html_document:
@@ -62,7 +62,7 @@ The R Tips and Tricks presented here **are just what I use**, I don't guarantee 
 **Packages / R-options:**
 ```{r pkgs_options, results='hide'}
 suppressPackageStartupMessages({
-
+ library(fs)
 })
 
 #  R options
@@ -168,6 +168,12 @@ I also use the font [**"Fira code"**](https://github.com/tonsky/FiraCode), this 
 
 
 
+## General settings {#generalSettings}
+
+![General settings](src/img/RS-general.png)
+
+It is important to **not** restore or save your workspace at startup or end of the R session. By this way, you will always start R-Studio in a fresh and clean environment, and  because you have saved your script you can regenerate the environment by running it. This is much better for the reproducibility of your work.
+
 
 
 
@@ -180,9 +186,9 @@ I present here my personal settings. The highlighted lines are those I find inte
 
 ### Editing
 
-<center>
-![](src/img/RS-edit.png)
-</center>
+
+![Editing Settings](src/img/RS-edit.png)
+
 
 - **Insert matching parens/quotes**: When typing a paren, quote, or brace automatically insert a matching one and position the cursor between them.
 - **Auto-indent code after paste**: Automatically execute a Reindent on blocks of R code pasted into the editor.
@@ -237,9 +243,6 @@ Completion help to write functions name and their parameters just by taping the 
 
 
 
-
-
-
 ## Spellchecking
 
 ![R-Studio 1.3 provide real time spellchecking](src/img/RS-spellCheck.png)
@@ -251,11 +254,179 @@ Completion help to write functions name and their parameters just by taping the 
 
 
 
+# Working with R-Studio
+
+- Rstudio **features**:
+  - click to see variables
+  - keyboard shortcut
+  - R-project (project options)
+    - `renv` package
+  - addins
+  - Code Outline (navigate in code)
+
+
+## Panes {.tabset .tabset-fade .tabset-pills}
+
+### Environment
+
+![Environment pane](src/img/RSTools-Env.png)
+
+- The Environment pane presents the variables defined in your environments. By default, it shows the global environment but you can select others (like those of the loaded packages).
+
+- The ![broom](src/img/RSTools-EnvButton.png) button clear the workspace.
+
+- An easy and graphical way to import data of different types (text, excel, SAS ...) is to use the ![import Dataset](src/img/RSTools-EnvButton2.png) button. The corresponding R code will be written in the console, you can then copy/paste it in your scripts.
+
+- You can visualize the variables defined in your environments by clicking on them. This is a shortcut for a call to the R function `View()`.
+
+![Click on your R objects to view them in the main window](src/img/RSTools-Env.gif)
+
+
+
+
+
+
+### File browser
+
+![R-Studio file pane](src/img/RSTools-file.png)
+
+By default, it is open at your current working directory. You can navigate through your file and set up a new working directory with the button ![](src/img/RSTools-fileMore.png).
+
+It's quite convenient to manage the files directly from R-Studio. If you are working in a [projects](#Rproj), you can quickly access to your root folder with the ![](src/img/RSTools-fileR.png) button. 
+
+
+
+### Packages
+
+![R-Studio package pane](src/img/RSTools-pkg.png)
+
+In the package pane, you can **install new packages**. It's particularly convenient when you don't know the exact package name.
+
+![](src/img/RSTools-pkgInst.png)
+
+With the update button you can also check if some of your packages are not up to date. With the ![](src/img/RSTools-pkgUpButton.png) button, you can access to **the news file** of these packages to see what is new. (See also section [CRANalert](#cranalert) for a notifier tools about updated packages).
+
+![](src/img/RSTools-pkgUp.png)
+
+
+### Jobs
+
+![Jobs pane with 2 finished jobs](src/img/RSTools-jobs2.png)
+
+Click on the ![start local job](src/img/RSTools-jobsButton.png) button or source a file as a local job to run an R script in an background R session.
+
+![](src/img/RSTools-jobs4.png)
+
+By this way you can continue to work on R-Studio with an available console while a script is running.
+
+![Jobs pane with a running job showing some outputs](src/img/RSTools-jobs.png)
+
+<div class="note">
+You can find more information on this [R-Studio blog post](https://blog.rstudio.com/2019/03/14/rstudio-1-2-jobs/).
+</div>
+
+
+
+
+
+
+
+<!-- ### Build -->
+
+<!-- ![Build pane](src/img/RSTools-Build.png) -->
+
+<!-- When you develop a R package, you can manage your test / checks / build in the pane.-->
+
+### Git
+
+![Build pane](src/img/RSTools-Git.png)
+
+If you work with Git in your R-Project, you can run the main git commands in this pane: 
+
+- Stage / commit
+- Pull / Push
+- View diff and history
+- Create / checkout branches
+
+### Tutorial
+
+<div class="note">
+It7s a new feature included in R-Studio 1.3
+</div>
+
+Some R packages provides tutorials thanks to the [`learnr`](https://rstudio.github.io/learnr/) package. You can try them in this pane. 
+
+![Data basics tutorial running in the pane](src/img/RSTools-tuto.png)
+
+## R-Project {#Rproj}
+
+When you work, ~~I hope~~ you keep all your files associated with a project in one specific directory in your computer. R-Studio provide a built-in support for this via "projects".
+
+You can find some information about R-Project in this [R-Studio support article](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+ or at this [*R for Data Science* section](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects).
+
+### Advantages 
+
+The main advantages to work with R-Projects are:
+
+- When a R-Project is open, the current working directory is automatically set to the project directory. A R-Project can then be **shared across multiple users** on different computers without thinking about setting the working directory.
+
+- When a R-Project is open, you get back to where you left off: The **previously opened files are restored** into the editor tabs such as the command history (if it had been saved). Even the files that had *never* been saved (named `Untitled1` in the editor) are restored.
+
+- You can use Git from R-Studio.
+
+<div class="note">
+Of course the global environment is not restored if R-Studio is setup correctly as explained in this [section](#generalSettings).
+</div>
+
+### Create R-Project 
+
+You can create a new R-Project either by clicking on `File -> New Project...` or on the ![project](src/img/RS-project.png) button.
+
+You can then choose to create it in an existing directory, or to create a new one. In this case, R-Studio provides different templates: "R package", "Shiny Web Application", "Plumber API" ... After creation, the directory will already contain some files and folder.
+
+![Differents project templates](src/img/RS-project2.png)
+
+There is no template for data analysis projects, but a simple structure can be:
+
+```{r echo=FALSE}
+dir_tree("projectExample/")
+```
+
+
+### How it works 
+
+R project is a directory containing a `.Rproj` file which can be open by R-Studio. When you open a `.Rproj` file, the following happens:
+
+- A new R session (process) is started
+- The `.Rprofile` file in the project's main directory (if any) is sourced by R
+- The `.RData` file in the project's main directory is loaded (if project options indicate that it should be loaded). 
+- The `.Rhistory` file in the project's main directory is loaded into the R-Studio history pane (and used for Console Up/Down arrow command history).
+- The current working directory is set to the project directory.
+- Previously edited source documents are restored into editor tabs
+- Other R-Studio settings (e.g. active tabs, splitter positions, etc.) are restored to where they were the last time the project was closed.
+
+The `.Rproj` file is a text file (you can try to open it with a text editor) containing the project settings. These settings can be modified in `Tools -> Project Options...`. It is important to know that **these settings have priority** over the standard R-Studio settings.
+
+
+<h2></h2>
+<div class="note">
+
+- If your R project is included in a Google Drive folder, you can encounter some troubles when saving your files.
+
+- Even if the `.Rproj.user` folder is not so big, it can contain a lot of small files. It can then take a long time be synchronized on clouds services.
+
+</div>
 
 
 
 
 # Snippets {#snippets}
+
+# External ressourses
+
+## CRANalert {#cranalert}
+
 
 <h1>Appendix</h1>
 

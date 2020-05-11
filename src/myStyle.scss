@@ -99,7 +99,7 @@ h1, .h1, h2, .h2, h3, .h3 {
   padding-bottom: 2em;
 }
 
-/* figure ------ */
+/* figure / img ------ */
 .figure {
   text-align: center;
   p {
@@ -107,6 +107,12 @@ h1, .h1, h2, .h2, h3, .h3 {
     font-style: italic;
     font-size: $fSize * 0.75;
     margin-top: -10px;
+  }
+}
+
+p {
+  img {
+    margin: 0px;
   }
 }
 

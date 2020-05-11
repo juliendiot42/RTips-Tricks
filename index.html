@@ -270,7 +270,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">R Tips &amp; Tricks</h1>
 <h4 class="author">Julien Diot</h4>
-<h4 class="date">2020/05/08</h4>
+<h4 class="date">Laste update: 2020/05/11</h4>
 
 </div>
 
@@ -282,7 +282,7 @@ div.tocify {
 <p>The R Tips and Tricks presented here <strong>are just what I use</strong>, I don’t guarantee that this is the best way to do it. Moreover, new features are developed every days some stuffs presented here might be outdated in the future. If you have any comments or suggestions feel free to contact me: <a href="mailto:juliendiot@ut-biomet.org" class="email">juliendiot@ut-biomet.org</a> or post an issue on <a href="https://github.com/juliendiot42/RTips-Tricks/issues">GitHub</a>.</p>
 <p><strong>Packages / R-options:</strong></p>
 <pre class="r"><code>suppressPackageStartupMessages({
-
+ library(fs)
 })
 
 #  R options
@@ -292,14 +292,12 @@ options(max.print = 20)
 R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill = &quot;steelblue&quot;)</code></pre>
 <div id="ideas" class="section level1">
 <h1><span class="header-section-number">1</span> Ideas</h1>
+<!-- - Rstudio **settings**: -->
+<!--   - Code: Editing, display, completion, diagnostic -->
+<!--   - Appearance: black theme, font (fira code) -->
+<!--   - **Pane layout** -->
+<!--   - spelling -->
 <ul>
-<li><p>Rstudio <strong>settings</strong>:</p>
-<ul>
-<li>Code: Editing, display, completion, diagnostic</li>
-<li>Appearance: black theme, font (fira code)</li>
-<li><strong>Pane layout</strong></li>
-<li>spelling</li>
-</ul></li>
 <li><p>Rstudio <strong>features</strong>:</p>
 <ul>
 <li>click to see variables</li>
@@ -382,15 +380,24 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 </div>
+<div id="generalSettings" class="section level2">
+<h2><span class="header-section-number">2.2</span> General settings</h2>
+<div class="figure">
+<img src="src/img/RS-general.png" alt="" />
+<p class="caption">General settings</p>
+</div>
+<p>It is important to <strong>not</strong> restore or save your workspace at startup or end of the R session. By this way, you will always start R-Studio in a fresh and clean environment, and because you have saved your script you can regenerate the environment by running it. This is much better for the reproducibility of your work.</p>
+</div>
 <div id="code-settings" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">2.2</span> Code settings</h2>
+<h2><span class="header-section-number">2.3</span> Code settings</h2>
 <p><code>Tools -&gt; Global Options... -&gt; Code</code></p>
 <p>I present here my personal settings. The highlighted lines are those I find interesting.</p>
 <div id="editing" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Editing</h3>
-<center>
-<img src="src/img/RS-edit.png" />
-</center>
+<h3><span class="header-section-number">2.3.1</span> Editing</h3>
+<div class="figure">
+<img src="src/img/RS-edit.png" alt="" />
+<p class="caption">Editing Settings</p>
+</div>
 <ul>
 <li><strong>Insert matching parens/quotes</strong>: When typing a paren, quote, or brace automatically insert a matching one and position the cursor between them.</li>
 <li><strong>Auto-indent code after paste</strong>: Automatically execute a Reindent on blocks of R code pasted into the editor.</li>
@@ -399,7 +406,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="display" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Display</h3>
+<h3><span class="header-section-number">2.3.2</span> Display</h3>
 <center>
 <img src="src/img/RS-display.png" />
 </center>
@@ -412,7 +419,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="saving" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> Saving</h3>
+<h3><span class="header-section-number">2.3.3</span> Saving</h3>
 <center>
 <img src="src/img/RS-save.png" />
 </center>
@@ -429,7 +436,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="completion" class="section level3">
-<h3><span class="header-section-number">2.2.4</span> Completion</h3>
+<h3><span class="header-section-number">2.3.4</span> Completion</h3>
 <center>
 <img src="src/img/RS-completion.png" />
 </center>
@@ -440,7 +447,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="diagnostics" class="section level3">
-<h3><span class="header-section-number">2.2.5</span> Diagnostics</h3>
+<h3><span class="header-section-number">2.3.5</span> Diagnostics</h3>
 <center>
 <img src="src/img/RS-diagnostic.png" />
 </center>
@@ -454,15 +461,176 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="spellchecking" class="section level2">
-<h2><span class="header-section-number">2.3</span> Spellchecking</h2>
+<h2><span class="header-section-number">2.4</span> Spellchecking</h2>
 <div class="figure">
 <img src="src/img/RS-spellCheck.png" alt="" />
 <p class="caption">R-Studio 1.3 provide real time spellchecking</p>
 </div>
 </div>
 </div>
+<div id="working-with-r-studio" class="section level1">
+<h1><span class="header-section-number">3</span> Working with R-Studio</h1>
+<ul>
+<li>Rstudio <strong>features</strong>:
+<ul>
+<li>click to see variables</li>
+<li>keyboard shortcut</li>
+<li>R-project (project options)
+<ul>
+<li><code>renv</code> package</li>
+</ul></li>
+<li>addins</li>
+<li>Code Outline (navigate in code)</li>
+</ul></li>
+</ul>
+<div id="panes" class="section level2 tabset tabset-fade tabset-pills">
+<h2><span class="header-section-number">3.1</span> Panes</h2>
+<div id="environment" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Environment</h3>
+<div class="figure">
+<img src="src/img/RSTools-Env.png" alt="" />
+<p class="caption">Environment pane</p>
+</div>
+<ul>
+<li><p>The Environment pane presents the variables defined in your environments. By default, it shows the global environment but you can select others (like those of the loaded packages).</p></li>
+<li><p>The <img src="src/img/RSTools-EnvButton.png" alt="broom" /> button clear the workspace.</p></li>
+<li><p>An easy and graphical way to import data of different types (text, excel, SAS …) is to use the <img src="src/img/RSTools-EnvButton2.png" alt="import Dataset" /> button. The corresponding R code will be written in the console, you can then copy/paste it in your scripts.</p></li>
+<li><p>You can visualize the variables defined in your environments by clicking on them. This is a shortcut for a call to the R function <code>View()</code>.</p></li>
+</ul>
+<div class="figure">
+<img src="src/img/RSTools-Env.gif" alt="" />
+<p class="caption">Click on your R objects to view them in the main window</p>
+</div>
+</div>
+<div id="file-browser" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> File browser</h3>
+<div class="figure">
+<img src="src/img/RSTools-file.png" alt="" />
+<p class="caption">R-Studio file pane</p>
+</div>
+<p>By default, it is open at your current working directory. You can navigate through your file and set up a new working directory with the button <img src="src/img/RSTools-fileMore.png" />.</p>
+<p>It’s quite convenient to manage the files directly from R-Studio. If you are working in a <a href="#Rproj">projects</a>, you can quickly access to your root folder with the <img src="src/img/RSTools-fileR.png" /> button.</p>
+</div>
+<div id="packages" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Packages</h3>
+<div class="figure">
+<img src="src/img/RSTools-pkg.png" alt="" />
+<p class="caption">R-Studio package pane</p>
+</div>
+<p>In the package pane, you can <strong>install new packages</strong>. It’s particularly convenient when you don’t know the exact package name.</p>
+<p><img src="src/img/RSTools-pkgInst.png" /></p>
+<p>With the update button you can also check if some of your packages are not up to date. With the <img src="src/img/RSTools-pkgUpButton.png" /> button, you can access to <strong>the news file</strong> of these packages to see what is new. (See also section <a href="#cranalert">CRANalert</a> for a notifier tools about updated packages).</p>
+<p><img src="src/img/RSTools-pkgUp.png" /></p>
+</div>
+<div id="jobs" class="section level3">
+<h3><span class="header-section-number">3.1.4</span> Jobs</h3>
+<div class="figure">
+<img src="src/img/RSTools-jobs2.png" alt="" />
+<p class="caption">Jobs pane with 2 finished jobs</p>
+</div>
+<p>Click on the <img src="src/img/RSTools-jobsButton.png" alt="start local job" /> button or source a file as a local job to run an R script in an background R session.</p>
+<p><img src="src/img/RSTools-jobs4.png" /></p>
+<p>By this way you can continue to work on R-Studio with an available console while a script is running.</p>
+<div class="figure">
+<img src="src/img/RSTools-jobs.png" alt="" />
+<p class="caption">Jobs pane with a running job showing some outputs</p>
+</div>
+<div class="note">
+<p>You can find more information on this <a href="https://blog.rstudio.com/2019/03/14/rstudio-1-2-jobs/">R-Studio blog post</a>.</p>
+</div>
+<!-- ### Build -->
+<!-- ![Build pane](src/img/RSTools-Build.png) -->
+<!-- When you develop a R package, you can manage your test / checks / build in the pane.-->
+</div>
+<div id="git" class="section level3">
+<h3><span class="header-section-number">3.1.5</span> Git</h3>
+<div class="figure">
+<img src="src/img/RSTools-Git.png" alt="" />
+<p class="caption">Build pane</p>
+</div>
+<p>If you work with Git in your R-Project, you can run the main git commands in this pane:</p>
+<ul>
+<li>Stage / commit</li>
+<li>Pull / Push</li>
+<li>View diff and history</li>
+<li>Create / checkout branches</li>
+</ul>
+</div>
+<div id="tutorial" class="section level3">
+<h3><span class="header-section-number">3.1.6</span> Tutorial</h3>
+<div class="note">
+<p>It7s a new feature included in R-Studio 1.3</p>
+</div>
+<p>Some R packages provides tutorials thanks to the <a href="https://rstudio.github.io/learnr/"><code>learnr</code></a> package. You can try them in this pane.</p>
+<div class="figure">
+<img src="src/img/RSTools-tuto.png" alt="" />
+<p class="caption">Data basics tutorial running in the pane</p>
+</div>
+</div>
+</div>
+<div id="Rproj" class="section level2">
+<h2><span class="header-section-number">3.2</span> R-Project</h2>
+<p>When you work, <del>I hope</del> you keep all your files associated with a project in one specific directory in your computer. R-Studio provide a built-in support for this via “projects”.</p>
+<p>You can find some information about R-Project in this <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">R-Studio support article</a> or at this <a href="https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects"><em>R for Data Science</em> section</a>.</p>
+<div id="advantages" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Advantages</h3>
+<p>The main advantages to work with R-Projects are:</p>
+<ul>
+<li><p>When a R-Project is open, the current working directory is automatically set to the project directory. A R-Project can then be <strong>shared across multiple users</strong> on different computers without thinking about setting the working directory.</p></li>
+<li><p>When a R-Project is open, you get back to where you left off: The <strong>previously opened files are restored</strong> into the editor tabs such as the command history (if it had been saved). Even the files that had <em>never</em> been saved (named <code>Untitled1</code> in the editor) are restored.</p></li>
+<li><p>You can use Git from R-Studio.</p></li>
+</ul>
+<div class="note">
+<p>Of course the global environment is not restored if R-Studio is setup correctly as explained in this <a href="#generalSettings">section</a>.</p>
+</div>
+</div>
+<div id="create-r-project" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Create R-Project</h3>
+<p>You can create a new R-Project either by clicking on <code>File -&gt; New Project...</code> or on the <img src="src/img/RS-project.png" alt="project" /> button.</p>
+<p>You can then choose to create it in an existing directory, or to create a new one. In this case, R-Studio provides different templates: “R package”, “Shiny Web Application”, “Plumber API” … After creation, the directory will already contain some files and folder.</p>
+<div class="figure">
+<img src="src/img/RS-project2.png" alt="" />
+<p class="caption">Differents project templates</p>
+</div>
+<p>There is no template for data analysis projects, but a simple structure can be:</p>
+<pre><code>## projectExample/
+## ├── analysis.R
+## ├── data
+## ├── output
+## ├── projectExample.Rproj
+## └── src</code></pre>
+</div>
+<div id="how-it-works" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> How it works</h3>
+<p>R project is a directory containing a <code>.Rproj</code> file which can be open by R-Studio. When you open a <code>.Rproj</code> file, the following happens:</p>
+<ul>
+<li>A new R session (process) is started</li>
+<li>The <code>.Rprofile</code> file in the project’s main directory (if any) is sourced by R</li>
+<li>The <code>.RData</code> file in the project’s main directory is loaded (if project options indicate that it should be loaded).</li>
+<li>The <code>.Rhistory</code> file in the project’s main directory is loaded into the R-Studio history pane (and used for Console Up/Down arrow command history).</li>
+<li>The current working directory is set to the project directory.</li>
+<li>Previously edited source documents are restored into editor tabs</li>
+<li>Other R-Studio settings (e.g. active tabs, splitter positions, etc.) are restored to where they were the last time the project was closed.</li>
+</ul>
+<p>The <code>.Rproj</code> file is a text file (you can try to open it with a text editor) containing the project settings. These settings can be modified in <code>Tools -&gt; Project Options...</code>. It is important to know that <strong>these settings have priority</strong> over the standard R-Studio settings.</p>
+<h2>
+</h2>
+<div class="note">
+<ul>
+<li><p>If your R project is included in a Google Drive folder, you can encounter some troubles when saving your files.</p></li>
+<li><p>Even if the <code>.Rproj.user</code> folder is not so big, it can contain a lot of small files. It can then take a long time be synchronized on clouds services.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div id="snippets" class="section level1">
-<h1><span class="header-section-number">3</span> Snippets</h1>
+<h1><span class="header-section-number">4</span> Snippets</h1>
+</div>
+<div id="external-ressourses" class="section level1">
+<h1><span class="header-section-number">5</span> External ressourses</h1>
+<div id="cranalert" class="section level2">
+<h2><span class="header-section-number">5.1</span> CRANalert</h2>
 <h1>
 Appendix
 </h1>
@@ -479,10 +647,10 @@ if (Sys.info()[&quot;sysname&quot;] == &quot;Linux&quot;) {
 cat(&quot;\n\n\nSession information:\n&quot;)
 print(sessionInfo(), locale = FALSE)</code></pre>
 <pre><code>## Document generated in:
-## Time difference of 0.1042061 secs
+## Time difference of 0.1524444 secs
 ## 
 ## CPU: Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
-## Memory total size: 7.860076 GB
+## Memory total size: 7.860092 GB
 ## 
 ## 
 ## Session information:
@@ -497,12 +665,16 @@ print(sessionInfo(), locale = FALSE)</code></pre>
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
+## other attached packages:
+## [1] fs_1.4.1
+## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_4.0.0    magrittr_1.5      htmltools_0.4.0   tools_4.0.0      
-##  [5] fs_1.4.1          yaml_2.2.1        Rcpp_1.0.4.6      sass_0.2.0       
-##  [9] stringi_1.4.6     rmarkdown_2.1     knitr_1.28        stringr_1.4.0    
-## [13] xfun_0.13         digest_0.6.25     rlang_0.4.5       fontawesome_0.1.0
-## [17] evaluate_0.14</code></pre>
+##  [1] Rcpp_1.0.4.6      digest_0.6.25     crayon_1.3.4      magrittr_1.5     
+##  [5] evaluate_0.14     rlang_0.4.5       stringi_1.4.6     fontawesome_0.1.0
+##  [9] rmarkdown_2.1     tools_4.0.0       stringr_1.4.0     xfun_0.13        
+## [13] yaml_2.2.1        compiler_4.0.0    htmltools_0.4.0   knitr_1.28       
+## [17] sass_0.2.0</code></pre>
+</div>
 </div>
 
 &nbsp;
@@ -517,8 +689,8 @@ print(sessionInfo(), locale = FALSE)</code></pre>
 
     <!-- Add font awesome icons -->
     <p style="text-align: center;">
-        <a href="https://www.linkedin.com/in/julien-diot-949592107/" class="fab fa-linkedin"></a>
         <a href="https://github.com/juliendiot42" class="fab fa-github"></a>
+        <a href="https://www.linkedin.com/in/julien-diot-949592107/" class="fab fa-linkedin"></a>
         <a href="https://orcid.org/0000-0002-8738-2034" class="fab fa-orcid"></a>
         <a href="https://keybase.io/juliendiot" class="fab fa-keybase"></a>
     </p>
