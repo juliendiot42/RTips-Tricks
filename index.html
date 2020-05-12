@@ -270,7 +270,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">R Tips &amp; Tricks</h1>
 <h4 class="author">Julien Diot</h4>
-<h4 class="date">Laste update: 2020/05/11</h4>
+<h4 class="date">Laste update: 2020/05/12</h4>
 
 </div>
 
@@ -345,8 +345,8 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul></li>
 </ul>
 </div>
-<div id="setup-r-studio" class="section level1">
-<h1><span class="header-section-number">2</span> Setup R-Studio</h1>
+<div id="r-studio-configuration" class="section level1">
+<h1><span class="header-section-number">2</span> R-Studio configuration</h1>
 <p>My favorite <svg style="height:20px;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> IDE is <a href="https://rstudio.com/products/rstudio/download/#download">R-Studio Desktop</a>. It is free and open-source and provides a lot of powerful features.</p>
 <p>This section presents interesting R-Studio settings and my current setup.</p>
 <p>To setup R-Studio go to: <code>Tools -&gt; Global Options...</code>.</p>
@@ -466,6 +466,15 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <img src="src/img/RS-spellCheck.png" alt="" />
 <p class="caption">R-Studio 1.3 provide real time spellchecking</p>
 </div>
+</div>
+<div id="export-your-configuration" class="section level2">
+<h2><span class="header-section-number">2.5</span> Export your configuration</h2>
+<p>From R-Studio 1.3, the configuration is saved at <code>~/.config/rstudio</code> (at least for Linux users). It is then easy to save and retrieve your personal configuration. This folder contain:</p>
+<ul>
+<li>The R-Studio settings: <code>rstudio-pref.json</code></li>
+<li>The <a href="#snippets">snippets</a></li>
+<li>The personal dictionary</li>
+</ul>
 </div>
 </div>
 <div id="working-with-r-studio" class="section level1">
@@ -623,6 +632,142 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 </div>
+<div id="keyboard-shortcuts-and-useful-command" class="section level2">
+<h2><span class="header-section-number">3.3</span> Keyboard shortcuts and useful command</h2>
+<p>R-Studio provide a lot of <strong>very useful</strong> commands linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.</p>
+<p>The default shortcuts can be modify: <code>Tools -&gt; Modify keyboard shortcuts...</code></p>
+<p>The list above is just a non-exhaustive list of my favorite shortcuts / R-Studio functionality.</p>
+<div class="note">
+<ul>
+<li>Remember, if you are doing an annoying and repetitive task, there is probably a shortcut for that!</li>
+<li>The legend says that we don’t need a mouse to work with a computer.</li>
+</ul>
+</div>
+<div id="basic" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Basic</h3>
+<p>These shortcuts are similar to those of other softwares.</p>
+<ul>
+<li><p><code>Ctrl</code> + <code>Z</code> : Undo</p></li>
+<li><p><strong><code>Ctrl</code> + <code>Shift</code> + <code>Z</code></strong> : Redo (this is not the usual convention!)</p></li>
+<li><p><code>Ctrl</code> + <code>O</code> : <strong>O</strong>pen file</p></li>
+<li><p><code>Ctrl</code> + <code>A</code> : Select <strong>a</strong>ll</p></li>
+<li><p><code>Ctrl</code> + <code>S</code> : <strong>S</strong>ave file</p></li>
+<li><p><code>Ctrl</code> + <code>F</code> : <strong>F</strong>ind in the current file</p></li>
+<li><p><strong><code>Ctrl</code> + <code>w</code></strong> : Close tab</p></li>
+<li><p><strong><code>Ctrl</code> + <code>Tab</code></strong> : Go to next tab</p></li>
+<li><p><code>Ctrl</code> + <code>Q</code> : Quit R-Studio</p></li>
+<li><p><code>Tab</code> : Indent</p></li>
+<li><p><code>Shift</code> + <code>Tab</code> : Outdent</p></li>
+</ul>
+</div>
+<div id="help" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Help</h3>
+<ul>
+<li><p><strong><code>Alt</code> + <code>Shift</code> + <code>K</code></strong> : Show <strong>k</strong>eyboard shortcuts</p></li>
+<li><p><code>F1</code> : Show function help</p></li>
+<li><p><strong><code>Ctrl</code> + <code>Click</code></strong> : (on a function) Go to function definition.</p></li>
+</ul>
+</div>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> ????</h3>
+<ul>
+<li><p><strong><code>Ctrl</code> + <code>Shift</code> + <code>F10</code></strong> : Restart R session. <strong>You should do it quite often !</strong></p></li>
+<li><p><code>Ctrl</code> + <code>Enter</code> : Run selected lines</p></li>
+<li><p><code>Ctrl</code> + <code>Alt</code> + <code>B</code>/<code>E</code> : Run code from <strong>B</strong>egining to line or from line to <strong>E</strong>nd</p></li>
+<li><p><code>Ctrl</code> + <code>Shift</code> + <code>H</code> : <del>Choose working directory</del> Not needed because you are working in a R-Studio project.</p></li>
+</ul>
+</div>
+<div id="editor" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Editor</h3>
+<ul>
+<li><p><strong><code>Alt</code> + <code>-</code></strong> : insert <code>&lt;-</code></p></li>
+<li><p><code>Ctrl</code> + <code>Shift</code> + <code>M</code> : insert a pipe <code>%&gt;%</code></p></li>
+<li><p><code>Ctrl</code> + <code>Shift</code> + <code>C</code> : (un)<strong>C</strong>omment code</p></li>
+</ul>
+<div class="figure">
+<img src="src/img/KS-comment.gif" alt="" />
+<p class="caption"><code>Ctrl</code> + <code>Shift</code> + <code>C</code></p>
+</div>
+<hr />
+<ul>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>/</code> : Reflow comment</li>
+</ul>
+<div class="NOTE">
+<p>GIF NOT GOOD !</p>
+</div>
+<div class="figure">
+<img src="src/img/KS-comment2.gif" alt="" />
+<p class="caption"><code>Ctrl</code> + <code>Shift</code> + <code>/</code></p>
+</div>
+<hr />
+<ul>
+<li><code>Ctrl</code> + <code>I</code> : Auto <strong>i</strong>ndentation</li>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>A</code> : Auto reformat code (with format convention)</li>
+</ul>
+<div class="row">
+<div class="col-md-6">
+<div class="figure">
+<img src="src/img/KS-autoIndent.gif" alt="" />
+<p class="caption"><code>Ctrl</code> + <code>I</code></p>
+</div>
+</div>
+<div class="col-md-6">
+<div class="figure">
+<img src="src/img/KS-autoFormat.gif" alt="" />
+<p class="caption"><code>Ctrl</code> + <code>Shift</code> + <code>A</code></p>
+</div>
+</div>
+</div>
+<hr />
+<ul>
+<li><strong><code>Ctrl</code> + <code>P</code></strong>: Jump to Matching Brace/Paren. Very useful to <strong>debug “Brace related errors”</strong></li>
+</ul>
+<div class="figure">
+<img src="src/img/KS-CtrlP.gif" alt="" />
+<p class="caption"><code>Ctrl</code> + <code>P</code></p>
+</div>
+<hr />
+<ul>
+<li><code>Ctrl</code> + <code>Alt</code> + <code>Up</code>/<code>Down</code> : Add cursor above or below</li>
+<li><code>Ctrl</code> + <code>Alt</code> + <code>Click</code> : add a new cursor (Useful on Windows when you copy/paste file path and you want to double the <code>/</code>)</li>
+</ul>
+<div class="figure">
+<img src="src/img/KS-CtrlAltClick.gif" alt="" />
+<p class="caption"><code>Ctrl</code> + <code>Alt</code> + <code>Click</code></p>
+</div>
+<hr />
+<ul>
+<li><strong><code>Ctrl</code> + <code>Alt</code> + <code>Shift</code> + <code>M</code></strong>: Rename in scope. It is much more intelligent than a simple “find and replace”. On the example below, neither the variable <code>a</code> outside the function nor the variable <code>alex</code> is affected.</li>
+</ul>
+<div class="figure">
+<img src="src/img/KS-rename.gif" alt="" />
+<p class="caption"><code>Ctrl</code> + <code>Alt</code> + <code>Shift</code> + <code>M</code></p>
+</div>
+<hr />
+</div>
+<div id="navigation" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Navigation</h3>
+<ul>
+<li><strong><code>Ctrl</code> + <code>Shit</code> + <code>F</code></strong>: <strong>F</strong>ind in files (to search across multiple files)</li>
+</ul>
+</div>
+<div id="r-markdown" class="section level3">
+<h3><span class="header-section-number">3.3.6</span> R markdown</h3>
+<ul>
+<li><strong><code>Ctrl</code> + <code>Shit</code> + <code>K</code></strong>: <strong>K</strong>nit document</li>
+<li><code>Shit</code> + <code>Tab</code> : Autocompletion / snippets</li>
+<li><strong><code>Ctrl</code> + <code>Alt</code> + <code>I</code></strong> : <strong>I</strong>nsert a new chunk</li>
+<li><strong><code>Ctrl</code> + <code>Shift</code> + <code>Enter</code></strong>: Run current chunk</li>
+<li><code>Ctrl</code> + <code>Alt</code> + <code>P</code> : Run all <strong>p</strong>revious chunks</li>
+</ul>
+</div>
+<div id="profiling" class="section level3">
+<h3><span class="header-section-number">3.3.7</span> Profiling</h3>
+<ul>
+<li><code>Ctrl</code> + <code>Alt</code> + <code>Shift</code> + <code>P</code> : Profile selected lines</li>
+</ul>
+</div>
+</div>
 </div>
 <div id="snippets" class="section level1">
 <h1><span class="header-section-number">4</span> Snippets</h1>
@@ -647,7 +792,7 @@ if (Sys.info()[&quot;sysname&quot;] == &quot;Linux&quot;) {
 cat(&quot;\n\n\nSession information:\n&quot;)
 print(sessionInfo(), locale = FALSE)</code></pre>
 <pre><code>## Document generated in:
-## Time difference of 0.1524444 secs
+## Time difference of 0.1649194 secs
 ## 
 ## CPU: Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
 ## Memory total size: 7.860092 GB

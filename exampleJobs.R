@@ -12,6 +12,7 @@ x <- 0
 for (i in 1:10) {
   Sys.sleep(0.1)
 }
+
 x <- x + 1
 print("step 1 finished")
 
@@ -19,6 +20,7 @@ print("step 1 finished")
 for (i in 1:10) {
   Sys.sleep(0.1)
 }
+
 x <- x + 1
 print("step 2 finished")
 
@@ -26,6 +28,7 @@ print("step 2 finished")
 for (i in 1:10) {
   Sys.sleep(0.1)
 }
+
 x <- x + 1
 print("step 2 finished")
 print(paste("Final result x =", x))

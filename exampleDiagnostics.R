@@ -6,7 +6,7 @@
 
 
 # Diagnostics ------------------------------------------------------------
-# Activate the diagnostics analysis in the Global option to see it in action.
+# Activate the diagnostics analys is in the Global option to see it in action.
 
 library(blogdown) # try with an uninstalled package
 
@@ -21,3 +21,4 @@ for (i in c(1:3)) {
   j<-i^2
   rnorm(sd = j)
 }
+)
