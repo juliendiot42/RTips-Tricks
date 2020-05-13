@@ -287,67 +287,26 @@ div.tocify {
 })
 
 #  R options
-options(max.print = 20)
+options(max.print = 200)
 
 # variables
 R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill = &quot;steelblue&quot;)</code></pre>
-<div id="ideas" class="section level1">
-<h1><span class="header-section-number">1</span> Ideas</h1>
-<!-- - Rstudio **settings**: -->
-<!--   - Code: Editing, display, completion, diagnostic -->
-<!--   - Appearance: black theme, font (fira code) -->
-<!--   - **Pane layout** -->
-<!--   - spelling -->
-<ul>
-<li><p>Rstudio <strong>features</strong>:</p>
-<ul>
-<li>click to see variables</li>
-<li>keyboard shortcut</li>
-<li>R-project (project options)
-<ul>
-<li><code>renv</code> package</li>
-</ul></li>
-<li>addins</li>
-<li>Code Outline (navigate in code)</li>
-</ul></li>
-<li><p>useful R functions:</p>
-<ul>
-<li>debugging with <code>browser()</code></li>
-<li>get code form object with <code>dput()</code></li>
-<li>use <code>saveRDS</code> instead of save (for one variable)</li>
-</ul></li>
-<li><p>rmarkdown:</p>
-<ul>
-<li>rmd templates</li>
-<li>Appendix <code>sessionInfo()</code></li>
-</ul></li>
-<li><p>snippets</p></li>
-<li><p>Cheat sheets</p></li>
-<li><p>.Rprofile</p></li>
-<li><p>technical monitoring</p>
-<ul>
-<li>CRAN alerts</li>
-<li>R bloggers</li>
-</ul></li>
-<li><p>Performances</p>
-<ul>
-<li>code profiling</li>
-<li>microbenchmark</li>
-</ul></li>
-<li><p>Rstudio 1.3</p>
-<ul>
-<li><a href="https://rstudio.com/products/rstudio/download/preview/" class="uri">https://rstudio.com/products/rstudio/download/preview/</a></li>
-</ul></li>
-<li><p>Resources</p>
-<ul>
-<li>R bloggers</li>
-<li>Hadley’s books</li>
-<li><a href="https://holtzy.github.io/Pimp-my-rmd/" class="uri">https://holtzy.github.io/Pimp-my-rmd/</a></li>
-</ul></li>
-</ul>
-</div>
+<!-- # Ideas -->
+<!-- - rmarkdown: -->
+<!--   - rmd templates -->
+<!--   - Appendix `sessionInfo()` -->
+<!-- - Cheat sheets -->
+<!-- - technical monitoring -->
+<!--   - CRAN alerts -->
+<!--   - R bloggers -->
+<!-- - Rstudio 1.3 -->
+<!--   - https://rstudio.com/products/rstudio/download/preview/ -->
+<!-- - Resources -->
+<!--   - R bloggers -->
+<!--   - Hadley's books -->
+<!--   - https://holtzy.github.io/Pimp-my-rmd/ -->
 <div id="r-studio-configuration" class="section level1">
-<h1><span class="header-section-number">2</span> R-Studio configuration</h1>
+<h1><span class="header-section-number">1</span> R-Studio configuration</h1>
 <p>My favorite <svg style="height:20px;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> IDE is <a href="https://rstudio.com/products/rstudio/download/#download">R-Studio Desktop</a>. It is free and open-source and provides a lot of powerful features.</p>
 <p>This section presents interesting R-Studio settings and my current setup.</p>
 <p>To setup R-Studio go to: <code>Tools -&gt; Global Options...</code>.</p>
@@ -356,7 +315,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <p>Some useful R-Studio settings are not activated by default, I think it’s worth taking some time to check these settings.</p>
 </div>
 <div id="pane-layout-and-appearance" class="section level2">
-<h2><span class="header-section-number">2.1</span> Pane layout and appearance</h2>
+<h2><span class="header-section-number">1.1</span> Pane layout and appearance</h2>
 <p><code>Tools -&gt; Global Options... -&gt; Pane layout</code></p>
 <p>In order to have <strong>more space for the editor</strong>, we can <strong>move the console on the top right corner</strong> and move the “Environment pane” to the bottom right.</p>
 <p>Indeed, the panes on the bottom left do not need to be displayed constantly.</p>
@@ -382,7 +341,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="generalSettings" class="section level2">
-<h2><span class="header-section-number">2.2</span> General settings</h2>
+<h2><span class="header-section-number">1.2</span> General settings</h2>
 <div class="figure">
 <img src="src/img/RS-general.png" alt="" />
 <p class="caption">General settings</p>
@@ -390,11 +349,11 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <p>It is important to <strong>not</strong> restore or save your workspace at startup or end of the R session. By this way, you will always start R-Studio in a fresh and clean environment, and because you have saved your script you can regenerate the environment by running it. This is much better for the reproducibility of your work.</p>
 </div>
 <div id="code-settings" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">2.3</span> Code settings</h2>
+<h2><span class="header-section-number">1.3</span> Code settings</h2>
 <p><code>Tools -&gt; Global Options... -&gt; Code</code></p>
 <p>I present here my personal settings. The highlighted lines are those I find interesting.</p>
 <div id="editing" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Editing</h3>
+<h3><span class="header-section-number">1.3.1</span> Editing</h3>
 <div class="figure">
 <img src="src/img/RS-edit.png" alt="" />
 <p class="caption">Editing Settings</p>
@@ -407,7 +366,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="display" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> Display</h3>
+<h3><span class="header-section-number">1.3.2</span> Display</h3>
 <center>
 <img src="src/img/RS-display.png" />
 </center>
@@ -420,7 +379,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="saving" class="section level3">
-<h3><span class="header-section-number">2.3.3</span> Saving</h3>
+<h3><span class="header-section-number">1.3.3</span> Saving</h3>
 <center>
 <img src="src/img/RS-save.png" />
 </center>
@@ -437,7 +396,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="completion" class="section level3">
-<h3><span class="header-section-number">2.3.4</span> Completion</h3>
+<h3><span class="header-section-number">1.3.4</span> Completion</h3>
 <center>
 <img src="src/img/RS-completion.png" />
 </center>
@@ -448,7 +407,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="diagnostics" class="section level3">
-<h3><span class="header-section-number">2.3.5</span> Diagnostics</h3>
+<h3><span class="header-section-number">1.3.5</span> Diagnostics</h3>
 <center>
 <img src="src/img/RS-diagnostic.png" />
 </center>
@@ -462,14 +421,14 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="spellchecking" class="section level2">
-<h2><span class="header-section-number">2.4</span> Spellchecking</h2>
+<h2><span class="header-section-number">1.4</span> Spellchecking</h2>
 <div class="figure">
 <img src="src/img/RS-spellCheck.png" alt="" />
 <p class="caption">R-Studio 1.3 provide real time spellchecking</p>
 </div>
 </div>
 <div id="export-your-configuration" class="section level2">
-<h2><span class="header-section-number">2.5</span> Export your configuration</h2>
+<h2><span class="header-section-number">1.5</span> Export your configuration</h2>
 <p>From R-Studio 1.3, the configuration is saved at <code>~/.config/rstudio</code> (at least for Linux users). It is then easy to save and retrieve your personal configuration. This folder contain:</p>
 <ul>
 <li>The R-Studio settings: <code>rstudio-pref.json</code></li>
@@ -479,7 +438,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="working-with-r-studio" class="section level1">
-<h1><span class="header-section-number">3</span> Working with R-Studio</h1>
+<h1><span class="header-section-number">2</span> Working with R-Studio</h1>
 <ul>
 <li>Rstudio <strong>features</strong>:
 <ul>
@@ -494,9 +453,9 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul></li>
 </ul>
 <div id="panes" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">3.1</span> Panes</h2>
+<h2><span class="header-section-number">2.1</span> Panes</h2>
 <div id="environment" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> Environment</h3>
+<h3><span class="header-section-number">2.1.1</span> Environment</h3>
 <div class="figure">
 <img src="src/img/RSTools-Env.png" alt="" />
 <p class="caption">Environment pane</p>
@@ -513,7 +472,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="file-browser" class="section level3">
-<h3><span class="header-section-number">3.1.2</span> File browser</h3>
+<h3><span class="header-section-number">2.1.2</span> File browser</h3>
 <div class="figure">
 <img src="src/img/RSTools-file.png" alt="" />
 <p class="caption">R-Studio file pane</p>
@@ -522,7 +481,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <p>It’s quite convenient to manage the files directly from R-Studio. If you are working in a <a href="#Rproj">projects</a>, you can quickly access to your root folder with the <img src="src/img/RSTools-fileR.png" /> button.</p>
 </div>
 <div id="packages" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> Packages</h3>
+<h3><span class="header-section-number">2.1.3</span> Packages</h3>
 <div class="figure">
 <img src="src/img/RSTools-pkg.png" alt="" />
 <p class="caption">R-Studio package pane</p>
@@ -533,7 +492,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <p><img src="src/img/RSTools-pkgUp.png" /></p>
 </div>
 <div id="jobs" class="section level3">
-<h3><span class="header-section-number">3.1.4</span> Jobs</h3>
+<h3><span class="header-section-number">2.1.4</span> Jobs</h3>
 <div class="figure">
 <img src="src/img/RSTools-jobs2.png" alt="" />
 <p class="caption">Jobs pane with 2 finished jobs</p>
@@ -553,7 +512,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <!-- When you develop a R package, you can manage your test / checks / build in the pane.-->
 </div>
 <div id="git" class="section level3">
-<h3><span class="header-section-number">3.1.5</span> Git</h3>
+<h3><span class="header-section-number">2.1.5</span> Git</h3>
 <div class="figure">
 <img src="src/img/RSTools-Git.png" alt="" />
 <p class="caption">Build pane</p>
@@ -567,7 +526,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="tutorial" class="section level3">
-<h3><span class="header-section-number">3.1.6</span> Tutorial</h3>
+<h3><span class="header-section-number">2.1.6</span> Tutorial</h3>
 <div class="note">
 <p>It7s a new feature included in R-Studio 1.3</p>
 </div>
@@ -579,11 +538,11 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="Rproj" class="section level2">
-<h2><span class="header-section-number">3.2</span> R-Project</h2>
+<h2><span class="header-section-number">2.2</span> R-Project</h2>
 <p>When you work, <del>I hope</del> you keep all your files associated with a project in one specific directory in your computer. R-Studio provide a built-in support for this via “projects”.</p>
 <p>You can find some information about R-Project in this <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">R-Studio support article</a> or at this <a href="https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects"><em>R for Data Science</em> section</a>.</p>
 <div id="advantages" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Advantages</h3>
+<h3><span class="header-section-number">2.2.1</span> Advantages</h3>
 <p>The main advantages to work with R-Projects are:</p>
 <ul>
 <li><p>When a R-Project is open, the current working directory is automatically set to the project directory. A R-Project can then be <strong>shared across multiple users</strong> on different computers without thinking about setting the working directory.</p></li>
@@ -595,7 +554,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="create-r-project" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Create R-Project</h3>
+<h3><span class="header-section-number">2.2.2</span> Create R-Project</h3>
 <p>You can create a new R-Project either by clicking on <code>File -&gt; New Project...</code> or on the <img src="src/img/RS-project.png" alt="project" /> button.</p>
 <p>You can then choose to create it in an existing directory, or to create a new one. In this case, R-Studio provides different templates: “R package”, “Shiny Web Application”, “Plumber API” … After creation, the directory will already contain some files and folder.</p>
 <div class="figure">
@@ -611,7 +570,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 ## └── src</code></pre>
 </div>
 <div id="how-it-works" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> How it works</h3>
+<h3><span class="header-section-number">2.2.3</span> How it works</h3>
 <p>R project is a directory containing a <code>.Rproj</code> file which can be open by R-Studio. When you open a <code>.Rproj</code> file, the following happens:</p>
 <ul>
 <li>A new R session (process) is started</li>
@@ -634,7 +593,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="keyboard-shortcuts-and-useful-command" class="section level2">
-<h2><span class="header-section-number">3.3</span> Keyboard shortcuts and useful command</h2>
+<h2><span class="header-section-number">2.3</span> Keyboard shortcuts and useful command</h2>
 <p>R-Studio provide a lot of <strong>very useful</strong> commands accessible from the menu bar (<code>File</code>, <code>Edit</code>, <code>Code</code>, <code>Session</code> … ).</p>
 <p>These commands are linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.</p>
 <p>The default shortcuts can be modify through: <code>Tools -&gt; Modify keyboard shortcuts...</code></p>
@@ -645,7 +604,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="basic" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Basic</h3>
+<h3><span class="header-section-number">2.3.1</span> Basic</h3>
 <p>These shortcuts are similar to those of other softwares.</p>
 <ul>
 <li><p><code>Ctrl</code> + <code>Z</code> : Undo</p></li>
@@ -654,37 +613,34 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <li><p><code>Ctrl</code> + <code>A</code> : Select <strong>a</strong>ll</p></li>
 <li><p><code>Ctrl</code> + <code>S</code> : <strong>S</strong>ave file</p></li>
 <li><p><code>Ctrl</code> + <code>F</code> : <strong>F</strong>ind in the current file</p></li>
+<li><p><strong><code>Ctrl</code> + <code>Shit</code> + <code>F</code></strong>: <strong>F</strong>ind in files (to search across multiple files)</p></li>
 <li><p><strong><code>Ctrl</code> + <code>w</code></strong> : Close tab</p></li>
 <li><p><strong><code>Ctrl</code> + <code>Tab</code></strong> : Go to next tab</p></li>
 <li><p><code>Ctrl</code> + <code>Q</code> : Quit R-Studio</p></li>
 <li><p><code>Tab</code> : Indent / Autocompletion</p></li>
 <li><p><code>Shift</code> + <code>Tab</code> : Outdent</p></li>
+<li><p><strong><code>Ctrl</code> + <code>Shift</code> + <code>F10</code></strong> : Restart R session. <strong>You should do it quite often !</strong></p></li>
+<li><p><code>Ctrl</code> + <code>Shift</code> + <code>H</code> : <del>Choose working directory</del> Not needed because you are working in a R-Studio project. 😉</p></li>
 </ul>
 </div>
 <div id="help" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Help</h3>
+<h3><span class="header-section-number">2.3.2</span> Help</h3>
 <ul>
 <li><p><strong><code>Alt</code> + <code>Shift</code> + <code>K</code></strong> : Show <strong>k</strong>eyboard shortcuts</p></li>
 <li><p><code>F1</code> : Show function help</p></li>
 <li><p><strong><code>Ctrl</code> + <code>Click</code></strong> : (on a function) Go to function definition.</p></li>
 </ul>
 </div>
-<div id="section" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> ????</h3>
+<div id="run-code" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Run code</h3>
 <ul>
-<li><p><strong><code>Ctrl</code> + <code>Shift</code> + <code>F10</code></strong> : Restart R session. <strong>You should do it quite often !</strong></p></li>
 <li><p><code>Ctrl</code> + <code>Enter</code> : Run selected lines</p></li>
 <li><p><code>Ctrl</code> + <code>Alt</code> + <code>B</code>/<code>E</code> : Run code from <strong>B</strong>egining to line or from line to <strong>E</strong>nd</p></li>
-<li><p><code>Ctrl</code> + <code>Shift</code> + <code>H</code> : <del>Choose working directory</del> Not needed because you are working in a R-Studio project. 😉 😉</p></li>
+<li><p><code>Ctrl</code> + <code>Alt</code> + <code>Shift</code> + <code>P</code> : Profile selected lines (see: <a href="#profiling">profiling section</a>)</p></li>
 </ul>
-<p><strong>TEST EMOJI</strong></p>
-<p>:wink:</p>
-<p>😉</p>
-<p>😉</p>
-<p><strong>TEST EMOJI</strong></p>
 </div>
 <div id="editor" class="section level3">
-<h3><span class="header-section-number">3.3.4</span> Editor</h3>
+<h3><span class="header-section-number">2.3.4</span> Editor</h3>
 <ul>
 <li><p><strong><code>Alt</code> + <code>-</code></strong> : insert <code>&lt;-</code></p></li>
 <li><p><code>Ctrl</code> + <code>Shift</code> + <code>M</code> : insert a pipe <code>%&gt;%</code></p></li>
@@ -748,14 +704,8 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 <hr />
 </div>
-<div id="navigation" class="section level3">
-<h3><span class="header-section-number">3.3.5</span> Navigation</h3>
-<ul>
-<li><strong><code>Ctrl</code> + <code>Shit</code> + <code>F</code></strong>: <strong>F</strong>ind in files (to search across multiple files)</li>
-</ul>
-</div>
 <div id="r-markdown" class="section level3">
-<h3><span class="header-section-number">3.3.6</span> R markdown</h3>
+<h3><span class="header-section-number">2.3.5</span> R markdown</h3>
 <ul>
 <li><strong><code>Ctrl</code> + <code>Shit</code> + <code>K</code></strong>: <strong>K</strong>nit document</li>
 <li><code>Shit</code> + <code>Tab</code> : Autocompletion / snippets</li>
@@ -764,21 +714,177 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <li><code>Ctrl</code> + <code>Alt</code> + <code>P</code> : Run all <strong>p</strong>revious chunks</li>
 </ul>
 </div>
-<div id="profiling" class="section level3">
-<h3><span class="header-section-number">3.3.7</span> Profiling</h3>
-<ul>
-<li><code>Ctrl</code> + <code>Alt</code> + <code>Shift</code> + <code>P</code> : Profile selected lines</li>
-</ul>
 </div>
+<div id="addins" class="section level2">
+<h2><span class="header-section-number">2.4</span> Addins</h2>
+<p>Some R packages includes some R-Studio addins.</p>
+<p>You can launch an addin using the <img src="src/img/RS-AddinsButton.png" alt="addin" /> button.</p>
+<p>These addins provides new functionality to R studio like: <a href="https://github.com/daattali/colourpicker">Color picker</a>, <a href="https://github.com/MilesMcBain/datapasta">create data.frame from clipboard</a>…</p>
+<div class="figure">
+<img src="src/img/RS-Addins.png" alt="" />
+<p class="caption">Addins can be installed with “Browse RStudio addins”</p>
+</div>
+</div>
+</div>
+<div id="rprofile-file" class="section level1">
+<h1><span class="header-section-number">3</span> <code>.Rprofile</code> file</h1>
+<p>The <code>.Rprofile</code> file can be used to customize the environment at the startup of R. This file should be place in the your HOME directory, or inside a folder of a R-project. In this case, the one inside the project take precedence over the other.</p>
+<p>When R starts, it automatically sources the <code>.Rprofile</code> file. So it can be used to setup some R options like: <code>options(max.print = 200)</code> to reduce the number of printed lines or <code>options("scipen" = 999)</code> to disabled the scientific notation.</p>
+<p>There is also two interesting functions: <code>.First( )</code> which will be run at the start of the R session and <code>.Last( )</code> at the end of the session.</p>
+<p>You can try to copy this this line in your <code>.Rprofile</code> file:</p>
+<pre class="r"><code>.First &lt;- function(){
+  cat(&quot;Welcome&quot;, Sys.info()[&quot;user&quot;], &quot;!\n&quot;)
+}</code></pre>
+<div class="NOTE">
+<p>You should not modify options that can have an effect on the R behavior ! For example setting <code>options(stringsAsFactors = TRUE/FALSE)</code> in your <code>.Rprofile</code> file is a bad idea. Indeed, your codes might not run well on another computer.</p>
 </div>
 </div>
 <div id="snippets" class="section level1">
 <h1><span class="header-section-number">4</span> Snippets</h1>
+<p>Code snippets are text macros that insert a piece of code.</p>
+<p>Some are already installed in R-Studio like:</p>
+<div class="row">
+<div class="col-md-6">
+<div class="figure">
+<img src="src/img/Snip-for.gif" alt="" />
+<p class="caption"><code>for</code> snippet</p>
+</div>
+</div>
+<div class="col-md-6">
+<div class="figure">
+<img src="src/img/Snip-if.gif" alt="" />
+<p class="caption"><code>if</code> snippet</p>
+</div>
+</div>
+</div>
+<p>You can also create <strong>your own snippets</strong>.</p>
+<p>Instead of copy pasting your work from other project it can be interesting to create a snippet. For example I use some snippet to generate the code of <a href="https://plotly.com/r/"><code>plotly</code></a> interactive graph. You can see below another example of a snippet generating a custom color palette:</p>
+<div class="figure">
+<img src="src/img/Snip-myColor.gif" alt="" />
+<p class="caption">snippet to generate a color palette</p>
+</div>
+<p>You can find more information in this <a href="https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets?version=1.3.957&amp;mode=desktop">Rstudio support article</a></p>
+<div id="create-a-custom-snippet" class="section level2">
+<h2><span class="header-section-number">4.1</span> Create a custom snippet</h2>
+<p>To create a new snippet, go to: <code>Tools -&gt; Global Options...</code> and then <code>Code</code> and click on the <img src="src/img/Snip-editButton.png" alt="edit snippet" /> button.</p>
+<p>You can write your custom snippet in the opened window.</p>
+<p>The syntax is quite simple:</p>
+<pre class="r fold-show"><code>snippet for
+    for (${1:variable} in ${2:vector}) {
+        ${0}
+    }</code></pre>
+<p>It start with <code>snippet</code> followed by the name of the snippet. The contents of the snippet should be written below with an indentation.</p>
+<p>Variables of the snippet can be defined using: <code>${X:varname}</code>, with <code>X</code> a number. all variable with the same number <code>X</code> will be written together when the snippet is used.</p>
+<p>You can also run R code in your snippet by including it inside: <code>`r `</code> . For example this snippet return the current date:</p>
+<pre class="r fold-show"><code>snippet date
+  `r Sys.Date()`</code></pre>
+<div class="figure">
+<img src="src/img/Snip-date.gif" alt="" />
+<p class="caption">a snippet writing the current date</p>
+</div>
+<div class="note">
+<ul>
+<li>The <code>$</code> sign is a special character for snippet definition. So in order to included a dollar sign in a snippet, escape the character with a slash: <code>\$</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="r-code-optimisation" class="section level1">
+<h1><span class="header-section-number">5</span> R code optimisation</h1>
+<div id="microbenchmark" class="section level2">
+<h2><span class="header-section-number">5.1</span> Microbenchmark</h2>
+<p>To compare the time of pieces of code, the package <a href="https://CRAN.R-project.org/package=microbenchmark"><code>microbenchmark</code></a> is very useful.</p>
+<pre class="r fold-show"><code>library(microbenchmark)
+
+n &lt;- 10000
+print(microbenchmark(
+    test1 = {
+      x &lt;- list()
+      for (i in 1:n) {
+        x[[length(x) + 1]] &lt;- rnorm(1)
+      }
+    },
+    test2 = {
+      x &lt;- vector(mode = &quot;list&quot;, n)
+      for (i in 1:n) {
+        x[[i]] &lt;- rnorm(1)
+      }
+    },
+    test3 = {
+      x &lt;- lapply(rep(1,n), rnorm)
+    },
+    test4 = {
+      x &lt;- as.list(rnorm(n))
+    }
+))</code></pre>
+<pre><code>## Unit: microseconds
+##   expr       min         lq      mean    median        uq       max neval
+##  test1 26180.884 30462.1595 34546.003 33762.761 37437.480 56602.397   100
+##  test2 19468.458 21332.6315 24368.231 23531.307 26809.575 35082.366   100
+##  test3 19100.393 21571.8170 26162.689 24770.453 27828.136 97228.736   100
+##  test4   760.297   858.6945  1083.293   935.319  1189.496  2443.766   100</code></pre>
+</div>
+<div id="profiling" class="section level2">
+<h2><span class="header-section-number">5.2</span> Profiling</h2>
+<p>R-Studio integrate a profiling tool using the <a href="https://CRAN.R-project.org/package=profvis"><code>profvis</code></a> package. This tool execute a script and display the time and memory allocation of each line and R functions.</p>
+<p>This tool can be very useful to detect the slowest part of your code to improve them in priority.</p>
+<div class="figure">
+<img src="src/img/RS-profile.png" alt="" />
+<p class="caption">Profiling results of a simple example</p>
+</div>
+</div>
+</div>
+<div id="r-markdown-1" class="section level1">
+<h1><span class="header-section-number">6</span> R-Markdown</h1>
+<div id="rmd-templates" class="section level2">
+<h2><span class="header-section-number">6.1</span> rmd templates</h2>
+<ul>
+<li>rmd templates</li>
+<li>Appendix <code>sessionInfo()</code></li>
+</ul>
+</div>
+<div id="publish-r-markdown" class="section level2">
+<h2><span class="header-section-number">6.2</span> Publish R-Markdown</h2>
+</div>
+</div>
+<div id="some-useful-r-functions" class="section level1">
+<h1><span class="header-section-number">7</span> Some useful R functions:</h1>
+<div id="saverds" class="section level2">
+<h2><span class="header-section-number">7.1</span> <code>saveRDS</code></h2>
+<p>An R object (for example the result of a long calculation) can be saved using the function <code>save()</code> and then load back with the function <code>load()</code>. The problem with these function is that it saves both the objects and their names in the same file. So we cannot reset the object name.</p>
+<p>We don’t have this problem with the functions <code>saveRDS()</code> and <code>readRDS()</code>:</p>
+<pre class="r"><code>x &lt;- rnorm(10)
+saveRDS(x, &quot;rnorm10.RDS&quot;)
+
+y &lt;- readRDS(&quot;rnorm10.RDS&quot;)
+identical(x, y)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="dput" class="section level2">
+<h2><span class="header-section-number">7.2</span> <code>dput()</code></h2>
+<p>This function write the “source code” of an R object:</p>
+<pre class="r"><code>dput(head(iris))</code></pre>
+<pre><code>## structure(list(Sepal.Length = c(5.1, 4.9, 4.7, 4.6, 5, 5.4), 
+##     Sepal.Width = c(3.5, 3, 3.2, 3.1, 3.6, 3.9), Petal.Length = c(1.4, 
+##     1.4, 1.3, 1.5, 1.4, 1.7), Petal.Width = c(0.2, 0.2, 0.2, 
+##     0.2, 0.2, 0.4), Species = structure(c(1L, 1L, 1L, 1L, 1L, 
+##     1L), .Label = c(&quot;setosa&quot;, &quot;versicolor&quot;, &quot;virginica&quot;), class = &quot;factor&quot;)), row.names = c(NA, 
+## 6L), class = &quot;data.frame&quot;)</code></pre>
+</div>
+<div id="browser" class="section level2">
+<h2><span class="header-section-number">7.3</span> <code>browser()</code></h2>
+<p>This function interrupt the execution of an expression lunch the “debug mode”.</p>
+<p>It is very usefull to debug code in a “<code>apply</code>” function, in a Shiny application, Plumber API …</p>
+<pre class="r"><code>sapply(rep(1,3), function(x){
+  browser()
+  rnorm(x)
+})</code></pre>
+</div>
 </div>
 <div id="external-ressourses" class="section level1">
-<h1><span class="header-section-number">5</span> External ressourses</h1>
+<h1><span class="header-section-number">8</span> External ressourses</h1>
 <div id="cranalert" class="section level2">
-<h2><span class="header-section-number">5.1</span> CRANalert</h2>
+<h2><span class="header-section-number">8.1</span> CRANalert</h2>
 <h1>
 Appendix
 </h1>
@@ -795,7 +901,7 @@ if (Sys.info()[&quot;sysname&quot;] == &quot;Linux&quot;) {
 cat(&quot;\n\n\nSession information:\n&quot;)
 print(sessionInfo(), locale = FALSE)</code></pre>
 <pre><code>## Document generated in:
-## Time difference of 0.4267473 secs
+## Time difference of 9.135066 secs
 ## 
 ## CPU: Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
 ## Memory total size: 7.860076 GB
@@ -814,7 +920,7 @@ print(sessionInfo(), locale = FALSE)</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] emo_0.0.0.9000 fs_1.4.1      
+## [1] microbenchmark_1.4-7 emo_0.0.0.9000       fs_1.4.1            
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_1.0.4.6      lubridate_1.7.8   crayon_1.3.4      digest_0.6.25    
@@ -882,7 +988,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
+  window.initializeCodeFolding("show" === "show");
 });
 </script>
 

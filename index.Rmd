@@ -10,7 +10,7 @@ output:
     toc_depth: 4
     toc_float: true
     number_sections: TRUE
-    code_folding: hide
+    code_folding: show
     df_print: paged
     css: "src/myStyle.css"
     includes:
@@ -67,7 +67,7 @@ suppressPackageStartupMessages({
 })
 
 #  R options
-options(max.print = 20)
+options(max.print = 200)
 
 # variables
 R <- fontawesome::fa("r-project", height = "20px", fill = "steelblue")
@@ -76,52 +76,38 @@ R <- fontawesome::fa("r-project", height = "20px", fill = "steelblue")
 
 
 
-# Ideas
+<!-- # Ideas -->
 
-<!-- - Rstudio **settings**: -->
-<!--   - Code: Editing, display, completion, diagnostic -->
-<!--   - Appearance: black theme, font (fira code) -->
-<!--   - **Pane layout** -->
-<!--   - spelling -->
-  
-- Rstudio **features**:
-  - click to see variables
-  - keyboard shortcut
-  - R-project (project options)
-    - `renv` package
-  - addins
-  - Code Outline (navigate in code)
-  
 
-- useful R functions: 
-  - debugging with `browser()`
-  - get code form object with `dput()`
-  - use `saveRDS` instead of save (for one variable)
-  
-  
-- rmarkdown:
-  - rmd templates
-  - Appendix `sessionInfo()`
+<!-- - rmarkdown: -->
+<!--   - rmd templates -->
+<!--   - Appendix `sessionInfo()` -->
 
-- snippets
-- Cheat sheets
-- .Rprofile
 
-- technical monitoring
-  - CRAN alerts
-  - R bloggers
+<!-- - Cheat sheets -->
 
-- Performances
-  - code profiling
-  - microbenchmark
 
-- Rstudio 1.3
-  - https://rstudio.com/products/rstudio/download/preview/
+<!-- - technical monitoring -->
+<!--   - CRAN alerts -->
+<!--   - R bloggers -->
 
-- Resources
-  - R bloggers
-  - Hadley's books
-  - https://holtzy.github.io/Pimp-my-rmd/
+
+<!-- - Rstudio 1.3 -->
+<!--   - https://rstudio.com/products/rstudio/download/preview/ -->
+
+<!-- - Resources -->
+<!--   - R bloggers -->
+<!--   - Hadley's books -->
+<!--   - https://holtzy.github.io/Pimp-my-rmd/ -->
+
+
+
+
+
+
+
+
+
 
 # R-Studio configuration
 
@@ -457,6 +443,8 @@ These shortcuts are similar to those of other softwares.
 
 - `Ctrl` + `F` : **F**ind in the current file
 
+- **`Ctrl` + `Shit` + `F`**: **F**ind in files (to search across multiple files)
+
 - **`Ctrl` + `w`** : Close tab
 
 - **`Ctrl` + `Tab`** : Go to next tab
@@ -466,6 +454,10 @@ These shortcuts are similar to those of other softwares.
 - `Tab` : Indent / Autocompletion
 
 - `Shift` + `Tab` : Outdent
+
+- **`Ctrl` + `Shift` + `F10`** : Restart R session. **You should do it quite often !**
+
+- `Ctrl` + `Shift` + `H` : ~~Choose working directory~~ Not needed because you are working in a R-Studio project. 😉
 
 
 ### Help
@@ -477,24 +469,14 @@ These shortcuts are similar to those of other softwares.
 - **`Ctrl` + `Click`** : (on a function) Go to function definition.
 
 
-### ????
-- **`Ctrl` + `Shift` + `F10`** : Restart R session. **You should do it quite often !**
+### Run code
 
 - `Ctrl` + `Enter` : Run selected lines
 
 - `Ctrl` + `Alt` + `B`/`E` : Run code from **B**egining to line or from line to **E**nd
 
-- `Ctrl` + `Shift` + `H` : ~~Choose working directory~~ Not needed because you are working in a R-Studio project. `r emo::ji("wink")` 😉
+- `Ctrl` + `Alt` + `Shift` + `P` : Profile selected lines (see: [profiling section](#profiling))
 
-**TEST EMOJI**
-
-:wink:
-
-😉
-
-`r emo::ji("wink")`
-
-**TEST EMOJI**
 
 ### Editor
 
@@ -555,11 +537,6 @@ These shortcuts are similar to those of other softwares.
 
 
 
-### Navigation
-
-- **`Ctrl` + `Shit` + `F`**: **F**ind in files (to search across multiple files)
-
-
 ### R markdown
 
 - **`Ctrl` + `Shit` + `K`**: **K**nit document
@@ -568,20 +545,223 @@ These shortcuts are similar to those of other softwares.
 - **`Ctrl` + `Shift` + `Enter`**: Run current chunk
 - `Ctrl` + `Alt` + `P` : Run all **p**revious chunks 
 
+## Addins
+
+Some R packages includes some R-Studio addins. 
+
+You can launch an addin using the ![addin](src/img/RS-AddinsButton.png) button.
 
 
 
-### Profiling
+These addins provides new functionality to R studio like: [Color picker](https://github.com/daattali/colourpicker), [create data.frame from clipboard](https://github.com/MilesMcBain/datapasta)...
 
-- `Ctrl` + `Alt` + `Shift` + `P` : Profile selected lines
+![Addins can be installed with "Browse RStudio addins" ](src/img/RS-Addins.png)
+
+# `.Rprofile` file
+
+The `.Rprofile` file can be used to customize the environment at the startup of R. This file should be place in the your HOME directory, or inside a folder of a R-project. In this case, the one inside the project take precedence over the other.
+
+
+When R starts, it automatically sources the `.Rprofile` file. So it can be used to setup some R options like: `options(max.print = 200)` to reduce the number of printed lines or `options("scipen" = 999)` to disabled the scientific notation.
+
+There is also two interesting functions: `.First( )` which will be run at the start of the R session and `.Last( )` at the end of the session.
+
+You can try to copy this this line in your `.Rprofile` file:
+
+```{r eval=FALSE}
+.First <- function(){
+  cat("Welcome", Sys.info()["user"], "!\n")
+}
+```
+
+
+<div class="NOTE">
+You should not modify options that can have an effect on the R behavior ! For example setting `options(stringsAsFactors = TRUE/FALSE)` in your `.Rprofile` file is a bad idea. Indeed, your codes might not run well on another computer.
+</div>
 
 
 # Snippets {#snippets}
+
+Code snippets are text macros that insert a piece of code.
+
+Some are already installed in R-Studio like:
+
+
+<div class = "row">
+<div class = "col-md-6">
+
+![`for` snippet](src/img/Snip-for.gif)
+
+</div>
+<div class = "col-md-6">
+![`if` snippet](src/img/Snip-if.gif)
+
+</div>
+</div>
+
+
+You can also create **your own snippets**. 
+
+Instead of copy pasting your work from other project it can be interesting to create a snippet. For example I use some snippet to generate the code of [`plotly`](https://plotly.com/r/) interactive graph. You can see below another example of a snippet generating a custom color palette:
+
+![snippet to generate a color palette](src/img/Snip-myColor.gif)
+
+
+You can find more information in this [Rstudio support article](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets?version=1.3.957&mode=desktop)
+
+## Create a custom snippet
+
+To create a new snippet, go to: `Tools -> Global Options...` and then `Code` and click on the ![edit snippet](src/img/Snip-editButton.png) button.
+
+You can write your custom snippet in the opened window.
+
+The syntax is quite simple:
+
+```{r class.source = 'fold-show', eval=FALSE}
+snippet for
+	for (${1:variable} in ${2:vector}) {
+		${0}
+	}
+
+```
+
+It start with `snippet` followed by the name of the snippet. The contents of the snippet should be written below with an indentation.
+
+Variables of the snippet can be defined using: `${X:varname}`, with  `X` a number. all variable with the same number `X` will be written together when the snippet is used. 
+
+You can also run R code in your snippet by including it inside: `` `r `  `` . For example this snippet return the current date:
+
+```{r class.source = 'fold-show', eval=FALSE}
+snippet date
+  `r Sys.Date()`
+```
+
+![a snippet writing the current date](src/img/Snip-date.gif)
+
+
+<div class="note">
+- The `$` sign is a special character for snippet definition. So in order to included a dollar sign in a snippet, escape the character with a slash: `\$`.
+</div>
+
+
+
+
+
+
+
+# R code optimisation
+
+## Microbenchmark
+
+To compare the time of pieces of code, the package [`microbenchmark`](https://CRAN.R-project.org/package=microbenchmark) is very useful.
+
+```{r class.source = 'fold-show'}
+library(microbenchmark)
+
+n <- 10000
+print(microbenchmark(
+    test1 = {
+      x <- list()
+      for (i in 1:n) {
+        x[[length(x) + 1]] <- rnorm(1)
+      }
+    },
+    test2 = {
+      x <- vector(mode = "list", n)
+      for (i in 1:n) {
+        x[[i]] <- rnorm(1)
+      }
+    },
+    test3 = {
+      x <- lapply(rep(1,n), rnorm)
+    },
+    test4 = {
+      x <- as.list(rnorm(n))
+    }
+))
+```
+
+
+## Profiling {#profiling}
+
+R-Studio integrate a profiling tool using the [`profvis`](https://CRAN.R-project.org/package=profvis ) package. This tool execute a script and display the time and memory allocation of each line and R functions.
+
+This tool can be very useful to detect the slowest part of your code to improve them in priority.
+
+![Profiling results of a simple example](src/img/RS-profile.png)
+
+
+
+
+
+
+
+# R-Markdown
+
+
+
+## rmd templates
+  - rmd templates
+  - Appendix `sessionInfo()`
+
+
+## Publish R-Markdown
+
+
+
+
+
+
+
+# Some useful R functions:
+
+## `saveRDS`
+
+An R object (for example the result of a long calculation) can be saved using the function `save()` and then load back with the function `load()`. The problem with these function is that it saves both the objects and their names in the same file. So we cannot reset the object name.
+
+We don't have this problem with the functions `saveRDS()` and `readRDS()`:
+
+```{r}
+x <- rnorm(10)
+saveRDS(x, "rnorm10.RDS")
+
+y <- readRDS("rnorm10.RDS")
+identical(x, y)
+```
+
+## `dput()`
+
+This function write the "source code" of an R object:
+
+```{r}
+dput(head(iris))
+```
+
+## `browser()`
+
+This function interrupt the execution of an expression lunch the "debug mode".
+
+It is very usefull to debug code in a "`apply`" function, in a Shiny application, Plumber API ...
+
+```{r eval=FALSE}
+sapply(rep(1,3), function(x){
+  browser()
+  rnorm(x)
+})
+```
 
 
 # External ressourses
 
 ## CRANalert {#cranalert}
+
+
+
+
+
+
+
+
 
 
 <h1>Appendix</h1>
