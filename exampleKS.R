@@ -1,11 +1,11 @@
-#' Title
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-x <- function(a, b){
-  a + b
-}
+
+# A very long comment on one line : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+
+
+
+
+
+
+
+

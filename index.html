@@ -270,7 +270,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">R Tips &amp; Tricks</h1>
 <h4 class="author">Julien Diot</h4>
-<h4 class="date">Laste update: 2020/05/12</h4>
+<h4 class="date">Laste update: 2020/05/13</h4>
 
 </div>
 
@@ -283,6 +283,7 @@ div.tocify {
 <p><strong>Packages / R-options:</strong></p>
 <pre class="r"><code>suppressPackageStartupMessages({
  library(fs)
+ library(emo) # devtools::install_github(&quot;hadley/emo&quot;)
 })
 
 #  R options
@@ -634,13 +635,13 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 <div id="keyboard-shortcuts-and-useful-command" class="section level2">
 <h2><span class="header-section-number">3.3</span> Keyboard shortcuts and useful command</h2>
-<p>R-Studio provide a lot of <strong>very useful</strong> commands linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.</p>
-<p>The default shortcuts can be modify: <code>Tools -&gt; Modify keyboard shortcuts...</code></p>
-<p>The list above is just a non-exhaustive list of my favorite shortcuts / R-Studio functionality.</p>
+<p>R-Studio provide a lot of <strong>very useful</strong> commands accessible from the menu bar (<code>File</code>, <code>Edit</code>, <code>Code</code>, <code>Session</code> … ).</p>
+<p>These commands are linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.</p>
+<p>The default shortcuts can be modify through: <code>Tools -&gt; Modify keyboard shortcuts...</code></p>
+<p>The list below is just a non-exhaustive list of my favorite shortcuts / R-Studio functionality.</p>
 <div class="note">
 <ul>
 <li>Remember, if you are doing an annoying and repetitive task, there is probably a shortcut for that!</li>
-<li>The legend says that we don’t need a mouse to work with a computer.</li>
 </ul>
 </div>
 <div id="basic" class="section level3">
@@ -656,7 +657,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <li><p><strong><code>Ctrl</code> + <code>w</code></strong> : Close tab</p></li>
 <li><p><strong><code>Ctrl</code> + <code>Tab</code></strong> : Go to next tab</p></li>
 <li><p><code>Ctrl</code> + <code>Q</code> : Quit R-Studio</p></li>
-<li><p><code>Tab</code> : Indent</p></li>
+<li><p><code>Tab</code> : Indent / Autocompletion</p></li>
 <li><p><code>Shift</code> + <code>Tab</code> : Outdent</p></li>
 </ul>
 </div>
@@ -674,8 +675,13 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <li><p><strong><code>Ctrl</code> + <code>Shift</code> + <code>F10</code></strong> : Restart R session. <strong>You should do it quite often !</strong></p></li>
 <li><p><code>Ctrl</code> + <code>Enter</code> : Run selected lines</p></li>
 <li><p><code>Ctrl</code> + <code>Alt</code> + <code>B</code>/<code>E</code> : Run code from <strong>B</strong>egining to line or from line to <strong>E</strong>nd</p></li>
-<li><p><code>Ctrl</code> + <code>Shift</code> + <code>H</code> : <del>Choose working directory</del> Not needed because you are working in a R-Studio project.</p></li>
+<li><p><code>Ctrl</code> + <code>Shift</code> + <code>H</code> : <del>Choose working directory</del> Not needed because you are working in a R-Studio project. 😉 😉</p></li>
 </ul>
+<p><strong>TEST EMOJI</strong></p>
+<p>:wink:</p>
+<p>😉</p>
+<p>😉</p>
+<p><strong>TEST EMOJI</strong></p>
 </div>
 <div id="editor" class="section level3">
 <h3><span class="header-section-number">3.3.4</span> Editor</h3>
@@ -692,9 +698,6 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <ul>
 <li><code>Ctrl</code> + <code>Shift</code> + <code>/</code> : Reflow comment</li>
 </ul>
-<div class="NOTE">
-<p>GIF NOT GOOD !</p>
-</div>
 <div class="figure">
 <img src="src/img/KS-comment2.gif" alt="" />
 <p class="caption"><code>Ctrl</code> + <code>Shift</code> + <code>/</code></p>
@@ -792,10 +795,10 @@ if (Sys.info()[&quot;sysname&quot;] == &quot;Linux&quot;) {
 cat(&quot;\n\n\nSession information:\n&quot;)
 print(sessionInfo(), locale = FALSE)</code></pre>
 <pre><code>## Document generated in:
-## Time difference of 0.1649194 secs
+## Time difference of 0.4267473 secs
 ## 
 ## CPU: Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
-## Memory total size: 7.860092 GB
+## Memory total size: 7.860076 GB
 ## 
 ## 
 ## Session information:
@@ -811,14 +814,15 @@ print(sessionInfo(), locale = FALSE)</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] fs_1.4.1
+## [1] emo_0.0.0.9000 fs_1.4.1      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.4.6      digest_0.6.25     crayon_1.3.4      magrittr_1.5     
-##  [5] evaluate_0.14     rlang_0.4.5       stringi_1.4.6     fontawesome_0.1.0
-##  [9] rmarkdown_2.1     tools_4.0.0       stringr_1.4.0     xfun_0.13        
-## [13] yaml_2.2.1        compiler_4.0.0    htmltools_0.4.0   knitr_1.28       
-## [17] sass_0.2.0</code></pre>
+##  [1] Rcpp_1.0.4.6      lubridate_1.7.8   crayon_1.3.4      digest_0.6.25    
+##  [5] assertthat_0.2.1  magrittr_1.5      evaluate_0.14     rlang_0.4.6      
+##  [9] stringi_1.4.6     fontawesome_0.1.0 generics_0.0.2    rmarkdown_2.1    
+## [13] tools_4.0.0       stringr_1.4.0     glue_1.4.0        purrr_0.3.4      
+## [17] xfun_0.13         yaml_2.2.1        compiler_4.0.0    htmltools_0.4.0  
+## [21] knitr_1.28        sass_0.2.0</code></pre>
 </div>
 </div>
 

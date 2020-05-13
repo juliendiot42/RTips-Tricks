@@ -63,6 +63,7 @@ The R Tips and Tricks presented here **are just what I use**, I don't guarantee 
 ```{r pkgs_options, results='hide'}
 suppressPackageStartupMessages({
  library(fs)
+ library(emo) # devtools::install_github("hadley/emo")
 })
 
 #  R options
@@ -426,16 +427,17 @@ The `.Rproj` file is a text file (you can try to open it with a text editor) con
 
 ## Keyboard shortcuts and useful command
 
-R-Studio provide a lot of **very useful** commands linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.
+R-Studio provide a lot of **very useful** commands accessible from the menu bar (`File`, `Edit`, `Code`, `Session` ... ). 
 
-The default shortcuts can be modify: `Tools -> Modify keyboard shortcuts...`
+These commands are linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.
 
-The list above is just a non-exhaustive list of my favorite shortcuts / R-Studio functionality.
+The default shortcuts can be modify through: `Tools -> Modify keyboard shortcuts...`
+
+The list below is just a non-exhaustive list of my favorite shortcuts / R-Studio functionality.
 
 
 <div class="note">
 - Remember, if you are doing an annoying and repetitive task, there is probably a shortcut for that!
-- The legend says that we don't need a mouse to work with a computer.
 </div>
 
 
@@ -461,7 +463,7 @@ These shortcuts are similar to those of other softwares.
 
 - `Ctrl` + `Q` : Quit R-Studio
 
-- `Tab` : Indent
+- `Tab` : Indent / Autocompletion
 
 - `Shift` + `Tab` : Outdent
 
@@ -482,7 +484,17 @@ These shortcuts are similar to those of other softwares.
 
 - `Ctrl` + `Alt` + `B`/`E` : Run code from **B**egining to line or from line to **E**nd
 
-- `Ctrl` + `Shift` + `H` : ~~Choose working directory~~ Not needed because you are working in a R-Studio project.
+- `Ctrl` + `Shift` + `H` : ~~Choose working directory~~ Not needed because you are working in a R-Studio project. `r emo::ji("wink")` 😉
+
+**TEST EMOJI**
+
+:wink:
+
+😉
+
+`r emo::ji("wink")`
+
+**TEST EMOJI**
 
 ### Editor
 
@@ -498,10 +510,6 @@ These shortcuts are similar to those of other softwares.
 
 
 - `Ctrl` + `Shift` + `/` : Reflow comment
-
-<div class="NOTE">
-GIF NOT GOOD !
-</div>
 
 ![`Ctrl` + `Shift` + `/`](src/img/KS-comment2.gif)
  
