@@ -17,12 +17,40 @@ img {
   margin-bottom: 1em;
 }
 
-h1, .h1, h2, .h2, h3, .h3 {
+a {
+  color: #399b00;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
   margin-top: 80px;
 }
 
 #TOC {
   margin-top: 80px !important;
+}
+
+.list-group-item.active {
+  background-color: #399b00;
+  border-color: #399b00;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+  color: #fff;
+  background-color: #399b00;
+}
+
+.nav > li > a:focus,
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: #eee;
+  color: #399b00;
 }
 
 /* ---- special class ----*/
