@@ -1,7 +1,7 @@
 ---
 title: "R Tips & Tricks"
 author: "Julien Diot"
-date: "Laste update: `r format(Sys.time(), '%Y/%m/%d')`"
+date: "Last update: `r format(Sys.time(), '%Y/%m/%d')`"
 colorlinks: true
 output:
   html_document:
@@ -69,7 +69,7 @@ R <- fontawesome::fa("r-project", height = "20px", fill = "steelblue")
 
 **Disclaimer**
 
-The R Tips and Tricks presented here **are just what I use**, I don't guarantee that this is the best way to do it. Moreover, new features are developed every days some stuffs presented here might be outdated in the future. If you have any comments or suggestions feel free to contact me: juliendiot@ut-biomet.org or post an issue on [GitHub](https://github.com/juliendiot42/RTips-Tricks/issues).
+The R Tips and Tricks presented here **are just what I use**, and I don't guarantee that this is the best way to do it. Moreover, new features are developed every days some stuff presented here might be outdated in the future. If you have any comments or suggestions, feel free to contact me: juliendiot@ut-biomet.org or post an issue on [GitHub](https://github.com/juliendiot42/RTips-Tricks/issues).
 
 
 
@@ -77,18 +77,18 @@ The R Tips and Tricks presented here **are just what I use**, I don't guarantee 
 
 # R-Studio configuration
 
-My favorite `r R` IDE is [R-Studio Desktop](https://rstudio.com/products/rstudio/download/#download). It is free and open-source and provides a lot of powerful features.
+My favourite `r R` IDE is [R-Studio Desktop](https://rstudio.com/products/rstudio/download/#download). It is free and open-source and provides a lot of powerful features.
 
 This section presents interesting R-Studio settings and my current setup.
 
 To setup R-Studio go to: `Tools -> Global Options...`.
 
-A documentation for these settings is available [here](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio). It might not be up to date but most of the settings are presented.
+Documentation for these settings is available [here](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio). It might not be up to date, but most of the settings are presented.
 
 
 
 <div class="note">
-Some useful R-Studio settings are not activated by default, I think it's worth taking some time to check these settings.
+Some useful R-Studio settings are not activated by default, and I think it's worth taking some time to check these settings.
 </div>
 
 
@@ -96,14 +96,14 @@ Some useful R-Studio settings are not activated by default, I think it's worth t
 
 `Tools -> Global Options... -> Pane layout`
 
-In order to have **more space for the editor**, we can **move the console on the top right corner** and move the "Environment pane" to the bottom right.
+To have **more space for the editor**, we can **move the console on the top right corner** and move the "Environment pane" to the bottom right.
 
-Indeed, the panes on the bottom left do not need to be displayed constantly.
+Indeed, the panes on the bottom left do not need to be continuously displayed.
 
 ![The editor takes the the whole windows](src/img/RS-layout.png)
 
 
-As you can see, I prefer **dark theme** because it's more pleasant for my eyes. My favorite one is "Idle Fingers". However, several other themes are available, some a light other are black.
+As you can see, I prefer **dark theme** because it's more pleasant for my eyes. My favourite one is "Idle Fingers". However, several other themes are available, some a light other are black.
 
 I also use the font [**"Fira code"**](https://github.com/tonsky/FiraCode), this font provide programming ligatures:
 
@@ -127,7 +127,7 @@ I also use the font [**"Fira code"**](https://github.com/tonsky/FiraCode), this 
 
 ![General settings](src/img/RS-general.png)
 
-It is important to **not** restore or save your workspace at startup or end of the R session. By this way, you will always start R-Studio in a fresh and clean environment, and  because you have saved your script you can regenerate the environment by running it. This is much better for the reproducibility of your work.
+It is essential to **not** restore or save your workspace at startup or end of the R session. By this way, you will always start R-Studio in a fresh and clean environment. Because you have saved your script, you can regenerate the situation by running it. This is much better for the reproducibility of your work.
 
 
 
@@ -137,7 +137,7 @@ It is important to **not** restore or save your workspace at startup or end of t
 
 `Tools -> Global Options... -> Code`
 
-I present here my personal settings. The highlighted lines are those I find interesting.
+I present here R-Studio code settings. The highlighted lines are those I find interesting.
 
 ### Editing
 
@@ -169,7 +169,7 @@ I present here my personal settings. The highlighted lines are those I find inte
 ![](src/img/RS-save.png)
 </center>
 
-- **Ensure that source files end with a new line**: It's a good practice to end coding file with a new line.
+- **Ensure that source files end with a new line**: I It’s a good practice to end the coding files with a new line.
 - **Strip trailing horizontal whitespaces when saving**: Remove whitespaces from blank line:
 
 ![Effect of `Ctrl` + `S`](src/img/RS-remWhiteSpace.gif)
@@ -206,7 +206,7 @@ Completion help to write functions name and their parameters just by taping the 
 
 ## Export your configuration
 
-From R-Studio 1.3, the configuration is saved at `~/.config/rstudio` (at least for Linux users). It is then easy to save and retrieve your personal configuration. This folder contain:
+From R-Studio 1.3, the configuration is saved at `~/.config/rstudio` (at least for Linux users). It is then easy to save and retrieve your configuration. This folder contains:
 
 - The R-Studio settings: `rstudio-pref.json`
 - The [snippets](#snippets)
@@ -218,14 +218,14 @@ From R-Studio 1.3, the configuration is saved at `~/.config/rstudio` (at least f
 
 # `.Rprofile` file
 
-The `.Rprofile` file can be used to customize the environment at the startup of R. This file should be place in the your HOME directory, or inside a folder of a R-project. In this case, the one inside the project take precedence over the other.
+The `.Rprofile` file can be used to customize the environment at the startup of R. It should be placed in the HOME directory, or inside a folder of an R-project. (In this case, the one inside the project take precedence over the other).
 
 
-When R starts, it automatically sources the `.Rprofile` file. So it can be used to setup some R options like: `options(max.print = 200)` to reduce the number of printed lines or `options("scipen" = 999)` to disabled the scientific notation.
+When R starts, it automatically sources the `.Rprofile` file. So it can be used to set up some R options like: `options(max.print = 200)` to reduce the number of printed lines or `options("scipen" = 999)` to disabled the scientific notation.
 
-There is also two interesting functions: `.First( )` which will be run at the start of the R session and `.Last( )` at the end of the session.
+There are also two particular functions: `.First( )` which will be run at the start of the R session and `.Last( )` at the end of the session.
 
-You can try to copy this this line in your `.Rprofile` file:
+You can try to copy these lines in your `.Rprofile` file:
 
 ```{r eval=FALSE}
 .First <- function(){
@@ -234,19 +234,13 @@ You can try to copy this this line in your `.Rprofile` file:
 ```
 
 
-
+<div class="NOTE">
+You should not modify options that can have an effect on the R behavior ! For example setting `options(stringsAsFactors = TRUE/FALSE)` in your `.Rprofile` file is a bad idea. Indeed, your codes might not run well on another computer.
+</div>
 
 
 
 # Working with R-Studio
-
-- Rstudio **features**:
-  - click to see variables
-  - keyboard shortcut
-  - R-project (project options)
-    - `renv` package
-  - addins
-  - Code Outline (navigate in code)
 
 
 ## Panes {.tabset .tabset-fade .tabset-pills}
@@ -255,11 +249,11 @@ You can try to copy this this line in your `.Rprofile` file:
 
 ![Environment pane](src/img/RSTools-Env.png)
 
-- The Environment pane presents the variables defined in your environments. By default, it shows the global environment but you can select others (like those of the loaded packages).
+- Environment pane presents the variables defined in your environments. By default, it shows the global environment, but you can select others (like those of the loaded packages).
 
-- The ![broom](src/img/RSTools-EnvButton.png) button clear the workspace.
+- The ![broom](src/img/RSTools-EnvButton.png) button clears the workspace.
 
-- An easy and graphical way to import data of different types (text, excel, SAS ...) is to use the ![import Dataset](src/img/RSTools-EnvButton2.png) button. The corresponding R code will be written in the console, you can then copy/paste it in your scripts.
+- An easy and graphical way to import data of different types (text, excel, SAS ...) is to use the ![import Dataset](src/img/RSTools-EnvButton2.png) button. The corresponding R code will be written in the console, and you can then copy/paste it in your scripts.
 
 - You can visualize the variables defined in your environments by clicking on them. This is a shortcut for a call to the R function `View()`.
 
@@ -276,7 +270,7 @@ You can try to copy this this line in your `.Rprofile` file:
 
 By default, it is open at your current working directory. You can navigate through your file and set up a new working directory with the button ![](src/img/RSTools-fileMore.png).
 
-It's quite convenient to manage the files directly from R-Studio. If you are working in a [projects](#Rproj), you can quickly access to your root folder with the ![](src/img/RSTools-fileR.png) button. 
+It's quite convenient to manage the files directly from R-Studio. If you are working in a [project](#Rproj), you can quickly access to your root folder with the ![](src/img/RSTools-fileR.png) button. 
 
 
 
@@ -288,7 +282,7 @@ In the package pane, you can **install new packages**. It's particularly conveni
 
 ![](src/img/RSTools-pkgInst.png)
 
-With the update button you can also check if some of your packages are not up to date. With the ![](src/img/RSTools-pkgUpButton.png) button, you can access to **the news file** of these packages to see what is new. (See also section [CRANalert](#cranalert) for a notifier tools about updated packages).
+With the update button you can also check if some of your packages are not up to date. With the ![](src/img/RSTools-pkgUpButton.png) button, you can access **the "news file"** of these packages to see what is new. (See also section [CRANalert](#cranalert) for a notifier tool about updated packages).
 
 ![](src/img/RSTools-pkgUp.png)
 
@@ -297,11 +291,11 @@ With the update button you can also check if some of your packages are not up to
 
 ![Jobs pane with 2 finished jobs](src/img/RSTools-jobs2.png)
 
-Click on the ![start local job](src/img/RSTools-jobsButton.png) button or source a file as a local job to run an R script in an background R session.
+Click on the ![start local job](src/img/RSTools-jobsButton.png) button or source a file as a local job to run an R script in a background R session.
 
 ![](src/img/RSTools-jobs4.png)
 
-By this way you can continue to work on R-Studio with an available console while a script is running.
+By this way, you can continue to work on R-Studio with an available console while a script is running.
 
 ![Jobs pane with a running job showing some outputs](src/img/RSTools-jobs.png)
 
@@ -335,16 +329,16 @@ If you work with Git in your R-Project, you can run the main git commands in thi
 ### Tutorial
 
 <div class="note">
-It7s a new feature included in R-Studio 1.3
+This is a new feature included in R-Studio 1.3
 </div>
 
-Some R packages provides tutorials thanks to the [`learnr`](https://rstudio.github.io/learnr/) package. You can try them in this pane. 
+Some R packages provide tutorials thanks to the [`learnr`](https://rstudio.github.io/learnr/) package. You can try them in this pane. 
 
 ![Data basics tutorial running in the pane](src/img/RSTools-tuto.png)
 
 ## Addins
 
-Some R packages includes some R-Studio addins. 
+Some R packages include some R-Studio "addins". 
 
 You can launch an addin using the ![addin](src/img/RS-AddinsButton.png) button.
 
@@ -360,7 +354,7 @@ These addins provides new functionality to R studio like: [Color picker](https:/
 
 ## R-Project {#Rproj}
 
-When you work, ~~I hope~~ you keep all your files associated with a project in one specific directory in your computer. R-Studio provide a built-in support for this via "projects".
+When you work, ~~I hope~~ you keep all your files associated with a project in one specific directory in your computer. R-Studio provides a built-in support for this via "projects".
 
 You can find some information about R-Project in this [R-Studio support article](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
  or at this [*R for Data Science* section](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects).
@@ -369,14 +363,14 @@ You can find some information about R-Project in this [R-Studio support article]
 
 The main advantages to work with R-Projects are:
 
-- When a R-Project is open, the current working directory is automatically set to the project directory. A R-Project can then be **shared across multiple users** on different computers without thinking about setting the working directory.
+- When an R-Project is open, the current working directory is automatically set to the project directory. An R-Project can then be **shared across multiple users** on different computers without thinking about setting the working directory.
 
-- When a R-Project is open, you get back to where you left off: The **previously opened files are restored** into the editor tabs such as the command history (if it had been saved). Even the files that had *never* been saved (named `Untitled1` in the editor) are restored.
+- When an R-Project is open, you get back to where you left off: The **previously opened files are restored** into the editor tabs such as the command history (if it had been saved). Even the files that had *never* been saved (named `Untitled1` in the editor) are restored.
 
 - You can use Git from R-Studio.
 
 <div class="note">
-Of course the global environment is not restored if R-Studio is setup correctly as explained in this [section](#generalSettings).
+Of course, the global environment is not restored if R-Studio is  set up correctly, as explained in this [section](#generalSettings).
 </div>
 
 ### Create R-Project 
@@ -406,7 +400,7 @@ R project is a directory containing a `.Rproj` file which can be open by R-Studi
 - Previously edited source documents are restored into editor tabs
 - Other R-Studio settings (e.g. active tabs, splitter positions, etc.) are restored to where they were the last time the project was closed.
 
-The `.Rproj` file is a text file (you can try to open it with a text editor) containing the project settings. These settings can be modified in `Tools -> Project Options...`. It is important to know that **these settings have priority** over the standard R-Studio settings.
+The `.Rproj` file is a text file (you can try to open it with a text editor) containing the project settings. These settings can be modified in `Tools -> Project Options...`. It is essential to know that **these settings have priority** over the standard R-Studio settings.
 
 
 <h2></h2>
@@ -414,7 +408,7 @@ The `.Rproj` file is a text file (you can try to open it with a text editor) con
 
 - If your R project is included in a Google Drive folder, you can encounter some troubles when saving your files.
 
-- Even if the `.Rproj.user` folder is not so big, it can contain a lot of small files. It can then take a long time be synchronized on clouds services.
+- Even if the `.Rproj.user` folder is not so big, it can contain a lot of small files. It can then take a long time to be synchronized on clouds services.
 
 </div>
 
@@ -428,13 +422,13 @@ The `.Rproj` file is a text file (you can try to open it with a text editor) con
 
 ## Keyboard shortcuts and useful command
 
-R-Studio provide a lot of **very useful** commands accessible from the menu bar (`File`, `Edit`, `Code`, `Session` ... ). 
+R-Studio provide a lot of **handy commands** accessible from the menu bar (`File`, `Edit`, `Code`, `Session` ... ). 
 
 These commands are linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.
 
-The default shortcuts can be modify through: `Tools -> Modify keyboard shortcuts...`
+The default shortcuts can be modified through: `Tools -> Modify keyboard shortcuts...`
 
-The list below is just a non-exhaustive list of my favorite shortcuts / R-Studio functionality.
+The list below is just a non-exhaustive list of my favourite shortcuts / functionality.
 
 
 <div class="note">
@@ -444,7 +438,7 @@ The list below is just a non-exhaustive list of my favorite shortcuts / R-Studio
 
 ### Basic
 
-These shortcuts are similar to those of other softwares.
+Some of these shortcuts are similar to those of other software.
 
 - `Ctrl` + `Z` : Undo
 
@@ -470,9 +464,9 @@ These shortcuts are similar to those of other softwares.
 
 - `Shift` + `Tab` : Outdent
 
-- **`Ctrl` + `Shift` + `F10`** : Restart R session. **You should do it quite often !**
+- **`Ctrl` + `Shift` + `F10`** : Restart R session. **You should do it quite often!**
 
-- `Ctrl` + `Shift` + `H` : ~~Choose working directory~~ Not needed because you are working in a R-Studio project. 😉
+- `Ctrl` + `Shift` + `H` : ~~Choose working directory~~ Not needed because you are working in an R project. 😉
 
 
 ### Help
@@ -564,9 +558,7 @@ These shortcuts are similar to those of other softwares.
 
 
 
-<div class="NOTE">
-You should not modify options that can have an effect on the R behavior ! For example setting `options(stringsAsFactors = TRUE/FALSE)` in your `.Rprofile` file is a bad idea. Indeed, your codes might not run well on another computer.
-</div>
+
 
 
 
@@ -592,7 +584,7 @@ Some are already installed in R-Studio like:
 
 You can also create **your own snippets**. 
 
-Instead of copy pasting your work from other project it can be interesting to create a snippet. For example I use some snippet to generate the code of [`plotly`](https://plotly.com/r/) interactive graph. You can see below another example of a snippet generating a custom color palette:
+Instead of copy-pasting your work from other projects, it can be interesting to create a snippet. For example, I use some snippet to generate the code of [`plotly`](https://plotly.com/r/) interactive graph. You can see below another example of a snippet generating a custom color palette:
 
 ![snippet to generate a color palette](src/img/Snip-myColor.gif)
 
@@ -614,11 +606,11 @@ snippet for
 	}
 ```
 
-It start with `snippet` followed by the name of the snippet. The contents of the snippet should be written below with an indentation.
+It starts with `snippet`, followed by its name. The contents of the snippet should be written below with an indentation.
 
-Variables of the snippet can be defined using: `${X:varname}`, with  `X` a number. all variable with the same number `X` will be written together when the snippet is used. 
+Variables of the snippet can be defined using: `${X:varname}`, with  `X` a number. All variables with the same number `X` will be written together when the snippet is used. 
 
-You can also run R code in your snippet by including it inside: `` `r `  `` . For example this snippet return the current date:
+You can also run R code in your snippet by including it inside: `` `r `  `` . For example, this snippet returns the current date:
 
 ```{r class.source = 'fold-show', eval=FALSE}
 snippet date
@@ -629,7 +621,7 @@ snippet date
 
 
 <div class="note">
-- The `$` sign is a special character for snippet definition. So in order to included a dollar sign in a snippet, escape the character with a slash: `\$`.
+- The `$` sign is a special character for snippet definition. So to include a dollar sign in a snippet, escape the character with a slash: `\$`.
 </div>
 
 
@@ -642,7 +634,7 @@ snippet date
 
 ## Microbenchmark
 
-To compare the time of pieces of code, the package [`microbenchmark`](https://CRAN.R-project.org/package=microbenchmark) is very useful.
+The package [`microbenchmark`](https://CRAN.R-project.org/package=microbenchmark) is very useful to compare the time of pieces of code.
 
 ```{r class.source = 'fold-show'}
 library(microbenchmark)
@@ -673,9 +665,9 @@ print(microbenchmark(
 
 ## Profiling {#profiling}
 
-R-Studio integrate a profiling tool using the [`profvis`](https://CRAN.R-project.org/package=profvis ) package. This tool execute a script and display the time and memory allocation of each line and R functions.
+R-Studio integrate a profiling tool using the [`profvis`](https://CRAN.R-project.org/package=profvis ) package. This tool executes a script and displays the time and memory allocation of each line and R functions.
 
-This tool can be very useful to detect the slowest part of your code to improve them in priority.
+It's convenient to detect the slowest part of your code to improve them in priority.
 
 ![Profiling results of a simple example](src/img/RS-profile.png)
 
@@ -687,9 +679,9 @@ This tool can be very useful to detect the slowest part of your code to improve 
 
 # R-Markdown
 
-Using the [`Rmarkdown`](https://rmarkdown.rstudio.com/) package is a easy and beautiful way to create R analysis reports, presentation slides, package documentations, and even books and websites.
+Using the [`Rmarkdown`](https://rmarkdown.rstudio.com/) package is an easy and beautiful way to create R analysis reports, presentation slides, package documentation, and even books and websites.
 
-It is based on the [markdown](https://daringfireball.net/projects/markdown/) syntax which is easy to read and easy to write:
+It is based on the [markdown](https://daringfireball.net/projects/markdown/) syntax which, is easy to read and easy to write:
 
 ```{markdown}
 Plain text
@@ -723,7 +715,7 @@ Blocks of R code (called a chunk) can be introduced using the delimiters `` ```{
 ![simple Rmd chunk with the outputs shown](src/img/Rmd-chunk.png)
 
 
-R-Markdown can generate a lot of different format: HTML, pdf, Word, Power Point, markdown...
+R-Markdown can generate a lot of different formats: HTML, pdf, Word, PowerPoint, markdown...
 
 
 A complete R-Markdown guide is available [here](https://bookdown.org/yihui/rmarkdown/).
@@ -738,7 +730,7 @@ The template structure is:
 dir_tree("templateName/")
 ```
 
-You should name your `.Rmd` file `skeleton.Rmd`, and the `template.yaml` file contain some information about the template:
+You should name your `.Rmd` file `skeleton.Rmd`, and the `template.yaml` file contains some information about the template:
 
 ```{yaml}
 name: templateName
@@ -748,7 +740,7 @@ create_dir: false
 
 ```
 
-Once you have your template structure you should:
+Once you have the template structure, you should:
 
 - Initialize a new R package: `File -> New project...` and select "R package"
 - save your template in the package at: `./inst/rmarkdown/templates/templateName`
@@ -764,7 +756,7 @@ Your template is then accessible at: `File -> New file -> R Markdown...`
 ## Publish your R-Markdown
 
 
-You can display a html document online thanks to [GitHub pages](https://pages.github.com/).
+You can display an html document online thanks to [GitHub pages](https://pages.github.com/).
 
 - First, if you don't have one, create your GitHub web site. You can follow the steps presented [here](https://pages.github.com/) (It is just a repository named `username.github.io` containing an `index.html` file)
 
@@ -790,7 +782,7 @@ You can display a html document online thanks to [GitHub pages](https://pages.gi
 
 ## `saveRDS`
 
-An R object (for example the result of a long calculation) can be saved using the function `save()` and then load back with the function `load()`. The problem with these function is that it saves both the objects and their names in the same file. So we cannot reset the object name.
+An R object (for example the result of a long calculation) can be saved using the function `save()` and then load back with the function `load()`. The problem with this function is that it saves both the objects and their names in the same file. So we cannot reset the object name.
 
 We don't have this problem with the functions `saveRDS()` and `readRDS()`:
 
@@ -804,7 +796,7 @@ identical(x, y)
 
 ## `dput()`
 
-This function write the "source code" of an R object:
+This function writes the "source code" of an R object:
 
 ```{r}
 dput(head(iris))
@@ -812,9 +804,9 @@ dput(head(iris))
 
 ## `browser()`
 
-This function interrupt the execution of an expression lunch the "debug mode".
+This function interrupts the execution of an expression lunch the "debug mode".
 
-It is very usefull to debug code in a "`apply`" function, in a Shiny application, Plumber API ...
+It can be used to debug code in a "`apply`" function, in a Shiny application, Plumber API ...
 
 ```{r eval=FALSE}
 sapply(rep(1,3), function(x){
@@ -826,10 +818,14 @@ sapply(rep(1,3), function(x){
 
 ## [`plotly`](https://plotly.com/r/)
 
-Create interactive plots:
+The `plotly` package creates interactive plots:
+
+```{r results="hide"}
+library(plotly)
+```
+
 
 ```{r}
-library(plotly)
 plot_ly(type = "scatter",
         mode = "markers",
         data = iris,
@@ -855,7 +851,7 @@ Track test coverage for your R package and view reports locally or (optionally) 
 
 - [`usethis`](https://usethis.r-lib.org/): Automates repetitive tasks that arise during project setup and development, both for **R packages** and non-package projects.
 
-- [`pkgdown`](https://pkgdown.r-lib.org/): To build a website for a R package.
+- [`pkgdown`](https://pkgdown.r-lib.org/): To build a website for an R package.
 
 - [`xaringan`](https://github.com/yihui/xaringan): An R package for creating slideshows with `remark.js` through R Markdown.
 
@@ -864,7 +860,7 @@ Track test coverage for your R package and view reports locally or (optionally) 
 
 A cheat-sheet is a one or two pages documentation presenting the main functionality of a tool (Software, R package ... ).
 
-There is a lot of cheat-sheet for different R packages. You can access to some of them from R-Studio: `Help -> Cheatsheets` and much more are accessible [here](https://rstudio.com/resources/cheatsheets/).
+There is a lot of cheat-sheet for different R packages. You can access some of them from R-Studio: `Help -> Cheatsheets` and much more are accessible [here](https://rstudio.com/resources/cheatsheets/).
 
 For example:
 
@@ -876,7 +872,7 @@ For example:
 - [dplyr and tidyr](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 
-Of course this is not limited to R for example: [Git cheat sheet from GitHub](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf), [LaTeX](https://wch.github.io/latexsheet/latexsheet-0.png)...
+Of course, this is not limited to R, for example, [Git cheat sheet from GitHub](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf), [LaTeX](https://wch.github.io/latexsheet/latexsheet-0.png)...
 
 
 
@@ -889,7 +885,7 @@ You can find here some interesting resources about R.
 - [R tag on stackoverflow](https://stackoverflow.com/questions/tagged/r)
 
 
-I have learn a lot thanks to:
+I have learned a lot thanks to:
 
 
 - These books:
