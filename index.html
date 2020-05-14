@@ -29,6 +29,13 @@
 <script src="index_files/highlightjs-9.12.0/highlight.js"></script>
 <link href="index_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="index_files/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="index_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="index_files/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="index_files/typedarray-0.1/typedarray.min.js"></script>
+<link href="index_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="index_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="index_files/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="index_files/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -270,7 +277,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">R Tips &amp; Tricks</h1>
 <h4 class="author">Julien Diot</h4>
-<h4 class="date">Laste update: 2020/05/13</h4>
+<h4 class="date">Laste update: 2020/05/14</h4>
 
 </div>
 
@@ -280,31 +287,6 @@ div.tocify {
 </style>
 <p><strong>Disclaimer</strong></p>
 <p>The R Tips and Tricks presented here <strong>are just what I use</strong>, I don’t guarantee that this is the best way to do it. Moreover, new features are developed every days some stuffs presented here might be outdated in the future. If you have any comments or suggestions feel free to contact me: <a href="mailto:juliendiot@ut-biomet.org" class="email">juliendiot@ut-biomet.org</a> or post an issue on <a href="https://github.com/juliendiot42/RTips-Tricks/issues">GitHub</a>.</p>
-<p><strong>Packages / R-options:</strong></p>
-<pre class="r"><code>suppressPackageStartupMessages({
- library(fs)
- library(emo) # devtools::install_github(&quot;hadley/emo&quot;)
-})
-
-#  R options
-options(max.print = 200)
-
-# variables
-R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill = &quot;steelblue&quot;)</code></pre>
-<!-- # Ideas -->
-<!-- - rmarkdown: -->
-<!--   - rmd templates -->
-<!--   - Appendix `sessionInfo()` -->
-<!-- - Cheat sheets -->
-<!-- - technical monitoring -->
-<!--   - CRAN alerts -->
-<!--   - R bloggers -->
-<!-- - Rstudio 1.3 -->
-<!--   - https://rstudio.com/products/rstudio/download/preview/ -->
-<!-- - Resources -->
-<!--   - R bloggers -->
-<!--   - Hadley's books -->
-<!--   - https://holtzy.github.io/Pimp-my-rmd/ -->
 <div id="r-studio-configuration" class="section level1">
 <h1><span class="header-section-number">1</span> R-Studio configuration</h1>
 <p>My favorite <svg style="height:20px;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> IDE is <a href="https://rstudio.com/products/rstudio/download/#download">R-Studio Desktop</a>. It is free and open-source and provides a lot of powerful features.</p>
@@ -434,11 +416,22 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <li>The R-Studio settings: <code>rstudio-pref.json</code></li>
 <li>The <a href="#snippets">snippets</a></li>
 <li>The personal dictionary</li>
+<li>The personal keyboard shortcuts definitions</li>
 </ul>
 </div>
 </div>
+<div id="rprofile-file" class="section level1">
+<h1><span class="header-section-number">2</span> <code>.Rprofile</code> file</h1>
+<p>The <code>.Rprofile</code> file can be used to customize the environment at the startup of R. This file should be place in the your HOME directory, or inside a folder of a R-project. In this case, the one inside the project take precedence over the other.</p>
+<p>When R starts, it automatically sources the <code>.Rprofile</code> file. So it can be used to setup some R options like: <code>options(max.print = 200)</code> to reduce the number of printed lines or <code>options("scipen" = 999)</code> to disabled the scientific notation.</p>
+<p>There is also two interesting functions: <code>.First( )</code> which will be run at the start of the R session and <code>.Last( )</code> at the end of the session.</p>
+<p>You can try to copy this this line in your <code>.Rprofile</code> file:</p>
+<pre class="r"><code>.First &lt;- function(){
+  cat(&quot;Welcome&quot;, Sys.info()[&quot;user&quot;], &quot;!\n&quot;)
+}</code></pre>
+</div>
 <div id="working-with-r-studio" class="section level1">
-<h1><span class="header-section-number">2</span> Working with R-Studio</h1>
+<h1><span class="header-section-number">3</span> Working with R-Studio</h1>
 <ul>
 <li>Rstudio <strong>features</strong>:
 <ul>
@@ -453,9 +446,9 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul></li>
 </ul>
 <div id="panes" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">2.1</span> Panes</h2>
+<h2><span class="header-section-number">3.1</span> Panes</h2>
 <div id="environment" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Environment</h3>
+<h3><span class="header-section-number">3.1.1</span> Environment</h3>
 <div class="figure">
 <img src="src/img/RSTools-Env.png" alt="" />
 <p class="caption">Environment pane</p>
@@ -472,7 +465,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="file-browser" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> File browser</h3>
+<h3><span class="header-section-number">3.1.2</span> File browser</h3>
 <div class="figure">
 <img src="src/img/RSTools-file.png" alt="" />
 <p class="caption">R-Studio file pane</p>
@@ -481,7 +474,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <p>It’s quite convenient to manage the files directly from R-Studio. If you are working in a <a href="#Rproj">projects</a>, you can quickly access to your root folder with the <img src="src/img/RSTools-fileR.png" /> button.</p>
 </div>
 <div id="packages" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> Packages</h3>
+<h3><span class="header-section-number">3.1.3</span> Packages</h3>
 <div class="figure">
 <img src="src/img/RSTools-pkg.png" alt="" />
 <p class="caption">R-Studio package pane</p>
@@ -492,7 +485,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <p><img src="src/img/RSTools-pkgUp.png" /></p>
 </div>
 <div id="jobs" class="section level3">
-<h3><span class="header-section-number">2.1.4</span> Jobs</h3>
+<h3><span class="header-section-number">3.1.4</span> Jobs</h3>
 <div class="figure">
 <img src="src/img/RSTools-jobs2.png" alt="" />
 <p class="caption">Jobs pane with 2 finished jobs</p>
@@ -512,7 +505,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <!-- When you develop a R package, you can manage your test / checks / build in the pane.-->
 </div>
 <div id="git" class="section level3">
-<h3><span class="header-section-number">2.1.5</span> Git</h3>
+<h3><span class="header-section-number">3.1.5</span> Git</h3>
 <div class="figure">
 <img src="src/img/RSTools-Git.png" alt="" />
 <p class="caption">Build pane</p>
@@ -526,7 +519,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="tutorial" class="section level3">
-<h3><span class="header-section-number">2.1.6</span> Tutorial</h3>
+<h3><span class="header-section-number">3.1.6</span> Tutorial</h3>
 <div class="note">
 <p>It7s a new feature included in R-Studio 1.3</p>
 </div>
@@ -537,12 +530,22 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 </div>
+<div id="addins" class="section level2">
+<h2><span class="header-section-number">3.2</span> Addins</h2>
+<p>Some R packages includes some R-Studio addins.</p>
+<p>You can launch an addin using the <img src="src/img/RS-AddinsButton.png" alt="addin" /> button.</p>
+<p>These addins provides new functionality to R studio like: <a href="https://github.com/daattali/colourpicker">Color picker</a>, <a href="https://github.com/MilesMcBain/datapasta">create data.frame from clipboard</a>…</p>
+<div class="figure">
+<img src="src/img/RS-Addins.png" alt="" />
+<p class="caption">Addins can be installed with “Browse RStudio addins”</p>
+</div>
+</div>
 <div id="Rproj" class="section level2">
-<h2><span class="header-section-number">2.2</span> R-Project</h2>
+<h2><span class="header-section-number">3.3</span> R-Project</h2>
 <p>When you work, <del>I hope</del> you keep all your files associated with a project in one specific directory in your computer. R-Studio provide a built-in support for this via “projects”.</p>
 <p>You can find some information about R-Project in this <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">R-Studio support article</a> or at this <a href="https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects"><em>R for Data Science</em> section</a>.</p>
 <div id="advantages" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Advantages</h3>
+<h3><span class="header-section-number">3.3.1</span> Advantages</h3>
 <p>The main advantages to work with R-Projects are:</p>
 <ul>
 <li><p>When a R-Project is open, the current working directory is automatically set to the project directory. A R-Project can then be <strong>shared across multiple users</strong> on different computers without thinking about setting the working directory.</p></li>
@@ -554,7 +557,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="create-r-project" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Create R-Project</h3>
+<h3><span class="header-section-number">3.3.2</span> Create R-Project</h3>
 <p>You can create a new R-Project either by clicking on <code>File -&gt; New Project...</code> or on the <img src="src/img/RS-project.png" alt="project" /> button.</p>
 <p>You can then choose to create it in an existing directory, or to create a new one. In this case, R-Studio provides different templates: “R package”, “Shiny Web Application”, “Plumber API” … After creation, the directory will already contain some files and folder.</p>
 <div class="figure">
@@ -570,7 +573,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 ## └── src</code></pre>
 </div>
 <div id="how-it-works" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> How it works</h3>
+<h3><span class="header-section-number">3.3.3</span> How it works</h3>
 <p>R project is a directory containing a <code>.Rproj</code> file which can be open by R-Studio. When you open a <code>.Rproj</code> file, the following happens:</p>
 <ul>
 <li>A new R session (process) is started</li>
@@ -593,7 +596,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </div>
 </div>
 <div id="keyboard-shortcuts-and-useful-command" class="section level2">
-<h2><span class="header-section-number">2.3</span> Keyboard shortcuts and useful command</h2>
+<h2><span class="header-section-number">3.4</span> Keyboard shortcuts and useful command</h2>
 <p>R-Studio provide a lot of <strong>very useful</strong> commands accessible from the menu bar (<code>File</code>, <code>Edit</code>, <code>Code</code>, <code>Session</code> … ).</p>
 <p>These commands are linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.</p>
 <p>The default shortcuts can be modify through: <code>Tools -&gt; Modify keyboard shortcuts...</code></p>
@@ -604,7 +607,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="basic" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Basic</h3>
+<h3><span class="header-section-number">3.4.1</span> Basic</h3>
 <p>These shortcuts are similar to those of other softwares.</p>
 <ul>
 <li><p><code>Ctrl</code> + <code>Z</code> : Undo</p></li>
@@ -624,7 +627,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="help" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> Help</h3>
+<h3><span class="header-section-number">3.4.2</span> Help</h3>
 <ul>
 <li><p><strong><code>Alt</code> + <code>Shift</code> + <code>K</code></strong> : Show <strong>k</strong>eyboard shortcuts</p></li>
 <li><p><code>F1</code> : Show function help</p></li>
@@ -632,7 +635,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="run-code" class="section level3">
-<h3><span class="header-section-number">2.3.3</span> Run code</h3>
+<h3><span class="header-section-number">3.4.3</span> Run code</h3>
 <ul>
 <li><p><code>Ctrl</code> + <code>Enter</code> : Run selected lines</p></li>
 <li><p><code>Ctrl</code> + <code>Alt</code> + <code>B</code>/<code>E</code> : Run code from <strong>B</strong>egining to line or from line to <strong>E</strong>nd</p></li>
@@ -640,7 +643,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 </ul>
 </div>
 <div id="editor" class="section level3">
-<h3><span class="header-section-number">2.3.4</span> Editor</h3>
+<h3><span class="header-section-number">3.4.4</span> Editor</h3>
 <ul>
 <li><p><strong><code>Alt</code> + <code>-</code></strong> : insert <code>&lt;-</code></p></li>
 <li><p><code>Ctrl</code> + <code>Shift</code> + <code>M</code> : insert a pipe <code>%&gt;%</code></p></li>
@@ -705,7 +708,7 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <hr />
 </div>
 <div id="r-markdown" class="section level3">
-<h3><span class="header-section-number">2.3.5</span> R markdown</h3>
+<h3><span class="header-section-number">3.4.5</span> R markdown</h3>
 <ul>
 <li><strong><code>Ctrl</code> + <code>Shit</code> + <code>K</code></strong>: <strong>K</strong>nit document</li>
 <li><code>Shit</code> + <code>Tab</code> : Autocompletion / snippets</li>
@@ -713,30 +716,10 @@ R &lt;- fontawesome::fa(&quot;r-project&quot;, height = &quot;20px&quot;, fill =
 <li><strong><code>Ctrl</code> + <code>Shift</code> + <code>Enter</code></strong>: Run current chunk</li>
 <li><code>Ctrl</code> + <code>Alt</code> + <code>P</code> : Run all <strong>p</strong>revious chunks</li>
 </ul>
-</div>
-</div>
-<div id="addins" class="section level2">
-<h2><span class="header-section-number">2.4</span> Addins</h2>
-<p>Some R packages includes some R-Studio addins.</p>
-<p>You can launch an addin using the <img src="src/img/RS-AddinsButton.png" alt="addin" /> button.</p>
-<p>These addins provides new functionality to R studio like: <a href="https://github.com/daattali/colourpicker">Color picker</a>, <a href="https://github.com/MilesMcBain/datapasta">create data.frame from clipboard</a>…</p>
-<div class="figure">
-<img src="src/img/RS-Addins.png" alt="" />
-<p class="caption">Addins can be installed with “Browse RStudio addins”</p>
-</div>
-</div>
-</div>
-<div id="rprofile-file" class="section level1">
-<h1><span class="header-section-number">3</span> <code>.Rprofile</code> file</h1>
-<p>The <code>.Rprofile</code> file can be used to customize the environment at the startup of R. This file should be place in the your HOME directory, or inside a folder of a R-project. In this case, the one inside the project take precedence over the other.</p>
-<p>When R starts, it automatically sources the <code>.Rprofile</code> file. So it can be used to setup some R options like: <code>options(max.print = 200)</code> to reduce the number of printed lines or <code>options("scipen" = 999)</code> to disabled the scientific notation.</p>
-<p>There is also two interesting functions: <code>.First( )</code> which will be run at the start of the R session and <code>.Last( )</code> at the end of the session.</p>
-<p>You can try to copy this this line in your <code>.Rprofile</code> file:</p>
-<pre class="r"><code>.First &lt;- function(){
-  cat(&quot;Welcome&quot;, Sys.info()[&quot;user&quot;], &quot;!\n&quot;)
-}</code></pre>
 <div class="NOTE">
 <p>You should not modify options that can have an effect on the R behavior ! For example setting <code>options(stringsAsFactors = TRUE/FALSE)</code> in your <code>.Rprofile</code> file is a bad idea. Indeed, your codes might not run well on another computer.</p>
+</div>
+</div>
 </div>
 </div>
 <div id="snippets" class="section level1">
@@ -818,11 +801,11 @@ print(microbenchmark(
     }
 ))</code></pre>
 <pre><code>## Unit: microseconds
-##   expr       min         lq      mean    median        uq       max neval
-##  test1 26180.884 30462.1595 34546.003 33762.761 37437.480 56602.397   100
-##  test2 19468.458 21332.6315 24368.231 23531.307 26809.575 35082.366   100
-##  test3 19100.393 21571.8170 26162.689 24770.453 27828.136 97228.736   100
-##  test4   760.297   858.6945  1083.293   935.319  1189.496  2443.766   100</code></pre>
+##   expr       min        lq      mean     median        uq        max neval
+##  test1 25255.688 29837.518 34770.990 33919.6745 37623.794  75510.344   100
+##  test2 19140.435 20764.882 25166.435 24750.5565 28018.526  42420.731   100
+##  test3 19059.337 22881.918 28029.011 27281.2370 30148.341 104140.613   100
+##  test4   769.495   840.148  1110.994   938.1015  1126.551   7766.817   100</code></pre>
 </div>
 <div id="profiling" class="section level2">
 <h2><span class="header-section-number">5.2</span> Profiling</h2>
@@ -836,19 +819,80 @@ print(microbenchmark(
 </div>
 <div id="r-markdown-1" class="section level1">
 <h1><span class="header-section-number">6</span> R-Markdown</h1>
-<div id="rmd-templates" class="section level2">
-<h2><span class="header-section-number">6.1</span> rmd templates</h2>
+<p>Using the <a href="https://rmarkdown.rstudio.com/"><code>Rmarkdown</code></a> package is a easy and beautiful way to create R analysis reports, presentation slides, package documentations, and even books and websites.</p>
+<p>It is based on the <a href="https://daringfireball.net/projects/markdown/">markdown</a> syntax which is easy to read and easy to write:</p>
+<pre class="markdown"><code>Plain text
+
+End a line with two spaces to start a new paragraph.
+
+*italics* and _italics_
+
+**bold** and __bold__
+
+superscript^2^
+
+~~strikethrough~~
+
+[link](https://rmarkdown.rstudio.com/)
+
+# Header 1
+
+## Header 2
+
+### Header 3
+
+inline equation using LaTeX syntax: $A = \pi*r^{2}$ 
+
+image: ![](path/to/image.png) </code></pre>
+<p>Blocks of R code (called a chunk) can be introduced using the delimiters <code>```{r}</code> and <code>```</code> and R-studio can display the outputs directly in the editor:</p>
+<div class="figure">
+<img src="src/img/Rmd-chunk.png" alt="" />
+<p class="caption">simple Rmd chunk with the outputs shown</p>
+</div>
+<p>R-Markdown can generate a lot of different format: HTML, pdf, Word, Power Point, markdown…</p>
+<p>A complete R-Markdown guide is available <a href="https://bookdown.org/yihui/rmarkdown/">here</a>.</p>
+<div id="r-markdwon-template" class="section level2">
+<h2><span class="header-section-number">6.1</span> R-Markdwon template</h2>
+<p>There is a lot of customization options so it can be good to save templates.</p>
+<p>The template structure is:</p>
+<pre><code>## templateName/
+## ├── skeleton
+## │   └── skeleton.Rmd
+## └── template.yaml</code></pre>
+<p>You should name your <code>.Rmd</code> file <code>skeleton.Rmd</code>, and the <code>template.yaml</code> file contain some information about the template:</p>
+<pre class="yaml"><code>name: templateName
+description: &gt;
+  My template
+create_dir: false
+</code></pre>
+<p>Once you have your template structure you should:</p>
 <ul>
-<li>rmd templates</li>
-<li>Appendix <code>sessionInfo()</code></li>
+<li>Initialize a new R package: <code>File -&gt; New project...</code> and select “R package”</li>
+<li>save your template in the package at: <code>./inst/rmarkdown/templates/templateName</code></li>
+<li>Install your package: <code>Ctrl</code> + <code>Shift</code> + <code>B</code>, or click on “Build and restart” in the “Build” pane.</li>
+</ul>
+<p>Your template is then accessible at: <code>File -&gt; New file -&gt; R Markdown...</code></p>
+<div class="note">
+<ul>
+<li>It is a good practice to add a chunk with <code>print(sessionInfo(), locale = FALSE)</code> at the end of a markdown document. So that the reader can have information about the versions of the packages used to generate the document.</li>
 </ul>
 </div>
-<div id="publish-r-markdown" class="section level2">
-<h2><span class="header-section-number">6.2</span> Publish R-Markdown</h2>
+</div>
+<div id="publish-your-r-markdown" class="section level2">
+<h2><span class="header-section-number">6.2</span> Publish your R-Markdown</h2>
+<p>You can display a html document online thanks to <a href="https://pages.github.com/">GitHub pages</a>.</p>
+<ul>
+<li><p>First, if you don’t have one, create your GitHub web site. You can follow the steps presented <a href="https://pages.github.com/">here</a> (It is just a repository named <code>username.github.io</code> containing an <code>index.html</code> file)</p></li>
+<li><p>Create a new repository for your document: <code>myRmdDocument</code></p></li>
+<li><p>Name your <code>.rmd</code> file <code>index.rmd</code> and knit your document.</p></li>
+<li><p>Push the <code>index.html</code> to the GitHub repository at the master branch</p></li>
+<li><p>On your github repository (<code>myRmdDocument</code>) go to <code>Settings -&gt; GitHub Pages -&gt; Source -&gt; Master Branch -&gt; Save</code></p></li>
+<li><p>Your document will be available at <code>https://username.github.io/myRmdDocument</code> after several minutes.</p></li>
+</ul>
 </div>
 </div>
-<div id="some-useful-r-functions" class="section level1">
-<h1><span class="header-section-number">7</span> Some useful R functions:</h1>
+<div id="some-useful-r-functions-and-packages" class="section level1">
+<h1><span class="header-section-number">7</span> Some useful R functions and packages:</h1>
 <div id="saverds" class="section level2">
 <h2><span class="header-section-number">7.1</span> <code>saveRDS</code></h2>
 <p>An R object (for example the result of a long calculation) can be saved using the function <code>save()</code> and then load back with the function <code>load()</code>. The problem with these function is that it saves both the objects and their names in the same file. So we cannot reset the object name.</p>
@@ -880,31 +924,104 @@ identical(x, y)</code></pre>
   rnorm(x)
 })</code></pre>
 </div>
+<div id="plotly" class="section level2">
+<h2><span class="header-section-number">7.4</span> <a href="https://plotly.com/r/"><code>plotly</code></a></h2>
+<p>Create interactive plots:</p>
+<pre class="r"><code>library(plotly)</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<pre class="r"><code>plot_ly(type = &quot;scatter&quot;,
+        mode = &quot;markers&quot;,
+        data = iris,
+        x = ~Sepal.Length,
+        y = ~Sepal.Width,
+        color = ~Species , 
+        hoverinfo = &#39;text&#39;,
+        text = apply(iris, 1, function(l) {
+          paste(names(l), &quot;:&quot;, l, collapse = &quot;\n&quot;)
+        })
+)</code></pre>
+<div id="htmlwidget-51731598a257b7b69355" style="width:864px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-51731598a257b7b69355">{"x":{"visdat":{"58d156699818":["function () ","plotlyVisDat"]},"cur_data":"58d156699818","attrs":{"58d156699818":{"mode":"markers","x":{},"y":{},"hoverinfo":"text","text":["Sepal.Length : 5.1<br />Sepal.Width : 3.5<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.9<br />Sepal.Width : 3.0<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.7<br />Sepal.Width : 3.2<br />Petal.Length : 1.3<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.6<br />Sepal.Width : 3.1<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.6<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.9<br />Petal.Length : 1.7<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 4.6<br />Sepal.Width : 3.4<br />Petal.Length : 1.4<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.4<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.4<br />Sepal.Width : 2.9<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.9<br />Sepal.Width : 3.1<br />Petal.Length : 1.5<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.7<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.4<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.0<br />Petal.Length : 1.4<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 4.3<br />Sepal.Width : 3.0<br />Petal.Length : 1.1<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 5.8<br />Sepal.Width : 4.0<br />Petal.Length : 1.2<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.7<br />Sepal.Width : 4.4<br />Petal.Length : 1.5<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.9<br />Petal.Length : 1.3<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.5<br />Petal.Length : 1.4<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.7<br />Sepal.Width : 3.8<br />Petal.Length : 1.7<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.8<br />Petal.Length : 1.5<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.4<br />Petal.Length : 1.7<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.7<br />Petal.Length : 1.5<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 4.6<br />Sepal.Width : 3.6<br />Petal.Length : 1.0<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.3<br />Petal.Length : 1.7<br />Petal.Width : 0.5<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.4<br />Petal.Length : 1.9<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.0<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.4<br />Petal.Length : 1.6<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 5.2<br />Sepal.Width : 3.5<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.2<br />Sepal.Width : 3.4<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.7<br />Sepal.Width : 3.2<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.1<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.4<br />Petal.Length : 1.5<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 5.2<br />Sepal.Width : 4.1<br />Petal.Length : 1.5<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 5.5<br />Sepal.Width : 4.2<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.9<br />Sepal.Width : 3.1<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.2<br />Petal.Length : 1.2<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.5<br />Sepal.Width : 3.5<br />Petal.Length : 1.3<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.9<br />Sepal.Width : 3.6<br />Petal.Length : 1.4<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 4.4<br />Sepal.Width : 3.0<br />Petal.Length : 1.3<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.4<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.5<br />Petal.Length : 1.3<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 4.5<br />Sepal.Width : 2.3<br />Petal.Length : 1.3<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 4.4<br />Sepal.Width : 3.2<br />Petal.Length : 1.3<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.5<br />Petal.Length : 1.6<br />Petal.Width : 0.6<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.8<br />Petal.Length : 1.9<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.0<br />Petal.Length : 1.4<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.8<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.6<br />Sepal.Width : 3.2<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.3<br />Sepal.Width : 3.7<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.3<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 7.0<br />Sepal.Width : 3.2<br />Petal.Length : 4.7<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 6.4<br />Sepal.Width : 3.2<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.9<br />Sepal.Width : 3.1<br />Petal.Length : 4.9<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.3<br />Petal.Length : 4.0<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.5<br />Sepal.Width : 2.8<br />Petal.Length : 4.6<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 2.8<br />Petal.Length : 4.5<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.3<br />Sepal.Width : 3.3<br />Petal.Length : 4.7<br />Petal.Width : 1.6<br />Species : versicolor","Sepal.Length : 4.9<br />Sepal.Width : 2.4<br />Petal.Length : 3.3<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 6.6<br />Sepal.Width : 2.9<br />Petal.Length : 4.6<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.2<br />Sepal.Width : 2.7<br />Petal.Length : 3.9<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 5.0<br />Sepal.Width : 2.0<br />Petal.Length : 3.5<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 5.9<br />Sepal.Width : 3.0<br />Petal.Length : 4.2<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.0<br />Sepal.Width : 2.2<br />Petal.Length : 4.0<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 6.1<br />Sepal.Width : 2.9<br />Petal.Length : 4.7<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 2.9<br />Petal.Length : 3.6<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.7<br />Sepal.Width : 3.1<br />Petal.Length : 4.4<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 3.0<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.8<br />Sepal.Width : 2.7<br />Petal.Length : 4.1<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 6.2<br />Sepal.Width : 2.2<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 2.5<br />Petal.Length : 3.9<br />Petal.Width : 1.1<br />Species : versicolor","Sepal.Length : 5.9<br />Sepal.Width : 3.2<br />Petal.Length : 4.8<br />Petal.Width : 1.8<br />Species : versicolor","Sepal.Length : 6.1<br />Sepal.Width : 2.8<br />Petal.Length : 4.0<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.3<br />Sepal.Width : 2.5<br />Petal.Length : 4.9<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.1<br />Sepal.Width : 2.8<br />Petal.Length : 4.7<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 6.4<br />Sepal.Width : 2.9<br />Petal.Length : 4.3<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.6<br />Sepal.Width : 3.0<br />Petal.Length : 4.4<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 6.8<br />Sepal.Width : 2.8<br />Petal.Length : 4.8<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 6.7<br />Sepal.Width : 3.0<br />Petal.Length : 5.0<br />Petal.Width : 1.7<br />Species : versicolor","Sepal.Length : 6.0<br />Sepal.Width : 2.9<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 2.6<br />Petal.Length : 3.5<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.4<br />Petal.Length : 3.8<br />Petal.Width : 1.1<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.4<br />Petal.Length : 3.7<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 5.8<br />Sepal.Width : 2.7<br />Petal.Length : 3.9<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 6.0<br />Sepal.Width : 2.7<br />Petal.Length : 5.1<br />Petal.Width : 1.6<br />Species : versicolor","Sepal.Length : 5.4<br />Sepal.Width : 3.0<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.0<br />Sepal.Width : 3.4<br />Petal.Length : 4.5<br />Petal.Width : 1.6<br />Species : versicolor","Sepal.Length : 6.7<br />Sepal.Width : 3.1<br />Petal.Length : 4.7<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.3<br />Sepal.Width : 2.3<br />Petal.Length : 4.4<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 3.0<br />Petal.Length : 4.1<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.5<br />Petal.Length : 4.0<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.6<br />Petal.Length : 4.4<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 6.1<br />Sepal.Width : 3.0<br />Petal.Length : 4.6<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 5.8<br />Sepal.Width : 2.6<br />Petal.Length : 4.0<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 5.0<br />Sepal.Width : 2.3<br />Petal.Length : 3.3<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 2.7<br />Petal.Length : 4.2<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 3.0<br />Petal.Length : 4.2<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 2.9<br />Petal.Length : 4.2<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.2<br />Sepal.Width : 2.9<br />Petal.Length : 4.3<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.1<br />Sepal.Width : 2.5<br />Petal.Length : 3.0<br />Petal.Width : 1.1<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 2.8<br />Petal.Length : 4.1<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.3<br />Sepal.Width : 3.3<br />Petal.Length : 6.0<br />Petal.Width : 2.5<br />Species : virginica","Sepal.Length : 5.8<br />Sepal.Width : 2.7<br />Petal.Length : 5.1<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 7.1<br />Sepal.Width : 3.0<br />Petal.Length : 5.9<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 2.9<br />Petal.Length : 5.6<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.5<br />Sepal.Width : 3.0<br />Petal.Length : 5.8<br />Petal.Width : 2.2<br />Species : virginica","Sepal.Length : 7.6<br />Sepal.Width : 3.0<br />Petal.Length : 6.6<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 4.9<br />Sepal.Width : 2.5<br />Petal.Length : 4.5<br />Petal.Width : 1.7<br />Species : virginica","Sepal.Length : 7.3<br />Sepal.Width : 2.9<br />Petal.Length : 6.3<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 2.5<br />Petal.Length : 5.8<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 7.2<br />Sepal.Width : 3.6<br />Petal.Length : 6.1<br />Petal.Width : 2.5<br />Species : virginica","Sepal.Length : 6.5<br />Sepal.Width : 3.2<br />Petal.Length : 5.1<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 2.7<br />Petal.Length : 5.3<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 6.8<br />Sepal.Width : 3.0<br />Petal.Length : 5.5<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 5.7<br />Sepal.Width : 2.5<br />Petal.Length : 5.0<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 5.8<br />Sepal.Width : 2.8<br />Petal.Length : 5.1<br />Petal.Width : 2.4<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 3.2<br />Petal.Length : 5.3<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.5<br />Sepal.Width : 3.0<br />Petal.Length : 5.5<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 7.7<br />Sepal.Width : 3.8<br />Petal.Length : 6.7<br />Petal.Width : 2.2<br />Species : virginica","Sepal.Length : 7.7<br />Sepal.Width : 2.6<br />Petal.Length : 6.9<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.0<br />Sepal.Width : 2.2<br />Petal.Length : 5.0<br />Petal.Width : 1.5<br />Species : virginica","Sepal.Length : 6.9<br />Sepal.Width : 3.2<br />Petal.Length : 5.7<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 5.6<br />Sepal.Width : 2.8<br />Petal.Length : 4.9<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 7.7<br />Sepal.Width : 2.8<br />Petal.Length : 6.7<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 2.7<br />Petal.Length : 4.9<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 3.3<br />Petal.Length : 5.7<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 7.2<br />Sepal.Width : 3.2<br />Petal.Length : 6.0<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.2<br />Sepal.Width : 2.8<br />Petal.Length : 4.8<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.1<br />Sepal.Width : 3.0<br />Petal.Length : 4.9<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 2.8<br />Petal.Length : 5.6<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 7.2<br />Sepal.Width : 3.0<br />Petal.Length : 5.8<br />Petal.Width : 1.6<br />Species : virginica","Sepal.Length : 7.4<br />Sepal.Width : 2.8<br />Petal.Length : 6.1<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 7.9<br />Sepal.Width : 3.8<br />Petal.Length : 6.4<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 2.8<br />Petal.Length : 5.6<br />Petal.Width : 2.2<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 2.8<br />Petal.Length : 5.1<br />Petal.Width : 1.5<br />Species : virginica","Sepal.Length : 6.1<br />Sepal.Width : 2.6<br />Petal.Length : 5.6<br />Petal.Width : 1.4<br />Species : virginica","Sepal.Length : 7.7<br />Sepal.Width : 3.0<br />Petal.Length : 6.1<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 3.4<br />Petal.Length : 5.6<br />Petal.Width : 2.4<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 3.1<br />Petal.Length : 5.5<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.0<br />Sepal.Width : 3.0<br />Petal.Length : 4.8<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.9<br />Sepal.Width : 3.1<br />Petal.Length : 5.4<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 3.1<br />Petal.Length : 5.6<br />Petal.Width : 2.4<br />Species : virginica","Sepal.Length : 6.9<br />Sepal.Width : 3.1<br />Petal.Length : 5.1<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 5.8<br />Sepal.Width : 2.7<br />Petal.Length : 5.1<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 6.8<br />Sepal.Width : 3.2<br />Petal.Length : 5.9<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 3.3<br />Petal.Length : 5.7<br />Petal.Width : 2.5<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 3.0<br />Petal.Length : 5.2<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 2.5<br />Petal.Length : 5.0<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 6.5<br />Sepal.Width : 3.0<br />Petal.Length : 5.2<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 6.2<br />Sepal.Width : 3.4<br />Petal.Length : 5.4<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 5.9<br />Sepal.Width : 3.0<br />Petal.Length : 5.1<br />Petal.Width : 1.8<br />Species : virginica"],"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Sepal.Length"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Sepal.Width"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"mode":"markers","x":[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5,5,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5,5.5,4.9,4.4,5.1,5,4.5,4.4,5,5.1,4.8,5.1,4.6,5.3,5],"y":[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3,3,4,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3,3.4,3.5,2.3,3.2,3.5,3.8,3,3.8,3.2,3.7,3.3],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Sepal.Length : 5.1<br />Sepal.Width : 3.5<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.9<br />Sepal.Width : 3.0<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.7<br />Sepal.Width : 3.2<br />Petal.Length : 1.3<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.6<br />Sepal.Width : 3.1<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.6<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.9<br />Petal.Length : 1.7<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 4.6<br />Sepal.Width : 3.4<br />Petal.Length : 1.4<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.4<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.4<br />Sepal.Width : 2.9<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.9<br />Sepal.Width : 3.1<br />Petal.Length : 1.5<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.7<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.4<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.0<br />Petal.Length : 1.4<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 4.3<br />Sepal.Width : 3.0<br />Petal.Length : 1.1<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 5.8<br />Sepal.Width : 4.0<br />Petal.Length : 1.2<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.7<br />Sepal.Width : 4.4<br />Petal.Length : 1.5<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.9<br />Petal.Length : 1.3<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.5<br />Petal.Length : 1.4<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.7<br />Sepal.Width : 3.8<br />Petal.Length : 1.7<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.8<br />Petal.Length : 1.5<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.4<br />Petal.Length : 1.7<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.7<br />Petal.Length : 1.5<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 4.6<br />Sepal.Width : 3.6<br />Petal.Length : 1.0<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.3<br />Petal.Length : 1.7<br />Petal.Width : 0.5<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.4<br />Petal.Length : 1.9<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.0<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.4<br />Petal.Length : 1.6<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 5.2<br />Sepal.Width : 3.5<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.2<br />Sepal.Width : 3.4<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.7<br />Sepal.Width : 3.2<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.1<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.4<br />Sepal.Width : 3.4<br />Petal.Length : 1.5<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 5.2<br />Sepal.Width : 4.1<br />Petal.Length : 1.5<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 5.5<br />Sepal.Width : 4.2<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.9<br />Sepal.Width : 3.1<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.2<br />Petal.Length : 1.2<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.5<br />Sepal.Width : 3.5<br />Petal.Length : 1.3<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.9<br />Sepal.Width : 3.6<br />Petal.Length : 1.4<br />Petal.Width : 0.1<br />Species : setosa","Sepal.Length : 4.4<br />Sepal.Width : 3.0<br />Petal.Length : 1.3<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.4<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.5<br />Petal.Length : 1.3<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 4.5<br />Sepal.Width : 2.3<br />Petal.Length : 1.3<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 4.4<br />Sepal.Width : 3.2<br />Petal.Length : 1.3<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.5<br />Petal.Length : 1.6<br />Petal.Width : 0.6<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.8<br />Petal.Length : 1.9<br />Petal.Width : 0.4<br />Species : setosa","Sepal.Length : 4.8<br />Sepal.Width : 3.0<br />Petal.Length : 1.4<br />Petal.Width : 0.3<br />Species : setosa","Sepal.Length : 5.1<br />Sepal.Width : 3.8<br />Petal.Length : 1.6<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 4.6<br />Sepal.Width : 3.2<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.3<br />Sepal.Width : 3.7<br />Petal.Length : 1.5<br />Petal.Width : 0.2<br />Species : setosa","Sepal.Length : 5.0<br />Sepal.Width : 3.3<br />Petal.Length : 1.4<br />Petal.Width : 0.2<br />Species : setosa"],"type":"scatter","name":"setosa","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"markers","x":[7,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5,5.9,6,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6,5.7,5.5,5.5,5.8,6,5.4,6,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5,5.6,5.7,5.7,6.2,5.1,5.7],"y":[3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2,3,2.2,2.9,2.9,3.1,3,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3,2.8,3,2.9,2.6,2.4,2.4,2.7,2.7,3,3.4,3.1,2.3,3,2.5,2.6,3,2.6,2.3,2.7,3,2.9,2.9,2.5,2.8],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Sepal.Length : 7.0<br />Sepal.Width : 3.2<br />Petal.Length : 4.7<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 6.4<br />Sepal.Width : 3.2<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.9<br />Sepal.Width : 3.1<br />Petal.Length : 4.9<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.3<br />Petal.Length : 4.0<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.5<br />Sepal.Width : 2.8<br />Petal.Length : 4.6<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 2.8<br />Petal.Length : 4.5<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.3<br />Sepal.Width : 3.3<br />Petal.Length : 4.7<br />Petal.Width : 1.6<br />Species : versicolor","Sepal.Length : 4.9<br />Sepal.Width : 2.4<br />Petal.Length : 3.3<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 6.6<br />Sepal.Width : 2.9<br />Petal.Length : 4.6<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.2<br />Sepal.Width : 2.7<br />Petal.Length : 3.9<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 5.0<br />Sepal.Width : 2.0<br />Petal.Length : 3.5<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 5.9<br />Sepal.Width : 3.0<br />Petal.Length : 4.2<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.0<br />Sepal.Width : 2.2<br />Petal.Length : 4.0<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 6.1<br />Sepal.Width : 2.9<br />Petal.Length : 4.7<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 2.9<br />Petal.Length : 3.6<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.7<br />Sepal.Width : 3.1<br />Petal.Length : 4.4<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 3.0<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.8<br />Sepal.Width : 2.7<br />Petal.Length : 4.1<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 6.2<br />Sepal.Width : 2.2<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 2.5<br />Petal.Length : 3.9<br />Petal.Width : 1.1<br />Species : versicolor","Sepal.Length : 5.9<br />Sepal.Width : 3.2<br />Petal.Length : 4.8<br />Petal.Width : 1.8<br />Species : versicolor","Sepal.Length : 6.1<br />Sepal.Width : 2.8<br />Petal.Length : 4.0<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.3<br />Sepal.Width : 2.5<br />Petal.Length : 4.9<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.1<br />Sepal.Width : 2.8<br />Petal.Length : 4.7<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 6.4<br />Sepal.Width : 2.9<br />Petal.Length : 4.3<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.6<br />Sepal.Width : 3.0<br />Petal.Length : 4.4<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 6.8<br />Sepal.Width : 2.8<br />Petal.Length : 4.8<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 6.7<br />Sepal.Width : 3.0<br />Petal.Length : 5.0<br />Petal.Width : 1.7<br />Species : versicolor","Sepal.Length : 6.0<br />Sepal.Width : 2.9<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 2.6<br />Petal.Length : 3.5<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.4<br />Petal.Length : 3.8<br />Petal.Width : 1.1<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.4<br />Petal.Length : 3.7<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 5.8<br />Sepal.Width : 2.7<br />Petal.Length : 3.9<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 6.0<br />Sepal.Width : 2.7<br />Petal.Length : 5.1<br />Petal.Width : 1.6<br />Species : versicolor","Sepal.Length : 5.4<br />Sepal.Width : 3.0<br />Petal.Length : 4.5<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.0<br />Sepal.Width : 3.4<br />Petal.Length : 4.5<br />Petal.Width : 1.6<br />Species : versicolor","Sepal.Length : 6.7<br />Sepal.Width : 3.1<br />Petal.Length : 4.7<br />Petal.Width : 1.5<br />Species : versicolor","Sepal.Length : 6.3<br />Sepal.Width : 2.3<br />Petal.Length : 4.4<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 3.0<br />Petal.Length : 4.1<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.5<br />Petal.Length : 4.0<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.5<br />Sepal.Width : 2.6<br />Petal.Length : 4.4<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 6.1<br />Sepal.Width : 3.0<br />Petal.Length : 4.6<br />Petal.Width : 1.4<br />Species : versicolor","Sepal.Length : 5.8<br />Sepal.Width : 2.6<br />Petal.Length : 4.0<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 5.0<br />Sepal.Width : 2.3<br />Petal.Length : 3.3<br />Petal.Width : 1.0<br />Species : versicolor","Sepal.Length : 5.6<br />Sepal.Width : 2.7<br />Petal.Length : 4.2<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 3.0<br />Petal.Length : 4.2<br />Petal.Width : 1.2<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 2.9<br />Petal.Length : 4.2<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 6.2<br />Sepal.Width : 2.9<br />Petal.Length : 4.3<br />Petal.Width : 1.3<br />Species : versicolor","Sepal.Length : 5.1<br />Sepal.Width : 2.5<br />Petal.Length : 3.0<br />Petal.Width : 1.1<br />Species : versicolor","Sepal.Length : 5.7<br />Sepal.Width : 2.8<br />Petal.Length : 4.1<br />Petal.Width : 1.3<br />Species : versicolor"],"type":"scatter","name":"versicolor","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"markers","x":[6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],"y":[3.3,2.7,3,2.9,3,3,2.5,2.9,2.5,3.6,3.2,2.7,3,2.5,2.8,3.2,3,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3,2.8,3,2.8,3.8,2.8,2.8,2.6,3,3.4,3.1,3,3.1,3.1,3.1,2.7,3.2,3.3,3,2.5,3,3.4,3],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Sepal.Length : 6.3<br />Sepal.Width : 3.3<br />Petal.Length : 6.0<br />Petal.Width : 2.5<br />Species : virginica","Sepal.Length : 5.8<br />Sepal.Width : 2.7<br />Petal.Length : 5.1<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 7.1<br />Sepal.Width : 3.0<br />Petal.Length : 5.9<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 2.9<br />Petal.Length : 5.6<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.5<br />Sepal.Width : 3.0<br />Petal.Length : 5.8<br />Petal.Width : 2.2<br />Species : virginica","Sepal.Length : 7.6<br />Sepal.Width : 3.0<br />Petal.Length : 6.6<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 4.9<br />Sepal.Width : 2.5<br />Petal.Length : 4.5<br />Petal.Width : 1.7<br />Species : virginica","Sepal.Length : 7.3<br />Sepal.Width : 2.9<br />Petal.Length : 6.3<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 2.5<br />Petal.Length : 5.8<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 7.2<br />Sepal.Width : 3.6<br />Petal.Length : 6.1<br />Petal.Width : 2.5<br />Species : virginica","Sepal.Length : 6.5<br />Sepal.Width : 3.2<br />Petal.Length : 5.1<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 2.7<br />Petal.Length : 5.3<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 6.8<br />Sepal.Width : 3.0<br />Petal.Length : 5.5<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 5.7<br />Sepal.Width : 2.5<br />Petal.Length : 5.0<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 5.8<br />Sepal.Width : 2.8<br />Petal.Length : 5.1<br />Petal.Width : 2.4<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 3.2<br />Petal.Length : 5.3<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.5<br />Sepal.Width : 3.0<br />Petal.Length : 5.5<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 7.7<br />Sepal.Width : 3.8<br />Petal.Length : 6.7<br />Petal.Width : 2.2<br />Species : virginica","Sepal.Length : 7.7<br />Sepal.Width : 2.6<br />Petal.Length : 6.9<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.0<br />Sepal.Width : 2.2<br />Petal.Length : 5.0<br />Petal.Width : 1.5<br />Species : virginica","Sepal.Length : 6.9<br />Sepal.Width : 3.2<br />Petal.Length : 5.7<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 5.6<br />Sepal.Width : 2.8<br />Petal.Length : 4.9<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 7.7<br />Sepal.Width : 2.8<br />Petal.Length : 6.7<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 2.7<br />Petal.Length : 4.9<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 3.3<br />Petal.Length : 5.7<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 7.2<br />Sepal.Width : 3.2<br />Petal.Length : 6.0<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.2<br />Sepal.Width : 2.8<br />Petal.Length : 4.8<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.1<br />Sepal.Width : 3.0<br />Petal.Length : 4.9<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 2.8<br />Petal.Length : 5.6<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 7.2<br />Sepal.Width : 3.0<br />Petal.Length : 5.8<br />Petal.Width : 1.6<br />Species : virginica","Sepal.Length : 7.4<br />Sepal.Width : 2.8<br />Petal.Length : 6.1<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 7.9<br />Sepal.Width : 3.8<br />Petal.Length : 6.4<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 2.8<br />Petal.Length : 5.6<br />Petal.Width : 2.2<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 2.8<br />Petal.Length : 5.1<br />Petal.Width : 1.5<br />Species : virginica","Sepal.Length : 6.1<br />Sepal.Width : 2.6<br />Petal.Length : 5.6<br />Petal.Width : 1.4<br />Species : virginica","Sepal.Length : 7.7<br />Sepal.Width : 3.0<br />Petal.Length : 6.1<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 3.4<br />Petal.Length : 5.6<br />Petal.Width : 2.4<br />Species : virginica","Sepal.Length : 6.4<br />Sepal.Width : 3.1<br />Petal.Length : 5.5<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.0<br />Sepal.Width : 3.0<br />Petal.Length : 4.8<br />Petal.Width : 1.8<br />Species : virginica","Sepal.Length : 6.9<br />Sepal.Width : 3.1<br />Petal.Length : 5.4<br />Petal.Width : 2.1<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 3.1<br />Petal.Length : 5.6<br />Petal.Width : 2.4<br />Species : virginica","Sepal.Length : 6.9<br />Sepal.Width : 3.1<br />Petal.Length : 5.1<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 5.8<br />Sepal.Width : 2.7<br />Petal.Length : 5.1<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 6.8<br />Sepal.Width : 3.2<br />Petal.Length : 5.9<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 3.3<br />Petal.Length : 5.7<br />Petal.Width : 2.5<br />Species : virginica","Sepal.Length : 6.7<br />Sepal.Width : 3.0<br />Petal.Length : 5.2<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 6.3<br />Sepal.Width : 2.5<br />Petal.Length : 5.0<br />Petal.Width : 1.9<br />Species : virginica","Sepal.Length : 6.5<br />Sepal.Width : 3.0<br />Petal.Length : 5.2<br />Petal.Width : 2.0<br />Species : virginica","Sepal.Length : 6.2<br />Sepal.Width : 3.4<br />Petal.Length : 5.4<br />Petal.Width : 2.3<br />Species : virginica","Sepal.Length : 5.9<br />Sepal.Width : 3.0<br />Petal.Length : 5.1<br />Petal.Width : 1.8<br />Species : virginica"],"type":"scatter","name":"virginica","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="covr" class="section level2">
+<h2><span class="header-section-number">7.5</span> <a href="https://github.com/r-lib/covr"><code>covr</code></a></h2>
+<p>Track test coverage for your R package and view reports locally or (optionally) upload the results to codecov or coveralls.</p>
+<div class="figure">
+<img src="src/img/pkg-covr.png" alt="" />
+<p class="caption">Coverage result of a R package</p>
+</div>
+</div>
+<div id="other" class="section level2">
+<h2><span class="header-section-number">7.6</span> Other</h2>
+<ul>
+<li><p><a href="https://usethis.r-lib.org/"><code>usethis</code></a>: Automates repetitive tasks that arise during project setup and development, both for <strong>R packages</strong> and non-package projects.</p></li>
+<li><p><a href="https://pkgdown.r-lib.org/"><code>pkgdown</code></a>: To build a website for a R package.</p></li>
+<li><p><a href="https://github.com/yihui/xaringan"><code>xaringan</code></a>: An R package for creating slideshows with <code>remark.js</code> through R Markdown.</p></li>
+</ul>
+</div>
+</div>
+<div id="find-help-with-cheat-sheets" class="section level1">
+<h1><span class="header-section-number">8</span> Find help with cheat sheets</h1>
+<p>A cheat-sheet is a one or two pages documentation presenting the main functionality of a tool (Software, R package … ).</p>
+<p>There is a lot of cheat-sheet for different R packages. You can access to some of them from R-Studio: <code>Help -&gt; Cheatsheets</code> and much more are accessible <a href="https://rstudio.com/resources/cheatsheets/">here</a>.</p>
+<p>For example:</p>
+<ul>
+<li><a href="https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R Markdown</a></li>
+<li><a href="https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">ggplot2</a></li>
+<li><a href="https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf">plotly</a></li>
+<li><a href="https://rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf">regural expressions</a></li>
+<li><a href="https://shiny.rstudio.com/images/shiny-cheatsheet.pdf">shiny</a></li>
+<li><a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">dplyr and tidyr</a></li>
+</ul>
+<p>Of course this is not limited to R for example: <a href="https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf">Git cheat sheet from GitHub</a>, <a href="https://wch.github.io/latexsheet/latexsheet-0.png">LaTeX</a>…</p>
 </div>
 <div id="external-ressourses" class="section level1">
-<h1><span class="header-section-number">8</span> External ressourses</h1>
-<div id="cranalert" class="section level2">
-<h2><span class="header-section-number">8.1</span> CRANalert</h2>
+<h1><span class="header-section-number">9</span> External ressourses</h1>
+<p>You can find here some interesting resources about R.</p>
+<ul>
+<li><a href="https://cranalerts.com/" id="cranalert">CRANalert</a> Get email alerts when a CRAN package gets updated</li>
+<li><a href="https://feeds.feedburner.com/RBloggers">R-Bloggers RSS feed</a> Get “email” for each blogpost posted on <a href="https://www.r-bloggers.com/">R-Bloggers</a></li>
+<li><a href="https://stackoverflow.com/questions/tagged/r">R tag on stackoverflow</a></li>
+</ul>
+<p>I have learn a lot thanks to:</p>
+<ul>
+<li><p>These books:</p>
+<ul>
+<li><a href="http://r-pkgs.had.co.nz/">R packages</a> by <a href="https://github.com/hadley">Hadley Wickham</a></li>
+<li><a href="https://r4ds.had.co.nz/">R for Data Science</a> by <a href="https://github.com/garrettgman">Garrett Grolemund</a> and <a href="https://github.com/hadley">Hadley Wickham</a></li>
+<li><a href="http://adv-r.had.co.nz/">Advanced R</a> by <a href="https://github.com/hadley">Hadley Wickham</a></li>
+<li><a href="https://csgillespie.github.io/efficientR/">Efficient R programming</a> by <a href="https://github.com/csgillespie">Colin Gillespie</a> and <a href="https://github.com/Robinlovelace">Robin Lovelace</a></li>
+<li><a href="https://rkabacoff.github.io/datavis/">Data Visualization with R</a> by <a href="https://github.com/Rkabacoff?tab=repositories">Rob Kabacoff</a></li>
+<li><a href="https://plotly-r.com/index.html">Interactive web-based data visualization with R, plotly, and shiny</a> by <a href="https://github.com/cpsievert">Carson Sievert</a></li>
+</ul></li>
+<li><p>These web sites:</p>
+<ul>
+<li><a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a> by <a href="https://github.com/holtzy">Yan Holtz</a></li>
+<li><a href="https://rmarkdown.rstudio.com/gallery.html">R Markdown Gallery</a> by R-Studio</li>
+<li><a href="https://holtzy.github.io/Pimp-my-rmd/">R Markdown tips &amp; tricks</a> by <a href="https://github.com/holtzy">Yan Holtz</a></li>
+<li><a href="https://shiny.rstudio.com/gallery/">Shiny Gallery</a> by R-Studio</li>
+</ul></li>
+</ul>
 <h1>
 Appendix
 </h1>
 <p>Source code of this document is available on <a href="https://github.com/juliendiot42/RTips-Tricks">GitHub</a>.</p>
-<pre class="r"><code>options(max.print = 10000)
-cat(&quot;Document generated in:\n&quot;)
-print(Sys.time() - knitStartTime)
-if (Sys.info()[&quot;sysname&quot;] == &quot;Linux&quot;) {
-  cat(&quot;\nCPU: &quot;)
-  cat(unique(system(&quot;awk -F&#39;: &#39; &#39;/model name/{print $2}&#39; /proc/cpuinfo&quot;, intern = T)))
-  cat(&quot;\nMemory total size: &quot;)
-  cat(as.numeric(system(&quot;awk &#39;/MemTotal/ {print $2}&#39; /proc/meminfo&quot;, intern = T))*10^(-6), &quot;GB&quot;)
-}
-cat(&quot;\n\n\nSession information:\n&quot;)
-print(sessionInfo(), locale = FALSE)</code></pre>
 <pre><code>## Document generated in:
-## Time difference of 9.135066 secs
+## Time difference of 10.1884 secs
 ## 
 ## CPU: Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
-## Memory total size: 7.860076 GB
+## Memory total size: 7.860092 GB
 ## 
 ## 
 ## Session information:
@@ -920,16 +1037,22 @@ print(sessionInfo(), locale = FALSE)</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] microbenchmark_1.4-7 emo_0.0.0.9000       fs_1.4.1            
+## [1] plotly_4.9.2.1       ggplot2_3.3.0        microbenchmark_1.4-7
+## [4] emo_0.0.0.9000       fs_1.4.1            
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.4.6      lubridate_1.7.8   crayon_1.3.4      digest_0.6.25    
-##  [5] assertthat_0.2.1  magrittr_1.5      evaluate_0.14     rlang_0.4.6      
-##  [9] stringi_1.4.6     fontawesome_0.1.0 generics_0.0.2    rmarkdown_2.1    
-## [13] tools_4.0.0       stringr_1.4.0     glue_1.4.0        purrr_0.3.4      
-## [17] xfun_0.13         yaml_2.2.1        compiler_4.0.0    htmltools_0.4.0  
-## [21] knitr_1.28        sass_0.2.0</code></pre>
-</div>
+##  [1] Rcpp_1.0.4.6       RColorBrewer_1.1-2 compiler_4.0.0     pillar_1.4.3      
+##  [5] tools_4.0.0        digest_0.6.25      viridisLite_0.3.0  jsonlite_1.6.1    
+##  [9] lubridate_1.7.8    evaluate_0.14      lifecycle_0.2.0    tibble_3.0.1      
+## [13] gtable_0.3.0       pkgconfig_2.0.3    rlang_0.4.6        crosstalk_1.1.0.1 
+## [17] yaml_2.2.1         xfun_0.13          httr_1.4.1         withr_2.2.0       
+## [21] stringr_1.4.0      dplyr_0.8.5        knitr_1.28         htmlwidgets_1.5.1 
+## [25] generics_0.0.2     sass_0.2.0         vctrs_0.2.4        grid_4.0.0        
+## [29] tidyselect_1.0.0   data.table_1.12.8  glue_1.4.0         fontawesome_0.1.0 
+## [33] R6_2.4.1           rmarkdown_2.1      farver_2.0.3       tidyr_1.0.2       
+## [37] purrr_0.3.4        magrittr_1.5       scales_1.1.0       htmltools_0.4.0   
+## [41] ellipsis_0.3.0     assertthat_0.2.1   colorspace_1.4-1   stringi_1.4.6     
+## [45] lazyeval_0.2.2     munsell_0.5.0      crayon_1.3.4</code></pre>
 </div>
 
 &nbsp;

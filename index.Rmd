@@ -54,13 +54,7 @@ sass::sass(input = sass::sass_file("src/myStyle.scss"),
 /* add some CSS styling here */
 ```
 
-**Disclaimer**
-
-The R Tips and Tricks presented here **are just what I use**, I don't guarantee that this is the best way to do it. Moreover, new features are developed every days some stuffs presented here might be outdated in the future. If you have any comments or suggestions feel free to contact me: juliendiot@ut-biomet.org or post an issue on [GitHub](https://github.com/juliendiot42/RTips-Tricks/issues).
-
-
-**Packages / R-options:**
-```{r pkgs_options, results='hide'}
+```{r pkgs_options, results='hide', echo=FALSE}
 suppressPackageStartupMessages({
  library(fs)
  library(emo) # devtools::install_github("hadley/emo")
@@ -73,37 +67,9 @@ options(max.print = 200)
 R <- fontawesome::fa("r-project", height = "20px", fill = "steelblue")
 ```
 
+**Disclaimer**
 
-
-
-<!-- # Ideas -->
-
-
-<!-- - rmarkdown: -->
-<!--   - rmd templates -->
-<!--   - Appendix `sessionInfo()` -->
-
-
-<!-- - Cheat sheets -->
-
-
-<!-- - technical monitoring -->
-<!--   - CRAN alerts -->
-<!--   - R bloggers -->
-
-
-<!-- - Rstudio 1.3 -->
-<!--   - https://rstudio.com/products/rstudio/download/preview/ -->
-
-<!-- - Resources -->
-<!--   - R bloggers -->
-<!--   - Hadley's books -->
-<!--   - https://holtzy.github.io/Pimp-my-rmd/ -->
-
-
-
-
-
+The R Tips and Tricks presented here **are just what I use**, I don't guarantee that this is the best way to do it. Moreover, new features are developed every days some stuffs presented here might be outdated in the future. If you have any comments or suggestions feel free to contact me: juliendiot@ut-biomet.org or post an issue on [GitHub](https://github.com/juliendiot42/RTips-Tricks/issues).
 
 
 
@@ -245,6 +211,32 @@ From R-Studio 1.3, the configuration is saved at `~/.config/rstudio` (at least f
 - The R-Studio settings: `rstudio-pref.json`
 - The [snippets](#snippets)
 - The personal dictionary
+- The personal keyboard shortcuts definitions
+
+
+
+
+# `.Rprofile` file
+
+The `.Rprofile` file can be used to customize the environment at the startup of R. This file should be place in the your HOME directory, or inside a folder of a R-project. In this case, the one inside the project take precedence over the other.
+
+
+When R starts, it automatically sources the `.Rprofile` file. So it can be used to setup some R options like: `options(max.print = 200)` to reduce the number of printed lines or `options("scipen" = 999)` to disabled the scientific notation.
+
+There is also two interesting functions: `.First( )` which will be run at the start of the R session and `.Last( )` at the end of the session.
+
+You can try to copy this this line in your `.Rprofile` file:
+
+```{r eval=FALSE}
+.First <- function(){
+  cat("Welcome", Sys.info()["user"], "!\n")
+}
+```
+
+
+
+
+
 
 # Working with R-Studio
 
@@ -350,6 +342,22 @@ Some R packages provides tutorials thanks to the [`learnr`](https://rstudio.gith
 
 ![Data basics tutorial running in the pane](src/img/RSTools-tuto.png)
 
+## Addins
+
+Some R packages includes some R-Studio addins. 
+
+You can launch an addin using the ![addin](src/img/RS-AddinsButton.png) button.
+
+
+
+These addins provides new functionality to R studio like: [Color picker](https://github.com/daattali/colourpicker), [create data.frame from clipboard](https://github.com/MilesMcBain/datapasta)...
+
+![Addins can be installed with "Browse RStudio addins" ](src/img/RS-Addins.png)
+
+
+
+
+
 ## R-Project {#Rproj}
 
 When you work, ~~I hope~~ you keep all your files associated with a project in one specific directory in your computer. R-Studio provide a built-in support for this via "projects".
@@ -409,6 +417,13 @@ The `.Rproj` file is a text file (you can try to open it with a text editor) con
 - Even if the `.Rproj.user` folder is not so big, it can contain a lot of small files. It can then take a long time be synchronized on clouds services.
 
 </div>
+
+
+
+
+
+
+
 
 
 ## Keyboard shortcuts and useful command
@@ -545,39 +560,14 @@ These shortcuts are similar to those of other softwares.
 - **`Ctrl` + `Shift` + `Enter`**: Run current chunk
 - `Ctrl` + `Alt` + `P` : Run all **p**revious chunks 
 
-## Addins
-
-Some R packages includes some R-Studio addins. 
-
-You can launch an addin using the ![addin](src/img/RS-AddinsButton.png) button.
 
 
-
-These addins provides new functionality to R studio like: [Color picker](https://github.com/daattali/colourpicker), [create data.frame from clipboard](https://github.com/MilesMcBain/datapasta)...
-
-![Addins can be installed with "Browse RStudio addins" ](src/img/RS-Addins.png)
-
-# `.Rprofile` file
-
-The `.Rprofile` file can be used to customize the environment at the startup of R. This file should be place in the your HOME directory, or inside a folder of a R-project. In this case, the one inside the project take precedence over the other.
-
-
-When R starts, it automatically sources the `.Rprofile` file. So it can be used to setup some R options like: `options(max.print = 200)` to reduce the number of printed lines or `options("scipen" = 999)` to disabled the scientific notation.
-
-There is also two interesting functions: `.First( )` which will be run at the start of the R session and `.Last( )` at the end of the session.
-
-You can try to copy this this line in your `.Rprofile` file:
-
-```{r eval=FALSE}
-.First <- function(){
-  cat("Welcome", Sys.info()["user"], "!\n")
-}
-```
 
 
 <div class="NOTE">
 You should not modify options that can have an effect on the R behavior ! For example setting `options(stringsAsFactors = TRUE/FALSE)` in your `.Rprofile` file is a bad idea. Indeed, your codes might not run well on another computer.
 </div>
+
 
 
 # Snippets {#snippets}
@@ -622,7 +612,6 @@ snippet for
 	for (${1:variable} in ${2:vector}) {
 		${0}
 	}
-
 ```
 
 It start with `snippet` followed by the name of the snippet. The contents of the snippet should be written below with an indentation.
@@ -698,14 +687,92 @@ This tool can be very useful to detect the slowest part of your code to improve 
 
 # R-Markdown
 
+Using the [`Rmarkdown`](https://rmarkdown.rstudio.com/) package is a easy and beautiful way to create R analysis reports, presentation slides, package documentations, and even books and websites.
+
+It is based on the [markdown](https://daringfireball.net/projects/markdown/) syntax which is easy to read and easy to write:
+
+```{markdown}
+Plain text
+
+End a line with two spaces to start a new paragraph.
+
+*italics* and _italics_
+
+**bold** and __bold__
+
+superscript^2^
+
+~~strikethrough~~
+
+[link](https://rmarkdown.rstudio.com/)
+
+# Header 1
+
+## Header 2
+
+### Header 3
+
+inline equation using LaTeX syntax: $A = \pi*r^{2}$ 
+
+image: ![](path/to/image.png) 
+```
 
 
-## rmd templates
-  - rmd templates
-  - Appendix `sessionInfo()`
+Blocks of R code (called a chunk) can be introduced using the delimiters `` ```{r} `` and `` ``` `` and R-studio can display the outputs directly in the editor:
+
+![simple Rmd chunk with the outputs shown](src/img/Rmd-chunk.png)
 
 
-## Publish R-Markdown
+R-Markdown can generate a lot of different format: HTML, pdf, Word, Power Point, markdown...
+
+
+A complete R-Markdown guide is available [here](https://bookdown.org/yihui/rmarkdown/).
+
+## R-Markdwon template
+
+There is a lot of customization options so it can be good to save templates.
+
+The template structure is:
+
+```{r echo=FALSE}
+dir_tree("templateName/")
+```
+
+You should name your `.Rmd` file `skeleton.Rmd`, and the `template.yaml` file contain some information about the template:
+
+```{yaml}
+name: templateName
+description: >
+  My template
+create_dir: false
+
+```
+
+Once you have your template structure you should:
+
+- Initialize a new R package: `File -> New project...` and select "R package"
+- save your template in the package at: `./inst/rmarkdown/templates/templateName`
+- Install your package: `Ctrl` +  `Shift` + `B`, or click on "Build and restart" in the "Build" pane.
+
+Your template is then accessible at: `File -> New file -> R Markdown...`
+
+<div class="note">
+- It is a good practice to add a chunk with `print(sessionInfo(), locale = FALSE)` at the end of a markdown document. So that the reader can have information about the versions of the packages used to generate the document.
+</div>
+
+
+## Publish your R-Markdown
+
+
+You can display a html document online thanks to [GitHub pages](https://pages.github.com/).
+
+- First, if you don't have one, create your GitHub web site. You can follow the steps presented [here](https://pages.github.com/) (It is just a repository named `username.github.io` containing an `index.html` file)
+
+- Create a new repository for your document: `myRmdDocument`
+- Name your `.rmd` file `index.rmd` and knit your document.
+- Push the `index.html` to the GitHub repository at the master branch
+- On your github repository (`myRmdDocument`) go to `Settings -> GitHub Pages -> Source -> Master Branch -> Save`
+- Your document will be available at `https://username.github.io/myRmdDocument` after several minutes.
 
 
 
@@ -713,7 +780,13 @@ This tool can be very useful to detect the slowest part of your code to improve 
 
 
 
-# Some useful R functions:
+
+
+
+
+
+
+# Some useful R functions and packages:
 
 ## `saveRDS`
 
@@ -751,16 +824,90 @@ sapply(rep(1,3), function(x){
 ```
 
 
+## [`plotly`](https://plotly.com/r/)
+
+Create interactive plots:
+
+```{r}
+library(plotly)
+plot_ly(type = "scatter",
+        mode = "markers",
+        data = iris,
+        x = ~Sepal.Length,
+        y = ~Sepal.Width,
+        color = ~Species , 
+        hoverinfo = 'text',
+        text = apply(iris, 1, function(l) {
+          paste(names(l), ":", l, collapse = "\n")
+        })
+)
+```
+
+
+
+## [`covr`](https://github.com/r-lib/covr)
+
+Track test coverage for your R package and view reports locally or (optionally) upload the results to codecov or coveralls.
+
+![Coverage result of a R package](src/img/pkg-covr.png)
+
+## Other
+
+- [`usethis`](https://usethis.r-lib.org/): Automates repetitive tasks that arise during project setup and development, both for **R packages** and non-package projects.
+
+- [`pkgdown`](https://pkgdown.r-lib.org/): To build a website for a R package.
+
+- [`xaringan`](https://github.com/yihui/xaringan): An R package for creating slideshows with `remark.js` through R Markdown.
+
+
+# Find help with cheat sheets
+
+A cheat-sheet is a one or two pages documentation presenting the main functionality of a tool (Software, R package ... ).
+
+There is a lot of cheat-sheet for different R packages. You can access to some of them from R-Studio: `Help -> Cheatsheets` and much more are accessible [here](https://rstudio.com/resources/cheatsheets/).
+
+For example:
+
+- [R Markdown](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+- [ggplot2](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+- [plotly](https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf)
+- [regural expressions](https://rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf)
+- [shiny](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf)
+- [dplyr and tidyr](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+
+Of course this is not limited to R for example: [Git cheat sheet from GitHub](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf), [LaTeX](https://wch.github.io/latexsheet/latexsheet-0.png)...
+
+
+
 # External ressourses
 
-## CRANalert {#cranalert}
+You can find here some interesting resources about R. 
+
+- [CRANalert](https://cranalerts.com/){#cranalert} Get email alerts when a CRAN package gets updated
+- [R-Bloggers RSS feed](https://feeds.feedburner.com/RBloggers) Get "email" for each blogpost posted on [R-Bloggers](https://www.r-bloggers.com/)
+- [R tag on stackoverflow](https://stackoverflow.com/questions/tagged/r)
 
 
+I have learn a lot thanks to:
 
 
+- These books:
+
+    - [R packages](http://r-pkgs.had.co.nz/) by [Hadley Wickham](https://github.com/hadley)
+    - [R for Data Science](https://r4ds.had.co.nz/) by [Garrett Grolemund](https://github.com/garrettgman) and [Hadley Wickham](https://github.com/hadley)
+    - [Advanced R](http://adv-r.had.co.nz/) by [Hadley Wickham](https://github.com/hadley)
+    - [Efficient R programming](https://csgillespie.github.io/efficientR/) by [Colin Gillespie](https://github.com/csgillespie) and [Robin Lovelace](https://github.com/Robinlovelace)
+    - [Data Visualization with R](https://rkabacoff.github.io/datavis/) by [Rob Kabacoff](https://github.com/Rkabacoff?tab=repositories)
+    - [Interactive web-based data visualization with R, plotly, and shiny](https://plotly-r.com/index.html) by [Carson Sievert](https://github.com/cpsievert)
 
 
+- These web sites: 
 
+    - [The R Graph Gallery](https://www.r-graph-gallery.com/) by [Yan Holtz](https://github.com/holtzy)
+    - [R Markdown Gallery](https://rmarkdown.rstudio.com/gallery.html) by R-Studio
+    - [R Markdown tips & tricks](https://holtzy.github.io/Pimp-my-rmd/) by [Yan Holtz](https://github.com/holtzy)
+    - [Shiny Gallery](https://shiny.rstudio.com/gallery/) by R-Studio
 
 
 
@@ -768,7 +915,7 @@ sapply(rep(1,3), function(x){
 
 Source code of this document is available on [GitHub](https://github.com/juliendiot42/RTips-Tricks).
 
-```{r sessionInfo}
+```{r sessionInfo, echo=FALSE}
 options(max.print = 10000)
 cat("Document generated in:\n")
 print(Sys.time() - knitStartTime)
