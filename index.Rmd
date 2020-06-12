@@ -820,12 +820,12 @@ sapply(rep(1,3), function(x){
 
 The `plotly` package creates interactive plots:
 
-```{r results="hide"}
+```{r include=FALSE}
 library(plotly)
 ```
 
 
-```{r}
+```{r warning=FALSE}
 plot_ly(type = "scatter",
         mode = "markers",
         data = iris,
@@ -876,7 +876,7 @@ Of course, this is not limited to R, for example, [Git cheat sheet from GitHub](
 
 
 
-# External ressourses
+# External ressourses and references
 
 You can find here some interesting resources about R. 
 
@@ -885,10 +885,10 @@ You can find here some interesting resources about R.
 - [R tag on stackoverflow](https://stackoverflow.com/questions/tagged/r)
 
 
-I have learned a lot thanks to:
+I have learned a lot about R thanks to the following online resources and some tips presented in this document come from these references.
 
 
-- These books:
+- Books:
 
     - [R packages](http://r-pkgs.had.co.nz/) by [Hadley Wickham](https://github.com/hadley)
     - [R for Data Science](https://r4ds.had.co.nz/) by [Garrett Grolemund](https://github.com/garrettgman) and [Hadley Wickham](https://github.com/hadley)
@@ -898,7 +898,7 @@ I have learned a lot thanks to:
     - [Interactive web-based data visualization with R, plotly, and shiny](https://plotly-r.com/index.html) by [Carson Sievert](https://github.com/cpsievert)
 
 
-- These web sites: 
+- Web sites: 
 
     - [The R Graph Gallery](https://www.r-graph-gallery.com/) by [Yan Holtz](https://github.com/holtzy)
     - [R Markdown Gallery](https://rmarkdown.rstudio.com/gallery.html) by R-Studio
