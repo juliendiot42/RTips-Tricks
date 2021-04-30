@@ -65,6 +65,8 @@ options(max.print = 200)
 
 # variables
 R <- fontawesome::fa("r-project", height = "20px", fill = "steelblue")
+
+set.seed(1993)
 ```
 
 **Disclaimer**
