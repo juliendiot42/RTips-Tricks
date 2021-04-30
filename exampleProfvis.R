@@ -30,14 +30,6 @@ f <- function() {
 }
 
 
-
-
-
-
-
-
-
-
 # f1 <- function() {
 #   print("f1")
 #   pause(1)
