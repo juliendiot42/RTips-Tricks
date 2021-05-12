@@ -9,43 +9,29 @@
 
 library(profvis)
 
-f1 <- function() {
-  print("f1")
-  Sys.sleep(1)
-}
-f2 <- function() {
-  print("f2")
-  f1()
-  f3()
-}
-f3 <- function() {
-  print("f3")
-  Sys.sleep(0.5)
-}
-
-f <- function() {
+myComplexAlgo <- function() {
   f1()
   f2()
   f3()
 }
 
 
-# f1 <- function() {
-#   print("f1")
-#   pause(1)
-# }
-# f2 <- function() {
-#   print("f2")
-#   f1()
-#   f3()
-# }
-# f3 <- function() {
-#   print("f3")
-#   pause(0.5)
-# }
-#
-# f <- function() {
-#   f1()
-#   f2()
-#   f3()
-# }
+f1 <- function() {
+  print("f1")
+  pause(1)
+}
+
+f3 <- function() {
+  print("f3")
+  pause(0.3)
+}
+
+f2 <- function() {
+  print("f2")
+  f1()
+  f3()
+}
+
+
+
+myComplexAlgo()
