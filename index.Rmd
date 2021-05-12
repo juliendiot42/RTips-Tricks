@@ -600,7 +600,7 @@ The book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown
 
 It is based on the [markdown](https://daringfireball.net/projects/markdown/) syntax which, is easy to read and easy to write:
 
-```{markdown}
+```markdown
 Plain text
 
 End a line with two spaces to start a new paragraph.
@@ -897,7 +897,8 @@ Source code of this document is available on [GitHub](https://github.com/juliend
 
 <details>
 <summary style="margin-bottom: 10px;">Session Information (click to expand)</summary>
-<pre>
+<!-- Place an empty line before the chunk ! -->
+
 ```{r sessionInfo, echo=FALSE}
   options(max.print = 10000)
   cat("Document generated in:\n")
@@ -911,5 +912,5 @@ Source code of this document is available on [GitHub](https://github.com/juliend
   cat("\n\n\nSession information:\n")
   print(sessionInfo(), locale = FALSE)
 ```
-</pre>
+
 </details>
