@@ -1,0 +1,15 @@
+Binding: createProj
+Title: My personal Project Template
+OpenFiles: analysis.R
+
+Parameter: data
+Widget: CheckboxInput
+Label: Create "data" folder ?
+Default: On
+Position: left
+
+Parameter: out
+Widget: CheckboxInput
+Label: Create "output" folder ?
+Default: On
+Position: right

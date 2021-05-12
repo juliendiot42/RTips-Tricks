@@ -97,7 +97,9 @@ Indeed, the panes on the bottom left do not need to be continuously displayed.
 
 ![The editor takes the the whole windows](src/img/RS-layout.png)
 
-As you can see, I prefer **dark theme** because it's more pleasant for my eyes. My favourite one is "Idle Fingers". However, several other themes are available, some a light other are black.
+As you can see, I prefer **dark theme** because it's more pleasant for my eyes. "Idle Fingers" is used on the image above. However, several other themes are available, some a light other are black.
+
+It is also possible to create **your own custom themes** as explain in this [R-Studio blog's article](https://blog.rstudio.com/2018/10/29/rstudio-ide-custom-theme-support/)
 
 I also use the font [**"Fira code"**](https://github.com/tonsky/FiraCode), this font provide programming ligatures:
 
@@ -145,6 +147,7 @@ I present here R-Studio code settings. The highlighted lines are those I find in
 -   **Show margin**: Display a margin guide on the right-hand side of the source editor at the specified column. (The "good practices" require to have line smaller than 80 characters)
 -   **Show whitespace characters**: Display glyphs indicating where whitespace characters (tab, newline, etc.) are located in source documents. (Useful to detect "double spaces" and tabulation)
 -   **Highlight R function calls**: Highlight R functions. (Better distinction between functions and other R objects)
+-   **Rainbow Parentheses**: Being able to color your parentheses (and brackets and braces) based on the level of nesting. See [here](https://blog.rstudio.com/2020/11/04/rstudio-1-4-preview-rainbow-parentheses/)
 
 ### Saving
 
@@ -191,7 +194,7 @@ Completion help to write functions name and their parameters just by taping the 
 
 ## Export your configuration
 
-From R-Studio 1.3, the configuration is saved at `~/.config/rstudio` (at least for Linux users). It is then easy to save and retrieve your configuration. This folder contains:
+From R-Studio 1.3, the configuration is saved at `~/.config/rstudio` for Linux/MacOS users and at `AppData/Roaming/RStudio` on Windows. It is then easy to save and retrieve your configuration. This folder contains:
 
 -   The R-Studio settings: `rstudio-pref.json`
 -   The [snippets](#snippets)
@@ -209,7 +212,7 @@ There are also two particular functions: `.First( )` which will be run at the st
 You can try to copy these lines in your `.Rprofile` file:
 
 ```{r eval=FALSE}
-.First <- function(){
+.First <- function() {
   cat("Welcome", Sys.info()["user"], "!\n")
 }
 ```
@@ -329,7 +332,7 @@ The main advantages to work with R-Projects are:
 Of course, the global environment is not restored if R-Studio is set up correctly, as explained in this [section](#generalSettings).
 :::
 
-### Create R-Project
+### Create R-Project {#createRproj}
 
 You can create a new R-Project either by clicking on `File -> New Project...` or on the ![project](src/img/RS-project.png) button.
 
@@ -412,6 +415,10 @@ Some of these shortcuts are similar to those of other software.
 -   **`Ctrl` + `Shift` + `F10`** : Restart R session. **You should do it quite often!**
 
 -   `Ctrl` + `Shift` + `H` : ~~Choose working directory~~ Not needed because you are working in an R project. 😉
+
+-   **`Ctrl` + `F7`** : Add a new source column (you can remove it by closing all its tabs (`Ctrl` + `W`))
+
+![Layout with two source columns. 2 files can be opened side by side.](src/img/KS-NewSourceColumn.png)
 
 ### Help
 
@@ -589,6 +596,8 @@ It's convenient to detect the slowest part of your code to improve them in prior
 
 Using the [`Rmarkdown`](https://rmarkdown.rstudio.com/) package is an easy and beautiful way to create R analysis reports, presentation slides, package documentation, and even books and websites.
 
+The book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by [Yihui Xie](https://github.com/yihui) is a very good documentation about R-Markdown. If you have any trouble, the answer is there !
+
 It is based on the [markdown](https://daringfireball.net/projects/markdown/) syntax which, is easy to read and easy to write:
 
 ```{markdown}
@@ -623,38 +632,12 @@ Blocks of R code (called a chunk) can be introduced using the delimiters ```` ``
 
 R-Markdown can generate a lot of different formats: HTML, pdf, Word, PowerPoint, markdown...
 
-A complete R-Markdown guide is available [here](https://bookdown.org/yihui/rmarkdown/).
-
 ## R-Markdwon template
 
-There is a lot of customization options so it can be good to save templates.
-
-The template structure is:
-
-```{r echo=FALSE}
-dir_tree("templateName/")
-```
-
-You should name your `.Rmd` file `skeleton.Rmd`, and the `template.yaml` file contains some information about the template:
-
-```{yaml}
-name: templateName
-description: >
-  My template
-create_dir: false
-
-```
-
-Once you have the template structure, you should:
-
--   Initialize a new R package: `File -> New project...` and select "R package"
--   save your template in the package at: `./inst/rmarkdown/templates/templateName`
--   Install your package: `Ctrl` + `Shift` + `B`, or click on "Build and restart" in the "Build" pane.
-
-Your template is then accessible at: `File -> New file -> R Markdown...`
+See the dedicated section [here](#rmdTemplate)
 
 ::: {.note}
--   It is a good practice to add a chunk with `print(sessionInfo(), locale = FALSE)` at the end of a markdown document. So that the reader can have information about the versions of the packages used to generate the document.
+-   It might be nice to add a chunk with `print(sessionInfo(), locale = FALSE)` at the end of a markdown document. So that the reader can have information about the versions of the packages used to generate the document. (Like [here](#appendix))
 :::
 
 ## Publish your R-Markdown
@@ -672,6 +655,124 @@ You can display an html document online thanks to [GitHub pages](https://pages.g
 -   On your github repository (`myRmdDocument`) go to `Settings -> GitHub Pages -> Source -> Master Branch -> Save`
 
 -   Your document will be available at `https://username.github.io/myRmdDocument` after several minutes.
+
+# Templates
+
+Some R packages provides templates for Rmarkdown documents or for projects. You can also create your own templates !
+
+## Create your own R package
+
+This step is very easy. You just have to create a new project in a new directory (see this [section](#createRproj)) and select "R Package", specify the name of the package and you are done.
+
+The created package is very simple (contain only one `hello` function, without informative description) however it is operational and you can install it on your computer: `Build -> install and restart` (or `Ctrl` + `Shift` + `B`).
+
+I recommend to modify the `DESCRIPTION`, delete the file `R/hello.R` and create a file named `packageDoc.R` in the `R` folder containing something like:
+
+``` {.r}
+#' My personal package for Rmarkdown and Projects templates
+#'
+#' A package for my Rmd/Projects templates
+#'
+#' @docType package
+#' @name myTemplates
+NULL
+```
+
+For more information about creating R packages, I recommend looking at Hadley Wickham's book [R Packages](https://r-pkgs.org/).
+
+## Add R-Markdown templates {#rmdTemplate}
+
+This process is well explain in the chapter *Document Templates* of Yihui Xie's book [*R Markdown: The Definitive Guide*](https://bookdown.org/yihui/rmarkdown/document-templates.html)
+
+Once you have created your package, make a call to the function `use_rmarkdown_template("Your Template Name")` of the `usethis` package to automatically create the required directory structure and files for your template:
+
+A new folder had been created at `inst/rmarkdown/templates/your-template-name` containing:
+
+-   a `.yaml` file containing information about the template:
+
+    ``` {.yaml}
+    name: Your Template Name
+    description: >
+       A description of the template
+    create_dir: FALSE
+    ```
+
+    (The `create_dir` value is used to specify if you want to create a new directory when the template is selected.)
+
+-   a `skeleton` folder containing the `skeleton.Rmd`, the main `.Rmd` file, and other files/folder you want to include in your rmarkdown document (like style sheet, images...)
+
+You can then install your package to use your template: `Build -> install and restart` (or `Ctrl` + `Shift` + `B`).
+
+## Add project templates
+
+This process is well explain on the [R-studio Extention's website](https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html).
+
+To create a project template, you should define:
+
+-   A function that will be called where a new project is created. This function take as Argument the `path` which is the the newly created project's path and the arguments from the input widgets of the "New Project... wizard". For example:
+
+    ``` {.r}
+    createProj <- function(path, ...) {
+      # ensure path exists
+      dir.create(path, recursive = TRUE, showWarnings = FALSE)
+
+      # collect inputs' parameters
+      params <- list(...)
+
+      # create .R file
+      file <- paste0(path, "/analysis.R")
+      file.create(file)
+
+      # create "data" dir
+      if (params[["data"]]) {
+        dtaDir <- paste0(path, "/data")
+        dir.create(dtaDir, recursive = TRUE, showWarnings = FALSE)
+      }
+
+      # create "outputs" dir
+      if (params[["out"]]) {
+        outDir <- paste0(path, "/outputs")
+        dir.create(outDir, recursive = TRUE, showWarnings = FALSE)
+      }
+    }
+    ```
+
+    This function should be saved in a `.R` file in the `R` folder of the package.
+
+-   The project metadata in a `.dcf` file place in `inst/rstudio/templates/project/` in your package. This metadata will define information about the package and the input widget of the package wizard:
+
+    -   `Binding`: Name of the R function to call when new project is created.
+    -   `Title`: Title of the template.
+    -   `OpenFiles`: File to open when the new project is created
+    -   `Parameter`: name of the parameter
+    -   `Widget`: type of widget (see [here](https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html#input-widgets))
+    -   `Label`: Label of the input
+    -   `Default`: Default value
+    -   `Position`: It's position on the wizard window
+
+    For example:
+
+        Binding: createProj
+        Title: My personal Project Template
+        OpenFiles: analysis.R
+
+        Parameter: data
+        Widget: CheckboxInput
+        Label: Create "data" folder ?
+        Default: On
+        Position: left
+
+        Parameter: out
+        Widget: CheckboxInput
+        Label: Create "output" folder ?
+        Default: On
+        Position: right
+
+You can then install your package to use your template: `Build -> install and restart` (or `Ctrl` + `Shift` + `B`).
+
+After that, You will be able to create a new project using your template with by clicking on `File -> New Project...`, `New Directory` and select your template. The wizard window will appear with your custom inputs:
+
+![A custom *New Project Wizard*](src/img/Template-projWizard.png)
 
 # Some useful R functions and packages:
 
@@ -777,6 +878,7 @@ I have learned a lot about R thanks to the following online resources and some t
 
     -   [R packages](http://r-pkgs.had.co.nz/) by [Hadley Wickham](https://github.com/hadley)
     -   [R for Data Science](https://r4ds.had.co.nz/) by [Garrett Grolemund](https://github.com/garrettgman) and [Hadley Wickham](https://github.com/hadley)
+    -   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by [Yihui Xie](https://github.com/yihui)
     -   [Advanced R](http://adv-r.had.co.nz/) by [Hadley Wickham](https://github.com/hadley)
     -   [Efficient R programming](https://csgillespie.github.io/efficientR/) by [Colin Gillespie](https://github.com/csgillespie) and [Robin Lovelace](https://github.com/Robinlovelace)
     -   [Data Visualization with R](https://rkabacoff.github.io/datavis/) by [Rob Kabacoff](https://github.com/Rkabacoff?tab=repositories)
@@ -789,24 +891,25 @@ I have learned a lot about R thanks to the following online resources and some t
     -   [R Markdown tips & tricks](https://holtzy.github.io/Pimp-my-rmd/) by [Yan Holtz](https://github.com/holtzy)
     -   [Shiny Gallery](https://shiny.rstudio.com/gallery/) by R-Studio
 
-<h1>
-
-Appendix
-
-</h1>
+# Appendix {#appendix .unnumbered}
 
 Source code of this document is available on [GitHub](https://github.com/juliendiot42/RTips-Tricks).
 
+<details>
+<summary style="margin-bottom: 10px;">Session Information (click to expand)</summary>
+<pre>
 ```{r sessionInfo, echo=FALSE}
-options(max.print = 10000)
-cat("Document generated in:\n")
-print(Sys.time() - knitStartTime)
-if (Sys.info()["sysname"] == "Linux") {
-  cat("\nCPU: ")
-  cat(unique(system("awk -F': ' '/model name/{print $2}' /proc/cpuinfo", intern = T)))
-  cat("\nMemory total size: ")
-  cat(as.numeric(system("awk '/MemTotal/ {print $2}' /proc/meminfo", intern = T))*10^(-6), "GB")
-}
-cat("\n\n\nSession information:\n")
-print(sessionInfo(), locale = FALSE)
+  options(max.print = 10000)
+  cat("Document generated in:\n")
+  print(Sys.time() - knitStartTime)
+  if (Sys.info()["sysname"] == "Linux") {
+    cat("\nCPU: ")
+    cat(unique(system("awk -F': ' '/model name/{print $2}' /proc/cpuinfo", intern = T)))
+    cat("\nMemory total size: ")
+    cat(as.numeric(system("awk '/MemTotal/ {print $2}' /proc/meminfo", intern = T))*10^(-6), "GB")
+  }
+  cat("\n\n\nSession information:\n")
+  print(sessionInfo(), locale = FALSE)
 ```
+</pre>
+</details>
