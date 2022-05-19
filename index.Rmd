@@ -283,20 +283,18 @@ You can find more information on this [R-Studio blog post](https://blog.rstudio.
 
 ### Git
 
+R-Studio have an integrated GIT client.
 ![Build pane](src/img/RSTools-Git.png)
 
 If you work with Git in your R-Project, you can run the main git commands in this pane:
 
 -   Stage / commit
 -   Pull / Push
--   View diff and history
 -   Create / checkout branches
 
-### Tutorial
+You can also open a dedicated window to see your history and the "file differences": `Ctrl` + `Alt` + `D`.
 
-::: {.note}
-This is a new feature included in R-Studio 1.3
-:::
+### Tutorial
 
 Some R packages provide tutorials thanks to the [`learnr`](https://rstudio.github.io/learnr/) package. You can try them in this pane.
 
@@ -311,7 +309,6 @@ You can launch an addin using the ![addin](src/img/RS-AddinsButton.png) button.
 These addins provides new functionality to R studio like: [Color picker](https://github.com/daattali/colourpicker), [create data.frame from clipboard](https://github.com/MilesMcBain/datapasta)...
 
 ![Addins can be installed with "Browse RStudio addins"](src/img/RS-Addins.png)
-
 
 ## Commands palette
 
@@ -395,7 +392,7 @@ The `.Rproj` file is a text file (you can try to open it with a text editor) con
 
 R-Studio provide a lot of **handy commands** accessible from the menu bar (`File`, `Edit`, `Code`, `Session` ... ).
 
-These commands are linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your productivity.
+These commands are linked to keyboard shortcuts. Even if it is not easy to learn, it will significantly improve your comfort (and productivity).
 
 The default shortcuts can be modified through: `Tools -> Modify keyboard shortcuts...`
 
@@ -405,118 +402,82 @@ The list below is just a non-exhaustive list of my favourite shortcuts / functio
 -   Remember, if you are doing an annoying and repetitive task, there is probably a shortcut for that!
 :::
 
+### My top 5
+
+First a quick summary of my most useful ones:
+
+| Shortcut | Effect |
+|---|---|
+| `Ctrl` + `Shift` + `F10` | Restart R the session. |
+| `Ctrl` + `Shift` + `C` | Toggle current/selected line(s) |
+| `F1` | Show function help |
+| `Ctrl` + `Enter` | Run current/selected lines(s) |
+| `Ctrl` + `F7` | Add a new source column (you can remove it by closing all its tabs (`Ctrl` + `W`)) |
+
 ### Basic
 
 Some of these shortcuts are similar to those of other software.
 
--   `Ctrl` + `Z` : Undo
-
--   **`Ctrl` + `Shift` + `Z`** : Redo (this is not the usual convention!)
-
--   `Ctrl` + `O` : **O**pen file
-
--   `Ctrl` + `A` : Select **a**ll
-
--   `Ctrl` + `S` : **S**ave file
-
--   `Ctrl` + `F` : **F**ind in the current file
-
--   **`Ctrl` + `Shit` + `F`**: **F**ind in files (to search across multiple files)
-
--   **`Ctrl` + `w`** : Close tab
-
--   **`Ctrl` + `Tab`** : Go to next tab
-
--   `Ctrl` + `Q` : Quit R-Studio
-
--   `Tab` : Indent / Autocompletion
-
--   `Shift` + `Tab` : Outdent
-
--   **`Ctrl` + `Shift` + `F10`** : Restart R session. **You should do it quite often!**
-
--   `Ctrl` + `Shift` + `H` : ~~Choose working directory~~ Not needed because you are working in an R project. 😉
-
--   **`Ctrl` + `F7`** : Add a new source column (you can remove it by closing all its tabs (`Ctrl` + `W`))
+| Shortcut | Effect |
+|--|--|
+|`Ctrl` + `Z` | Undo |
+|**`Ctrl` + `Shift` + `Z`** | Redo (this is not the usual convention!) |
+|`Ctrl` + `O` | **O**pen file |
+|`Ctrl` + `A` | Select **a**ll |
+|`Ctrl` + `S` | **S**ave file |
+|`Ctrl` + `F` | **F**ind in the current file |
+|**`Ctrl` + `Shit` + `F`**| **F**ind in files (to search across multiple files) |
+|**`Ctrl` + `w`** | Close tab |
+|**`Ctrl` + `Tab`** | Go to next tab |
+|`Ctrl` + `Q` | Quit R-Studio |
+|`Tab` | Indent / Autocompletion |
+|`Shift` + `Tab` | Outdent |
+|**`Ctrl` + `Shift` + `F10`** | Restart R session. **You should do it quite often!** |
+|`Ctrl` + `Shift` + `H` | ~~Choose working directory~~ Not needed because you are working in an R project. 😉 |
+|**`Ctrl` + `F7`** | Add a new source column (you can remove it by closing all its tabs (`Ctrl` + `W`)) |
 
 ![Layout with two source columns. 2 files can be opened side by side.](src/img/KS-NewSourceColumn.png)
 
 ### Help
 
--   **`Alt` + `Shift` + `K`** : Show **k**eyboard shortcuts
-
--   `F1` : Show function help
-
--   **`Ctrl` + `Click`** : (on a function) Go to function definition.
+| Shortcut | Effect |
+|--|--|
+|**`Alt` + `Shift` + `K`** | Show **k**eyboard shortcuts |
+|`F1` | Show function help |
+|**`Ctrl` + `Click`** | (on a function) Go to function definition. |
 
 ### Run code
 
--   `Ctrl` + `Enter` : Run selected lines
-
--   `Ctrl` + `Alt` + `B`/`E` : Run code from **B**egining to line or from line to **E**nd
-
--   `Ctrl` + `Alt` + `Shift` + `P` : Profile selected lines (see: [profiling section](#profiling))
+| Shortcut | Effect |
+|--|--|
+|`Ctrl` + `Enter` | Run selected lines |
+|`Ctrl` + `Alt` + `B`/`E` | Run code from **B**egining to line or from line to **E**nd |
+|`Ctrl` + `Alt` + `Shift` + `P` | Profile selected lines (see: [profiling section](#profiling)) |
 
 ### Editor
 
--   **`Alt` + `-`** : insert `<-`
-
--   `Ctrl` + `Shift` + `M` : insert a pipe `%>%`
-
--   `Ctrl` + `Shift` + `C` : (un)**C**omment code
-
-![`Ctrl` + `Shift` + `C`](src/img/KS-comment.gif)
-
-------------------------------------------------------------------------
-
--   `Ctrl` + `Shift` + `/` : Reflow comment
-
-![`Ctrl` + `Shift` + `/`](src/img/KS-comment2.gif)
-
-------------------------------------------------------------------------
-
--   `Ctrl` + `I` : Auto **i**ndentation
--   `Ctrl` + `Shift` + `A` : Auto reformat code (with format convention)
-
-::: {.row}
-::: {.col-md-6}
-![`Ctrl` + `I`](src/img/KS-autoIndent.gif)
-:::
-
-::: {.col-md-6}
-![`Ctrl` + `Shift` + `A`](src/img/KS-autoFormat.gif)
-:::
-:::
-
-------------------------------------------------------------------------
-
--   **`Ctrl` + `P`**: Jump to Matching Brace/Paren. Very useful to **debug "Brace related errors"**
-
-![`Ctrl` + `P`](src/img/KS-CtrlP.gif)
-
-------------------------------------------------------------------------
-
--   `Ctrl` + `Alt` + `Up`/`Down` : Add cursor above or below
--   `Ctrl` + `Alt` + `Click` : add a new cursor (Useful on Windows when you copy/paste file path and you want to double the `/`)
-
-![`Ctrl` + `Alt` + `Click`](src/img/KS-CtrlAltClick.gif)
-
-------------------------------------------------------------------------
-
--   **`Ctrl` + `Alt` + `Shift` + `M`**: Rename in scope. It is much more intelligent than a simple "find and replace". On the example below, neither the variable `a` outside the function nor the variable `alex` is affected.
-
-![`Ctrl` + `Alt` + `Shift` + `M`](src/img/KS-rename.gif)
-
-------------------------------------------------------------------------
+| Shortcut | Effect |
+|--|--|
+|**`Alt` + `-`** | insert `<-` |
+|`Ctrl` + `Shift` + `M` | insert a pipe `%>%` |
+|`Ctrl` + `Shift` + `C` | (un)**C**omment code ![`Ctrl` + `Shift` + `C`](src/img/KS-comment.gif)|
+|`Ctrl` + `Shift` + `/` | Reflow comment ![`Ctrl` + `Shift` + `/`](src/img/KS-comment2.gif)|
+|`Ctrl` + `I` | Auto **i**ndentation ![`Ctrl` + `I`](src/img/KS-autoIndent.gif)|
+|`Ctrl` + `Shift` + `A` | Auto reformat code (with format convention) ![`Ctrl` + `Shift` + `A`](src/img/KS-autoFormat.gif)|
+|**`Ctrl` + `P`**| Jump to Matching Brace/Paren. Very useful to **debug "Brace related errors"** ![`Ctrl` + `P`](src/img/KS-CtrlP.gif)|
+|`Ctrl` + `Alt` + `Up`/`Down` | Add cursor above or below |
+|`Ctrl` + `Alt` + `Click` | add a new cursor (Useful on Windows when you copy/paste file path and you want to double the `/`) ![`Ctrl` + `Alt` + `Click`](src/img/KS-CtrlAltClick.gif)|
+|**`Ctrl` + `Alt` + `Shift` + `M`**| Rename in scope. It is much more intelligent than a simple "find and replace". On the example below, neither the variable `a` outside the function nor the variable `alex` is affected. ![`Ctrl` + `Alt` + `Shift` + `M`](src/img/KS-rename.gif)|
 
 ### R markdown
 
--   **`Ctrl` + `Shit` + `K`**: **K**nit document
--   `Shit` + `Tab` : Autocompletion / snippets
--   **`Ctrl` + `Alt` + `I`** : **I**nsert a new chunk
--   **`Ctrl` + `Shift` + `Enter`**: Run current chunk
--   `Ctrl` + `Alt` + `P` : Run all **p**revious chunks
-
+| Shortcut | Effect |
+|--|--|
+|**`Ctrl` + `Shit` + `K`**| **K**nit document |
+|`Shit` + `Tab` | Autocompletion / snippets |
+|**`Ctrl` + `Alt` + `I`** | **I**nsert a new chunk |
+|**`Ctrl` + `Shift` + `Enter`**| Run current chunk |
+|`Ctrl` + `Alt` + `P` | Run all **p**revious chunks |
 
 
 ### "Vim" keybindings
@@ -528,10 +489,6 @@ Vim is a text editor where you use the keyboard to navigate in your code instead
 ::: {.note}
 If you are interested to learn vim, I recommend this lecture from the MIT: https://missing.csail.mit.edu/2020/editors/ 
 :::
-
-
-
-
 
 # Snippets {#snippets}
 
