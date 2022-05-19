@@ -312,6 +312,27 @@ These addins provides new functionality to R studio like: [Color picker](https:/
 
 ![Addins can be installed with "Browse RStudio addins"](src/img/RS-Addins.png)
 
+
+## Commands palette
+
+From version 1.4, R-Studio have a commands palette you can trigger with `Ctrl + Shift + P`.
+This commands palette can let you search and execute R-Studio's commands.
+
+You can try typing to get an idea of what is possible:
+
+- `create`
+- `rename`
+- `find`
+- `python`
+
+![Commands Palette](src/img/RS-CommandsPalette.png)
+
+::: {.note}
+More info [on R-Studio's website](https://www.rstudio.com/blog/rstudio-v1-4-preview-command-palette/)
+:::
+
+
+
 ## R-Project {#Rproj}
 
 When you work, ~~I hope~~ you keep all your files associated with a project in one specific directory in your computer. R-Studio provides a built-in support for this via "projects".
@@ -495,6 +516,22 @@ Some of these shortcuts are similar to those of other software.
 -   **`Ctrl` + `Alt` + `I`** : **I**nsert a new chunk
 -   **`Ctrl` + `Shift` + `Enter`**: Run current chunk
 -   `Ctrl` + `Alt` + `P` : Run all **p**revious chunks
+
+
+
+### "Vim" keybindings
+
+R-Studio can support basic "Vim" key bindings (you can enable that in `Tools -> Global Options... -> Code`). 
+
+Vim is a text editor where you use the keyboard to navigate in your code instead of a mouse. I will not detail how it works here but I found this VERY pleasant to use !
+
+::: {.note}
+If you are interested to learn vim, I recommend this lecture from the MIT: https://missing.csail.mit.edu/2020/editors/ 
+:::
+
+
+
+
 
 # Snippets {#snippets}
 
