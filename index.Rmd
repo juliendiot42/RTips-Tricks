@@ -26,17 +26,17 @@ knitr::opts_chunk$set(echo = TRUE,
                       message = TRUE,
                       cache = FALSE, # save chunks output
                       results = "hold", # display chunk output in one block
-                      
+
                       # df_print paged options
                       rows.print = 10,
                       max.print = Inf,
-                      
-                      
+
+
                       # format
                       tidy = FALSE, # format code with 'tidy_source()'
                       tidy.opts = list(width.cutoff = 80),
                       strip.white = TRUE, #remove the white lines in the beginning or end of a source chunk
-                      
+
                       fig.align = "center",
                       fig.width = 9,
                       fig.height = 5)
@@ -482,12 +482,12 @@ Some of these shortcuts are similar to those of other software.
 
 ### "Vim" keybindings
 
-R-Studio can support basic "Vim" key bindings (you can enable that in `Tools -> Global Options... -> Code`). 
+R-Studio can support basic "Vim" key bindings (you can enable that in `Tools -> Global Options... -> Code`).
 
 Vim is a text editor where you use the keyboard to navigate in your code instead of a mouse. I will not detail how it works here but I found this VERY pleasant to use !
 
 ::: {.note}
-If you are interested to learn vim, I recommend this lecture from the MIT: https://missing.csail.mit.edu/2020/editors/ 
+If you are interested to learn vim, I recommend this lecture from the MIT: https://missing.csail.mit.edu/2020/editors/
 :::
 
 # Snippets {#snippets}
@@ -615,9 +615,9 @@ superscript^2^
 
 ### Header 3
 
-inline equation using LaTeX syntax: $A = \pi*r^{2}$ 
+inline equation using LaTeX syntax: $A = \pi*r^{2}$
 
-image: ![](path/to/image.png) 
+image: ![](path/to/image.png)
 ```
 
 Blocks of R code (called a chunk) can be introduced using the delimiters ```` ```{r} ```` and ```` ``` ```` and R-studio can display the outputs directly in the editor:
@@ -768,7 +768,7 @@ After that, You will be able to create a new project using your template with by
 
 ![A custom *New Project Wizard*](src/img/Template-projWizard.png)
 
-# Some useful R functions and packages:
+# Some useful R functions and packages or information:
 
 ## `saveRDS`
 
@@ -805,6 +805,31 @@ sapply(rep(1,3), function(x){
 })
 ```
 
+## Partial matching
+
+By default, the `$` operator in R have "partial matching" enable (unlike `[` or `[[`, and except for environments):
+
+```{r}
+df <- data.frame(firstColumn = c(1, 2, 3), secondColumn = c("a", "b", "c"))
+print(df$f) # returns the same as `df$firstColumn`
+# print(df[, "f"]) # raises an Error
+print(df[["f"]]) # returns NULL
+```
+
+I suggest to add `options(warnPartialMatchDollar = TRUE)` in your `.Rprofile` to a get warning
+in the case partial matching is used with the `$` operator (which should be avoided imho).
+
+Hopefully this partial matching do not concern assignments:
+
+```{r}
+df <- data.frame(firstColumn = c(1, 2, 3), secondColumn = c("a", "b", "c"))
+df$first <- c("X", "Y", "Z") # create a new `first` column
+print(df)
+print(df$f) # return NULL since now 2 columns can match with `f`
+```
+
+For more information see `?Extract`
+
 ## [`plotly`](https://plotly.com/r/)
 
 The `plotly` package creates interactive plots:
@@ -819,7 +844,7 @@ plot_ly(type = "scatter",
         data = iris,
         x = ~Sepal.Length,
         y = ~Sepal.Width,
-        color = ~Species , 
+        color = ~Species ,
         hoverinfo = 'text',
         text = apply(iris, 1, function(l) {
           paste(names(l), ":", l, collapse = "\n")
